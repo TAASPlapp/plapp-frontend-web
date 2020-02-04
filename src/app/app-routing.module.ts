@@ -1,21 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {DashboardComponent} from './components/dashboard/dashboard.component'
-import { AboutComponent } from './components/about/about.component';
-import { GreenhouseComponent } from './components/greenhouse/greenhouse.component';
-import { DiscoverComponent } from './components/discover/discover.component';
-import { AccountComponent } from './components/account/account.component';
-import { SettingsComponent } from './components/settings/settings.component';
+import {Error404Component} from "./components/errorPage/error404.component";
+
 
 
 const routes: Routes = [
-  {path: '', component: GreenhouseComponent},
-  {path: 'greenhouse', component: GreenhouseComponent},
-  {path: 'greenhouse/dashboard', component: DashboardComponent},
-  {path: 'discover', component: DiscoverComponent},
-  {path: 'account', component: AccountComponent},
-  {path: 'settings', component: SettingsComponent},
-  {path: 'about', component: AboutComponent},
+  {path: '', redirectTo: 'auth', pathMatch: 'full' },
+  {path: 'auth', loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule)},
+  {path: 'site', loadChildren: () => import('./components/site/site.module').then(m => m.SiteModule)},
+  {path: '**', component: Error404Component},
 ];
 
 @NgModule({

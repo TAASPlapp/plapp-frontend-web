@@ -10907,19 +10907,18 @@ a:focus {
 }
 
 .bg-login-image {
-    background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
-    background-position: center;
+    background: url("https://source.unsplash.com/n1Y2tKFvN1Y/600x800") center;
     background-size: cover;
 }
 
 .bg-register-image {
-    background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
+    background: url("https://source.unsplash.com/70l1tDAI6rM/600x800");
     background-position: center;
     background-size: cover;
 }
 
 .bg-password-image {
-    background: url("https://source.unsplash.com/oWTW-jNGl9I/600x800");
+    background: url("https://source.unsplash.com/jt6QxZwSOCQ/600x800");
     background-position: center;
     background-size: cover;
 }

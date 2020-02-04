@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SpringConnectService } from '../../services/spring-connect.service'
+import {SpringConnectService } from '../../../services/spring-connect.service'
 import { Example } from 'src/app/models/Example';
 
 @Component({

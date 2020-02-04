@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Example } from '../../models/Example'
+import { Example } from '../../../models/Example'
 
 
 @Component({
