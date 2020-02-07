@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 
 import{Plant} from "../../../models/Plant";
 import{GreenhouseManageService} from "../../../services/greenhouse-manage.service";
-import {Storyboard} from "../../../models/Storyboard";
 import {Schedule} from "../../../models/Schedule";
 
 @Component({
