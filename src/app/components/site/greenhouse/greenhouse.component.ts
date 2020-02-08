@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import {GreenhouseManageService} from "../../../services/greenhouse-manage.service";
+import {TokenStorageService} from "../../../services/token-storage.service";
 
 
 
@@ -16,12 +17,19 @@ import {GreenhouseManageService} from "../../../services/greenhouse-manage.servi
 export class GreenhouseComponent implements OnInit {
   plants: Observable<Plant[]>;
   selectedId: number;
+  greenhouseID : number;
 
 
   constructor(
     private service: GreenhouseManageService,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private tokenservice: TokenStorageService
+  ) {
+
+    //TODO:DA RIVEDERE
+    this.service.createGreenhouse(tokenservice.getUser().username).subscribe(
+      (id) => this.greenhouseID = id);
+  }
 
   ngOnInit() {
     this.plants = this.route.paramMap.pipe(

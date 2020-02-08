@@ -7,14 +7,19 @@ import {Plant} from "../models/Plant";
 import {PLANTS} from "../../assets/mocks/mock-Plants";
 import {Schedule} from "../models/Schedule";
 import {SCHEDULES} from "../../assets/mocks/mock-schedule";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GreenhouseManageService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
+  createGreenhouse(username: string) : Observable<any>{
+    //TODO: DA IMPLEMENTARE E VEDERE SE FUNZIONA IL BACKEND
+    return null;
+  }
 
   // data service REST call
   getPlants():Observable<Plant[]>{
