@@ -20,7 +20,8 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Storyboard</h6>
                             </div>
 
-                            <div class="card-body ">
+                            <div class="card-body " >
+
 
 
 
@@ -46,15 +47,15 @@
                     </div>
                 </div>
 
-                <div class="row" *ngIf="schedule | async as s">
+                <div class="row" *ngIf="recommendation | async as r">
                     <div class="col-lg-12">
                         <div class="card mb-4">
                             <div class="card-header">
-                                <h6 class="m-0 font-weight-bold text-primary">{{p.type}}</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">{{r.name}}</h6>
                             </div>
 
                             <div class="card-body ">
-                                bla bla bla
+                                {{r.description}}
 
                                 <hr>
                                 <h6><strong>Reccomandations</strong></h6>
@@ -67,8 +68,7 @@
                                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                             Watering every
                                                         </div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">12hr | 200
-                                                            ml
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.watering}}hr | {{r.wamount}}ml
                                                         </div>
                                                     </div>
                                                     <div class="col-auto">
@@ -86,7 +86,7 @@
                                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                             Temperature
                                                         </div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">16 °C</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.temperature}} °C</div>
                                                     </div>
                                                     <div class="col-auto">
                                                         <i class="fas fa-temperature-high fa-2x text-gray-300"></i>
@@ -103,7 +103,7 @@
                                                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                             Light
                                                         </div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">56k Lux
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.light}}k Lux
                                                         </div>
                                                     </div>
                                                     <div class="col-auto">
@@ -121,7 +121,7 @@
                                                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                             Humidity
                                                         </div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">76%</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.humidity}}%</div>
                                                     </div>
                                                     <div class="col-auto">
                                                         <i class="fas fa-tint fa-2x text-gray-300"></i>

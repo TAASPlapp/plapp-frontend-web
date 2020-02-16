@@ -34,7 +34,7 @@
                                     <span class="icon text-white-50">
                                         <i class="fas fa-info-circle"></i>
                                     </span>
-                                    <a class="text-white" [routerLink]="['manage-plant', p.id]">
+                                    <a class="text-white" [routerLink]="['manage-plant', p.id]" [queryParams]="{type: p.type}">
                                         <span class="text">Manage</span>
                                     </a>
                                 </a>
