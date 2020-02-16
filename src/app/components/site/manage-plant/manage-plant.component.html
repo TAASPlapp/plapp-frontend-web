@@ -4,7 +4,7 @@
         <!-- Main Content -->
         <div id="content">
             <app-top-bar></app-top-bar>
-            <div class="container-fluid" *ngIf="plant | async as p">
+            <div class="container-fluid" *ngIf="plant$ | async as p">
 
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Manage your {{p.name}} ({{p.type}})</h1>
@@ -13,6 +13,7 @@
                 </div>
 
 
+                <!-- STORYBOARD SECTION-->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card mb-4">
@@ -20,34 +21,76 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Storyboard</h6>
                             </div>
 
-                            <div class="card-body " >
-
-
-
-
-
-
+                            <div class="card-body ">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <ng-image-slider [images]="imageObject"
+                                                         [animationSpeed]="0.5"
+                                                         [imageSize]={width:300,height:400,space:3}
+                                                         [direction]=""
+                                                         #nav>
+                                        </ng-image-slider>
+                                    </div>
+                                    <div class="col-md-4 text-center d-flex align-items-center justify-content-center">
+                                        <i class="fas fa-plus-circle fa-4x text-gray-300"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row" *ngIf="schedule | async as s">
+                <!--  DAILY  SCHEDULE SECTION-->
+                <div class="row" *ngIf="schedule$ | async as s">
                     <div class="col-lg-12">
                         <div class="card mb-4">
                             <div class="card-header">
                                 <h6 class="m-0 font-weight-bold text-primary">Daily Schedule</h6>
                             </div>
 
-                            <div class="card-body ">
-                                {{s.plantID}}
-                                {{s.action}}
+                            <div class="card-body card-body-padding ">
+                                <div *ngFor="let s of schedule$ | async">
+                                    <div class="justify-content-between mb-4">
+
+                                        <div>
+                                            <div class="card border-left-primary shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class=" font-weight-bold text-primary text-uppercase mb-1">
+                                                                {{s.action}}
+                                                            </div>
+                                                            <div class="text-xs mb-0 font-weight-bold text-gray-800">
+                                                                {{s.date}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <a href="#" class="margin-top btn btn-sm btn-primary shadow-sm">
+                                            <i class="fas fa-edit fa-sm text-white-50"></i> Edit</a>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <button class="btn btn-primary " mat-raised-button (click)="openBottomSheet()"><i
+                                        class="fas fa-plus"></i> Add Schedule action
+                                </button>
+
+
                             </div>
+
                         </div>
                     </div>
                 </div>
 
-                <div class="row" *ngIf="recommendation | async as r">
+
+                <!--    RECOMMENDATIONS SECTION-->
+                <div class="row" *ngIf="recommendation$ | async as r">
                     <div class="col-lg-12">
                         <div class="card mb-4">
                             <div class="card-header">
@@ -68,7 +111,8 @@
                                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                             Watering every
                                                         </div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.watering}}hr | {{r.wamount}}ml
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.watering}}
+                                                            hr | {{r.wamount}}ml
                                                         </div>
                                                     </div>
                                                     <div class="col-auto">
@@ -86,7 +130,9 @@
                                                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                             Temperature
                                                         </div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.temperature}} °C</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.temperature}}
+                                                            °C
+                                                        </div>
                                                     </div>
                                                     <div class="col-auto">
                                                         <i class="fas fa-temperature-high fa-2x text-gray-300"></i>
@@ -103,7 +149,8 @@
                                                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                             Light
                                                         </div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.light}}k Lux
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.light}}k
+                                                            Lux
                                                         </div>
                                                     </div>
                                                     <div class="col-auto">
@@ -121,7 +168,9 @@
                                                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                             Humidity
                                                         </div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.humidity}}%</div>
+                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.humidity}}
+                                                            %
+                                                        </div>
                                                     </div>
                                                     <div class="col-auto">
                                                         <i class="fas fa-tint fa-2x text-gray-300"></i>
@@ -145,8 +194,3 @@
     </div>
 </div>
 
-
-<div class="row">
-
-
-</div>

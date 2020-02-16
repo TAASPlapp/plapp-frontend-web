@@ -26,7 +26,7 @@ export class GreenhouseManageService {
 
   getSchedule(id: number | string) {
     return of(SCHEDULES).pipe(
-      map((schedule: Schedule[]) => schedule.find(s => s.plantID === +id))
+      map((schedule: Schedule[]) => schedule.filter(s => s.plantID === +id))
     );
 
   }
@@ -47,6 +47,16 @@ export class GreenhouseManageService {
       map((rec: PlantInfo[]) => rec.find(p => p.name == type))
     );
   }
+
+  getScheduleActions(){
+    return ["Watering", "Manure", "Harvest", "Pruning", "Treating"]
+  }
+
+  addScheduleAction(data:any, action:string, date:Date){
+    //todo:mod
+    SCHEDULES.push({id:Math.random(), action: action, plantID:data.plantID, date:date})
+  }
+
 
 
 }

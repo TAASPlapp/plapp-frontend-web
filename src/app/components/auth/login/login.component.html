@@ -63,7 +63,6 @@
                                         </div>
                                     </div>
                                     <button class="btn btn-primary btn-user btn-block">
-                                        <!--                                    routerLink="/site" routerLinkActive="active"-->
                                         Login
                                     </button>
                                     <hr>
@@ -75,10 +74,15 @@
                                     </a>
                                 </form>
                                 <hr>
-                                <div class="text-center">
+                                <div class="text-center" *ngIf="isLoggedIn">
+                                    <p > You are already logged in!</p>
+                                    <button class="btn btn-primary btn-user btn-block" routerLink="/site" routerLinkActive="active">Go to Plapp</button>
+
+                                </div>
+                                <div class="text-center" *ngIf="!isLoggedIn">
                                     <a class="small" routerLink="/auth/forgot-password">Forgot Password?</a>
                                 </div>
-                                <div class="text-center">
+                                <div class="text-center" *ngIf="!isLoggedIn" >
                                     <a class="small" routerLink="/auth/register" routerLinkActive="active">Create an
                                         Account!</a>
                                 </div>

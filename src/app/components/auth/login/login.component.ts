@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from "../../../services/token-storage.service";
 import {AuthService} from "../../../services/auth.service";
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {Router} from "@angular/router";
-import {first} from "rxjs/operators";
 import {HttpResponse} from "@angular/common/http";
 
 @Component({
