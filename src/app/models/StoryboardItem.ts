@@ -1,6 +1,6 @@
-export class StoryboardItem{
+export class StoryboardItem {
   image: string;
-  thumbImage:string;
+  thumbImage: string;
   alt: string;
   title: string;
 }

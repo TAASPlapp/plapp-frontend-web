@@ -4,5 +4,6 @@ export class Storyboard{
   id:number;
   plantID:number;
   summary:string;
+  lastModify: Date;
   storyboardItems:StoryboardItem[];
 }

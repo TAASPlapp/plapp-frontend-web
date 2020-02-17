@@ -4,9 +4,55 @@
         <!-- Main Content -->
         <div id="content">
             <app-top-bar></app-top-bar>
-            <p>discover works!</p>
+            <div class="container-fluid">
+
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Discover</h1>
+                </div>
+                <!--                        Card social-->
+
+                <div class="row row-padding-top"  *ngFor="let s of storyboards | async">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="card shadow mb-6 ">
+                            <div class="card-header py-3">
+
+                                <div class="row card-body-padding">
+                                    <div class="col-md-2">
+                                        <img class="img-profile rounded-circle"
+                                             src="https://source.unsplash.com/QAB-WJcbgJk/50x50"
+                                             alt="">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="row">
+                                            <div class=" text-primary">Valerie Luna</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="text-secondary">{{getMinutes(s.lastModify)}} minutes ago</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h6 class="m-0 font-weight-bold text-secondary">{{s.summary}}</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-8 offset-md-2">
+                                        <ng-image-slider [images]=s.storyboardItems
+                                                         [animationSpeed]="0.5"
+                                                         [imageSize]={width:300,height:400,space:3}
+                                                         [direction]=""
+                                                         #nav>
+                                        </ng-image-slider>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
 
 
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
