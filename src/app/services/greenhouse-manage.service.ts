@@ -10,6 +10,8 @@ import {SCHEDULES} from "../../assets/mocks/mock-schedule";
 import {HttpClient} from "@angular/common/http";
 import {RECOMMENDATION} from "../../assets/mocks/mock-recplant";
 import {PlantInfo} from "../models/PlantInfo";
+import {STORYBOARD} from "../../assets/mocks/mock.storyboard";
+import {Storyboard} from "../models/Storyboard";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,7 @@ export class GreenhouseManageService {
   constructor(private http: HttpClient) {
   }
 
+
   // data service REST call
   getAllPlants(): Observable<Plant[]> {
     return of(PLANTS);
@@ -26,12 +29,14 @@ export class GreenhouseManageService {
 
   getSchedule(id: number | string) {
     return of(SCHEDULES).pipe(
-      map((schedule: Schedule[]) => schedule.find(s => s.plantID === +id))
+      map((schedule: Schedule[]) => schedule.filter(s => s.plantID === +id))
     );
-
   }
 
   getStoryboard(id: number | string) {
+    return of(STORYBOARD).pipe(
+      map((storyboards: Storyboard[]) => storyboards.find(s => s.plantID === +id))
+    );
   }
 
   getPlant(id: number | string) {
@@ -48,5 +53,19 @@ export class GreenhouseManageService {
     );
   }
 
+  getScheduleActions() {
+    return ["Watering", "Manure", "Harvest", "Pruning", "Treating"]
+  }
 
+  addScheduleAction(data: any, action: string, date: Date) {
+    //todo:mod
+    SCHEDULES.push({id: Math.random(), action: action, plantID: data.plantID, date: date})
+  }
+
+
+  //api get request to newsAPI to get all articles related to the plant type
+  getRelatedArticles(plantType: string) {
+    let url = 'http://newsapi.org/v2/everything?qInTitle=' + plantType + '&sortBy=publishedAt&apiKey=6c3cd712f87541beb1743c8ec1d727d0';
+   return this.http.get(url);
+  }
 }

@@ -1,0 +1,51 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Add photo and title</ng-template>
+            <input style="display: none"
+                   type="file" (change)="onFileChanged($event)"
+                   #fileInput
+                   required
+            >
+            <div>
+                <button class="btn btn-primary" (click)="fileInput.click()">Select File</button>
+                <p [innerHTML]="fileName"></p>
+            </div>
+
+            <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="firstCtrl" placeholder="Title"
+                       required>
+
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Fill out your address</ng-template>
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <input matInput #input maxlength="20" formControlName="secondCtrl" placeholder="Description..."
+                       required>
+                <mat-hint align="end">{{input.value?.length || 0}}/20</mat-hint>
+
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>Are you sure you want to add this?</p>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="addStoryBoardItem()">Add</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>
