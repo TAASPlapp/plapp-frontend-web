@@ -14,7 +14,7 @@ import {ManagePlantComponent} from './manage-plant/manage-plant.component';
 import {NgImageSliderModule} from "ng-image-slider";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatButtonModule} from "@angular/material/button";
-import { AddScheduleComponent } from './add-schedule/add-schedule.component';
+import { AddScheduleComponent } from './manage-plant/add-schedule/add-schedule.component';
 import {MatLineModule, MatNativeDateModule} from "@angular/material/core";
 import {MatListModule} from "@angular/material/list";
 import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
@@ -24,6 +24,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatStepperModule} from "@angular/material/stepper";
+import { AddStoryboardItemComponent } from './manage-plant/add-storyboard-item/add-storyboard-item.component';
 
 
 @NgModule({
@@ -38,9 +40,10 @@ import {MatRadioModule} from "@angular/material/radio";
     AddPlantComponent,
     ManagePlantComponent,
     AddScheduleComponent,
+    AddStoryboardItemComponent,
 
   ],
-  entryComponents: [AddScheduleComponent],
+  entryComponents: [AddScheduleComponent, AddStoryboardItemComponent],
 
   imports: [
     CommonModule,
@@ -58,7 +61,8 @@ import {MatRadioModule} from "@angular/material/radio";
     MatSelectModule,
     FormsModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatStepperModule
 
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },]

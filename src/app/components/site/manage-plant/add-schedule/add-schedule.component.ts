@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from "@angular/material/bottom-sheet";
-import {GreenhouseManageService} from "../../../services/greenhouse-manage.service";
+import {GreenhouseManageService} from "../../../../services/greenhouse-manage.service";
 import {FormControl, Validators} from "@angular/forms";
 
 @Component({

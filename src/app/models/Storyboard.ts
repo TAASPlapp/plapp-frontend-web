@@ -1,5 +1,8 @@
+import {StoryboardItem} from "./StoryboardItem";
+
 export class Storyboard{
   id:number;
   plantID:number;
-  summary:String[];
+  summary:string;
+  storyboardItems:StoryboardItem[];
 }

@@ -8,8 +8,12 @@ import {Plant} from "../../../models/Plant";
 import {GreenhouseManageService} from "../../../services/greenhouse-manage.service";
 import {Schedule} from "../../../models/Schedule";
 import {PlantInfo} from "../../../models/PlantInfo";
-import {AddScheduleComponent} from "../add-schedule/add-schedule.component";
+import {AddScheduleComponent} from "./add-schedule/add-schedule.component";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {Article} from "../../../models/Article";
+import {NewsApiResponse} from "../../../models/NewsApiResponse";
+import {AddStoryboardItemComponent} from "./add-storyboard-item/add-storyboard-item.component";
+import {Storyboard} from "../../../models/Storyboard";
 
 @Component({
   selector: 'app-manage-plant',
@@ -21,11 +25,16 @@ export class ManagePlantComponent implements OnInit {
   plant$: Observable<Plant>;
   schedule$: Observable<Schedule[]>;
   recommendation$: Observable<PlantInfo>;
+  storyboardItems: Array<object>;
+  articles: Article[];
+  storyboardDescription: string;
+
+  maxArticles: number = 3;
+
   date: Date;
   isHealty: boolean = true;
-  plantID:string;
-
-  imageObject: Array<object>;
+  plantID: string;
+  plantType: string;
 
 
   constructor(
@@ -35,7 +44,13 @@ export class ManagePlantComponent implements OnInit {
     private bottomSheet: MatBottomSheet,
   ) {
     this.date = new Date();
-    this.route.paramMap.subscribe(params=>{this.plantID = params.get('id')});
+    this.route.paramMap.subscribe(params => {
+      this.plantID = params.get('id')
+    });
+    this.route.queryParams.subscribe(params => {
+      this.plantType = params['type']
+    });
+
   }
 
   ngOnInit() {
@@ -52,50 +67,29 @@ export class ManagePlantComponent implements OnInit {
         this.service.getRecommended(params['type']))
     );
 
-    //TODO: put this in a mock class
-    this.imageObject = [{
-      image: 'https://source.unsplash.com/n1Y2tKFvN1Y/600x800',
-      thumbImage: 'https://source.unsplash.com/n1Y2tKFvN1Y/600x800',
-      alt: 'alt of image',
-      title: 'title of image'
-    }, {
-      image: 'https://source.unsplash.com/n1Y2tKFvN1Y/600x800', // Support base64 image
-      thumbImage: 'https://source.unsplash.com/n1Y2tKFvN1Y/600x800', // Support base64 image
-      title: 'Image title', //Optional: You can use this key if want to show image with title
-      alt: 'Image alt' //Optional: You can use this key if want to show image with alt
-    }, {
-      image: 'https://source.unsplash.com/n1Y2tKFvN1Y/400x800', // Support base64 image
-      thumbImage: 'https://source.unsplash.com/n1Y2tKFvN1Y/600x800', // Support base64 image
-      title: 'Image title', //Optional: You can use this key if want to show image with title
-      alt: 'Image alt' //Optional: You can use this key if want to show image with alt
-    }, {
-      image: 'https://source.unsplash.com/n1Y2tKFvN1Y/500x300', // Support base64 image
-      thumbImage: 'https://source.unsplash.com/n1Y2tKFvN1Y/600x800', // Support base64 image
-      title: 'Image title', //Optional: You can use this key if want to show image with title
-      alt: 'Image alt' //Optional: You can use this key if want to show image with alt
-    }, {
-      image: 'https://source.unsplash.com/n1Y2tKFvN1Y/700x500', // Support base64 image
-      thumbImage: 'https://source.unsplash.com/n1Y2tKFvN1Y/600x800', // Support base64 image
-      title: 'Image title', //Optional: You can use this key if want to show image with title
-      alt: 'Image alt' //Optional: You can use this key if want to show image with alt
-    }, {
-      image: 'https://source.unsplash.com/n1Y2tKFvN1Y/600x800', // Support base64 image
-      thumbImage: 'https://source.unsplash.com/n1Y2tKFvN1Y/600x800', // Support base64 image
-      title: 'Image title', //Optional: You can use this key if want to show image with title
-      alt: 'Image alt' //Optional: You can use this key if want to show image with alt
-    }, {
-      image: 'https://source.unsplash.com/n1Y2tKFvN1Y/600x800', // Support base64 image
-      thumbImage: 'https://source.unsplash.com/n1Y2tKFvN1Y/600x800', // Support base64 image
-      title: 'Image title', //Optional: You can use this key if want to show image with title
-      alt: 'Image alt' //Optional: You can use this key if want to show image with alt
-    }
-    ];
+    //get news about the plant
+    this.service.getRelatedArticles(this.plantType).subscribe((res: NewsApiResponse) => {
+      this.articles = res.articles.splice(0, this.maxArticles);
+    });
+    this.service.getStoryboard(this.plantID).subscribe((res: Storyboard) => {
+      console.log(res);
+      this.storyboardItems = res.storyboardItems;
+      this.storyboardDescription = res.summary;
+    });
 
   }
 
   openBottomSheet(): void {
     this.bottomSheet.open(AddScheduleComponent, {
-      data: {plantID: this.plantID}});
+      data: {plantID: this.plantID}
+    });
   }
+
+  openBottomSheetStoryboard(): void {
+    this.bottomSheet.open(AddStoryboardItemComponent, {
+      data: {plantID: this.plantID}
+    })
+  }
+
 
 }
