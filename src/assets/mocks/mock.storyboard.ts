@@ -1,11 +1,15 @@
 import {Storyboard} from "../../app/models/Storyboard";
 
+
+
+//TODO: quqesto è quello che mi arriva dal server: aggiungere tutta la Plant secondo me!!! non solo plantID per la parte di social
 export const STORYBOARD: Storyboard[] = [
   {
     id: 1,
     plantID: 134325,
     summary: 'The story of my peony named Giorgia',
     lastModify: new Date("2020-02-14T12:56:00"),
+    numLikes: 31,
     storyboardItems: [{
       image: 'https://source.unsplash.com/y-5pd18ETbg/600x800',
       thumbImage: 'https://source.unsplash.com/y-5pd18ETbg/600x800',
@@ -29,6 +33,7 @@ export const STORYBOARD: Storyboard[] = [
     plantID: 264574,
     summary: 'The story of my cactus named Prosperina',
     lastModify: new Date("2020-01-25T13:23:00"),
+    numLikes: 52,
     storyboardItems: [{
       image: 'https://source.unsplash.com/UkH7L-aag8A/600x800',
       thumbImage: 'https://source.unsplash.com/UkH7L-aag8A/600x800',

@@ -11,8 +11,9 @@
                 </div>
                 <!--                        Card social-->
 
-                <div class="row row-padding-top"  *ngFor="let s of storyboards | async">
-                    <div class="col-md-6 offset-md-3">
+                <div class="row row-padding-top" *ngFor="let s of storyboards | async">
+                    <!--                    da rivedere-->
+                    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
                         <div class="card shadow mb-6 ">
                             <div class="card-header py-3">
 
@@ -44,6 +45,20 @@
                                         </ng-image-slider>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-3 offset-1"><i class="far fa-thumbs-up"></i> {{s.numLikes}}</div>
+                                </div>
+
+                                <hr>
+                                <div class="row">
+                                    <div class="col-3 offset-3"><a href=""><i class="far fa-thumbs-up"></i> Like</a></div>
+                                    <div class="col-3"><a href=""> <i class="far fa-comment"></i> Comment</a></div>
+                                </div>
+                                <hr>
+                                <div class="card-body">
+                                    <p>robaa</p>
+                                </div>
+
                             </div>
                         </div>
 

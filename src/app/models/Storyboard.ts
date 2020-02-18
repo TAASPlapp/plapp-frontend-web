@@ -6,4 +6,5 @@ export class Storyboard{
   summary:string;
   lastModify: Date;
   storyboardItems:StoryboardItem[];
+  numLikes: number;
 }
