@@ -8,7 +8,6 @@ export const SCHEDULES: Schedule[] = [
     plantID: 134325,
     date: new Date(2020,4,16,3,1),
     action: "manure"
-
   },
   {
     id: 13,

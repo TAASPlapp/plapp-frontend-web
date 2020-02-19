@@ -8,7 +8,6 @@ import {FooterComponent} from './components/footer/footer.component';
 import {Error404Component} from './components/errorPage/error404.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgImageSliderModule} from "ng-image-slider";
-import {MatBottomSheet} from "@angular/material/bottom-sheet";
 
 @NgModule({
   //where components go including appComponent (auto update using cli)
@@ -25,6 +24,7 @@ import {MatBottomSheet} from "@angular/material/bottom-sheet";
     NgImageSliderModule,
   ],
   providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

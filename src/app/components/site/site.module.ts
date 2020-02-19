@@ -26,6 +26,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatStepperModule} from "@angular/material/stepper";
 import { AddStoryboardItemComponent } from './manage-plant/add-storyboard-item/add-storyboard-item.component';
+import { ModalGalleryComponent } from './manage-plant/modal-gallery/modal-gallery.component';
+import {NgbCarouselModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {DateAgoPipe} from "../../pipes/date-ago.pipe";
 
 
 @NgModule({
@@ -41,9 +44,11 @@ import { AddStoryboardItemComponent } from './manage-plant/add-storyboard-item/a
     ManagePlantComponent,
     AddScheduleComponent,
     AddStoryboardItemComponent,
+    ModalGalleryComponent,
+    DateAgoPipe,
 
   ],
-  entryComponents: [AddScheduleComponent, AddStoryboardItemComponent],
+  entryComponents: [AddScheduleComponent, AddStoryboardItemComponent, ModalGalleryComponent,],
 
   imports: [
     CommonModule,
@@ -62,9 +67,14 @@ import { AddStoryboardItemComponent } from './manage-plant/add-storyboard-item/a
     FormsModule,
     MatRadioModule,
     ReactiveFormsModule,
-    MatStepperModule
+    MatStepperModule,
+    NgbCarouselModule,
+    NgbModule,
 
   ],
+  bootstrap: [ModalGalleryComponent],
+  exports: [ModalGalleryComponent, DateAgoPipe],
+
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },]
 })
 export class SiteModule {

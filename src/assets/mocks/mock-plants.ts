@@ -5,6 +5,7 @@ export const PLANTS: Plant[] = [
   {
     description: "Magnificent plant, famous for her passion and glory",
     id: 134325,
+    owner: 2434,
     name: "Giorgia",
     type: "Peony",
     status: "healthy",
@@ -13,6 +14,7 @@ export const PLANTS: Plant[] = [
   {
     description: "It smells like flowers in the rain after a storm in the desert",
     id: 264574,
+    owner: 2434,
     name: "Prosperina",
     type: "Cactus",
     status: "sick",
@@ -21,6 +23,7 @@ export const PLANTS: Plant[] = [
   {
     description: "Thyme and the small white dune-rose also grow in the dunes",
     id: 387587,
+    owner: 2434,
     name: "Anita",
     type: "Thyme",
     status: "healthy",
@@ -29,6 +32,7 @@ export const PLANTS: Plant[] = [
   {
     description: "Philodendron is a large genus of flowering plants.",
     id: 45252,
+    owner: 2434,
     name: "Sveva",
     type: "Philodendron",
     status: "healthy",

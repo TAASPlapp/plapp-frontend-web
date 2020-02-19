@@ -1,0 +1,50 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <img src="{{imageLink}}" alt="">
+        </div>
+        <div class="col-md-4">
+            <div class="row row-padding-top">
+                <div class="col-md-12">
+                    <p>{{description}}</p>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-3 text-xs"><i class="far fa-thumbs-up"></i> {{numLikes}}</div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-4"><a href=""><i class="far fa-thumbs-up"></i> Like</a></div>
+                <div class="col-4"><a href=""> <i class="far fa-comment"></i> Comment</a></div>
+            </div>
+            <hr>
+            <div class="comments" *ngFor="let c of comments$ | async">
+
+                <div class="row comment-row">
+                    <div>
+                        <img class="avatar-image" src="{{c.fromUser.profileImage}}" alt="">
+                    </div>
+                    <div class="comment-body align-self-center">
+                        <p>
+                            <a><strong>{{c.fromUser.username}}</strong></a>: {{c.text}} <br>
+                            <span class="text-xs">
+                                Published: {{c.publishedAt | dateAgo}}
+                            </span>
+                        </p>
+                        <hr>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

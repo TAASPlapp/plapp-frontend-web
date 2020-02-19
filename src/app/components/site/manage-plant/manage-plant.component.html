@@ -12,8 +12,7 @@
                             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                 </div>
 
-
-                <!-- STORYBOARD SECTION-->
+                <!-- STORYBOARD2 SECTION-->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card mb-4">
@@ -23,18 +22,26 @@
                             <div class="card-body ">
                                 <div *ngIf="storyboardDescription">
                                     <cite>{{storyboardDescription}}</cite>
-                                </div><hr>
+                                </div>
+                                <hr>
                                 <div class="row">
-                                    <div class="col-md-8">
-                                        <ng-image-slider [images]="storyboardItems"
-                                                         [animationSpeed]="0.5"
-                                                         [imageSize]={width:300,height:400,space:3}
-                                                         [direction]=""
-                                                         #nav>
-                                        </ng-image-slider>
+                                    <div class="col-md-6">
+                                        <ngb-carousel class="storyboard" #carousel>
+                                            <ng-template  ngbSlide *ngFor="let item of storyboardItems " >
+                                                <span (click)="open(item.id, item.image, item.numLike, item.description)">
+                                                    <img src="{{item.thumbImage}}"  class="story-image" alt="{{item.description}}">
+                                                </span>
+                                                <div class="carousel-caption">
+                                                    <h3>{{item.title}}</h3>
+                                                    <p>{{item.status}}</p>
+                                                </div>
+                                            </ng-template>
+                                        </ngb-carousel>
+
                                     </div>
-                                    <div class="col-md-4 text-center d-flex align-items-center justify-content-center row-padding-top">
-                                        <i class="cursor fas fa-plus-circle fa-4x text-gray-300" (click)="openBottomSheetStoryboard()" ></i>
+                                    <div class="col-md-4 text-center d-flex align-items-center justify-content-center row-padding">
+                                        <i class="cursor fas fa-plus-circle fa-4x text-gray-300"
+                                           (click)="openBottomSheetStoryboard()"></i>
                                     </div>
                                 </div>
                             </div>
@@ -91,11 +98,12 @@
                     <div class="col-lg-12">
                         <div class="card mb-4">
                             <div class="card-header">
-                                <h6 class="m-0 font-weight-bold text-primary">{{r.name}}</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">{{r.name}} ({{r.sname}})</h6>
                             </div>
 
                             <div class="card-body ">
-                                {{r.description}}
+                                <p>{{r.description}}<br>Find out more about {{r.name}} on <a
+                                        href="{{r.wiki}}">Wikipedia</a></p>
                                 <hr>
                                 <h6><strong>Reccomandations</strong></h6>
                                 <div class="row card-body-padding">
@@ -176,18 +184,21 @@
                                         </div>
                                     </div>
 
-                                </div><hr>
+                                </div>
+                                <hr>
 
-<!--                                Reccomended Articles-->
+                                <!--                                Reccomended Articles-->
                                 <h6><strong>News About {{p.type}}</strong></h6>
                                 <div class="row card-body-padding">
                                     <div class="col-xs-6 col-md-4" *ngFor="let a of articles">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
-                                                <h6 class="m-0 font-weight-bold text-primary"><a  href="{{a.url}}">{{a.title}}</a></h6>
+                                                <h6 class="m-0 font-weight-bold text-primary"><a
+                                                        href="{{a.url}}">{{a.title}}</a></h6>
                                             </div>
                                             <div class="card-body">
-                                                <p class="d-none d-sm-block"><strong>Description: </strong> {{a.description}}</p>
+                                                <p class="d-none d-sm-block">
+                                                    <strong>Description: </strong> {{a.description}}</p>
                                                 <p><strong>Source: </strong> {{a.source.name}}</p>
                                                 <p><strong>Published at: </strong> {{a.publishedAt}}</p>
 

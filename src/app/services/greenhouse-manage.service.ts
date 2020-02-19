@@ -35,7 +35,7 @@ export class GreenhouseManageService {
 
   getStoryboard(id: number | string) {
     return of(STORYBOARD).pipe(
-      map((storyboards: Storyboard[]) => storyboards.find(s => s.plantID === +id))
+      map((storyboards: Storyboard[]) => storyboards.find(s => s.plant.id === +id))
     );
   }
 

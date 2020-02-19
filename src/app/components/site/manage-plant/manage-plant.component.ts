@@ -14,18 +14,25 @@ import {Article} from "../../../models/Article";
 import {NewsApiResponse} from "../../../models/NewsApiResponse";
 import {AddStoryboardItemComponent} from "./add-storyboard-item/add-storyboard-item.component";
 import {Storyboard} from "../../../models/Storyboard";
+import {StoryboardItem} from "../../../models/StoryboardItem";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ModalGalleryComponent} from "./modal-gallery/modal-gallery.component";
+import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-manage-plant',
   templateUrl: './manage-plant.component.html',
-  styleUrls: ['./manage-plant.component.css']
+  styleUrls: ['./manage-plant.component.css'],
+  providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
+
 })
 
 export class ManagePlantComponent implements OnInit {
   plant$: Observable<Plant>;
   schedule$: Observable<Schedule[]>;
   recommendation$: Observable<PlantInfo>;
-  storyboardItems: Array<object>;
+  storyboardItems: StoryboardItem[];
   articles: Article[];
   storyboardDescription: string;
 
@@ -42,6 +49,7 @@ export class ManagePlantComponent implements OnInit {
     private router: Router,
     private service: GreenhouseManageService,
     private bottomSheet: MatBottomSheet,
+    private modalService: NgbModal,
   ) {
     this.date = new Date();
     this.route.paramMap.subscribe(params => {
@@ -71,6 +79,7 @@ export class ManagePlantComponent implements OnInit {
     this.service.getRelatedArticles(this.plantType).subscribe((res: NewsApiResponse) => {
       this.articles = res.articles.splice(0, this.maxArticles);
     });
+
     this.service.getStoryboard(this.plantID).subscribe((res: Storyboard) => {
       console.log(res);
       this.storyboardItems = res.storyboardItems;
@@ -89,6 +98,17 @@ export class ManagePlantComponent implements OnInit {
     this.bottomSheet.open(AddStoryboardItemComponent, {
       data: {plantID: this.plantID}
     })
+  }
+
+  open(id:number, image:string, numLike:number, description:string) {
+    const modalRef = this.modalService.open(ModalGalleryComponent, {size:"xl", scrollable:true, centered:true});
+    modalRef.componentInstance.id = id;
+    modalRef.componentInstance.imageLink = image;
+    modalRef.componentInstance.numLikes = numLike;
+    modalRef.componentInstance.description = description;
+
+
+
   }
 
 
