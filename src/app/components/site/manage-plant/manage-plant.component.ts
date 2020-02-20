@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {switchMap} from 'rxjs/operators';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {Observable} from 'rxjs';
@@ -15,8 +15,8 @@ import {NewsApiResponse} from "../../../models/NewsApiResponse";
 import {AddStoryboardItemComponent} from "./add-storyboard-item/add-storyboard-item.component";
 import {Storyboard} from "../../../models/Storyboard";
 import {StoryboardItem} from "../../../models/StoryboardItem";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {ModalGalleryComponent} from "./modal-gallery/modal-gallery.component";
+import {NgbCarousel, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ModalGalleryComponent} from "../modal-gallery/modal-gallery.component";
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -40,7 +40,7 @@ export class ManagePlantComponent implements OnInit {
 
   date: Date;
   isHealty: boolean = true;
-  plantID: string;
+  plantId: string;
   plantType: string;
 
 
@@ -53,12 +53,11 @@ export class ManagePlantComponent implements OnInit {
   ) {
     this.date = new Date();
     this.route.paramMap.subscribe(params => {
-      this.plantID = params.get('id')
+      this.plantId = params.get('id')
     });
     this.route.queryParams.subscribe(params => {
       this.plantType = params['type']
     });
-
   }
 
   ngOnInit() {
@@ -75,41 +74,34 @@ export class ManagePlantComponent implements OnInit {
         this.service.getRecommended(params['type']))
     );
 
+
     //get news about the plant
     this.service.getRelatedArticles(this.plantType).subscribe((res: NewsApiResponse) => {
       this.articles = res.articles.splice(0, this.maxArticles);
     });
 
-    this.service.getStoryboard(this.plantID).subscribe((res: Storyboard) => {
-      console.log(res);
+    this.service.getStoryboard(this.plantId).subscribe((res: Storyboard) => {
       this.storyboardItems = res.storyboardItems;
       this.storyboardDescription = res.summary;
     });
-
   }
+
+  //this is for making the carousel static, not spinning!
+
 
   openBottomSheet(): void {
     this.bottomSheet.open(AddScheduleComponent, {
-      data: {plantID: this.plantID}
+      data: {plantID: this.plantId}
     });
   }
 
   openBottomSheetStoryboard(): void {
     this.bottomSheet.open(AddStoryboardItemComponent, {
-      data: {plantID: this.plantID}
+      data: {plantID: this.plantId}
     })
   }
 
-  open(id:number, image:string, numLike:number, description:string) {
-    const modalRef = this.modalService.open(ModalGalleryComponent, {size:"xl", scrollable:true, centered:true});
-    modalRef.componentInstance.id = id;
-    modalRef.componentInstance.imageLink = image;
-    modalRef.componentInstance.numLikes = numLike;
-    modalRef.componentInstance.description = description;
 
-
-
-  }
 
 
 }

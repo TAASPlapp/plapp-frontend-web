@@ -37,20 +37,10 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12 ">
-                                        <ngb-carousel class="storyboard" #carousel>
-                                            <ng-template ngbSlide *ngFor="let item of s.storyboardItems ">
-                                                <span (click)="open(item.id, item.image, item.numLike, item.description)">
-                                                    <img src="{{item.thumbImage}}" class="story-image"
-                                                         alt="{{item.description}}">
-                                                </span>
-                                                <div class="carousel-caption">
-                                                    <h3>{{item.title}}</h3>
-                                                    <p>{{item.status}}</p>
-                                                </div>
-                                            </ng-template>
-                                        </ngb-carousel>
+                                        <app-carusel-storyboard [storyboardItems]="s.storyboardItems"></app-carusel-storyboard>
                                     </div>
-                                </div><hr>
+                                </div>
+                                <hr>
                                 <div class="row">
                                     <div class="col-3 offset-1"><i class="far fa-thumbs-up"></i> {{s.numLikes}}</div>
                                 </div>

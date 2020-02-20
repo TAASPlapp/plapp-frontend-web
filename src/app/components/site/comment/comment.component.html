@@ -1,0 +1,16 @@
+<div class="row comment-row">
+    <div>
+        <img class="avatar-image" src="{{comment.fromUser.profileImage}}" alt="">
+    </div>
+    <div class="comment-body align-self-center">
+        <p>
+            <a><strong>{{comment.fromUser.username}}</strong></a>: {{comment.text}} <br>
+            <span class="text-xs">
+                                Published: {{comment.publishedAt | dateAgo}}
+                            </span>
+        </p>
+        <hr>
+    </div>
+    <div class="clearfix"></div>
+
+</div>

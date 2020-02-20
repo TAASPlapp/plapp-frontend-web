@@ -12,7 +12,7 @@
                             class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                 </div>
 
-                <!-- STORYBOARD2 SECTION-->
+                <!-- STORYBOARD SECTION-->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card mb-4">
@@ -26,18 +26,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <ngb-carousel class="storyboard" #carousel>
-                                            <ng-template  ngbSlide *ngFor="let item of storyboardItems " >
-                                                <span (click)="open(item.id, item.image, item.numLike, item.description)">
-                                                    <img src="{{item.thumbImage}}"  class="story-image" alt="{{item.description}}">
-                                                </span>
-                                                <div class="carousel-caption">
-                                                    <h3>{{item.title}}</h3>
-                                                    <p>{{item.status}}</p>
-                                                </div>
-                                            </ng-template>
-                                        </ngb-carousel>
-
+                                        <app-carusel-storyboard [storyboardItems]="storyboardItems"></app-carusel-storyboard>
                                     </div>
                                     <div class="col-md-4 text-center d-flex align-items-center justify-content-center row-padding">
                                         <i class="cursor fas fa-plus-circle fa-4x text-gray-300"

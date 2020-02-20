@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Storyboard} from "../../../models/Storyboard";
 import {Observable} from "rxjs";
 import {SocialManagerService} from "../../../services/social-manager.service";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {ModalGalleryComponent} from "../manage-plant/modal-gallery/modal-gallery.component";
+import {NgbCarousel, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ModalGalleryComponent} from "../modal-gallery/modal-gallery.component";
+import {StoryboardItem} from "../../../models/StoryboardItem";
 
 @Component({
   selector: 'app-discover',
@@ -17,7 +18,6 @@ export class DiscoverComponent implements OnInit {
 
   constructor(
     private service: SocialManagerService,
-    private modalService: NgbModal,
   ) {
   }
 
@@ -25,21 +25,5 @@ export class DiscoverComponent implements OnInit {
     this.storyboards = this.service.getAllStoryboards();
   }
 
-
-
-
-
-
-
-  open(id:number, image:string, numLike:number, description:string) {
-    const modalRef = this.modalService.open(ModalGalleryComponent, {size:"xl", scrollable:true, centered:true});
-    modalRef.componentInstance.id = id;
-    modalRef.componentInstance.imageLink = image;
-    modalRef.componentInstance.numLikes = numLike;
-    modalRef.componentInstance.description = description;
-
-
-
-  }
 
 }

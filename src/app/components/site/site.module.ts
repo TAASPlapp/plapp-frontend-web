@@ -26,9 +26,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatStepperModule} from "@angular/material/stepper";
 import { AddStoryboardItemComponent } from './manage-plant/add-storyboard-item/add-storyboard-item.component';
-import { ModalGalleryComponent } from './manage-plant/modal-gallery/modal-gallery.component';
+import { ModalGalleryComponent } from './modal-gallery/modal-gallery.component';
 import {NgbCarouselModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {DateAgoPipe} from "../../pipes/date-ago.pipe";
+import { CommentComponent } from './comment/comment.component';
+import { CaruselStoryboardComponent } from './carusel-storyboard/carusel-storyboard.component';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import {DateAgoPipe} from "../../pipes/date-ago.pipe";
     AddStoryboardItemComponent,
     ModalGalleryComponent,
     DateAgoPipe,
+    CommentComponent,
+    CaruselStoryboardComponent,
 
   ],
   entryComponents: [AddScheduleComponent, AddStoryboardItemComponent, ModalGalleryComponent,],

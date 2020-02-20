@@ -6,17 +6,16 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-8 text-center">
-            <img src="{{imageLink}}" alt="">
+            <img src="{{item.image}}" alt="">
         </div>
         <div class="col-md-4">
             <div class="row row-padding-top">
                 <div class="col-md-12">
-                    <p>{{description}}</p>
+                    <p>{{item.description}}</p>
                 </div>
-
             </div>
             <div class="row">
-                <div class="col-3 text-xs"><i class="far fa-thumbs-up"></i> {{numLikes}}</div>
+                <div class="col-3 text-xs"><i class="far fa-thumbs-up"></i> {{item.numLike}}</div>
             </div>
             <hr>
             <div class="row">
@@ -25,23 +24,7 @@
             </div>
             <hr>
             <div class="comments" *ngFor="let c of comments$ | async">
-
-                <div class="row comment-row">
-                    <div>
-                        <img class="avatar-image" src="{{c.fromUser.profileImage}}" alt="">
-                    </div>
-                    <div class="comment-body align-self-center">
-                        <p>
-                            <a><strong>{{c.fromUser.username}}</strong></a>: {{c.text}} <br>
-                            <span class="text-xs">
-                                Published: {{c.publishedAt | dateAgo}}
-                            </span>
-                        </p>
-                        <hr>
-                    </div>
-                    <div class="clearfix"></div>
-
-                </div>
+                <app-comment [comment]="c" ></app-comment>
             </div>
         </div>
 

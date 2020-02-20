@@ -66,6 +66,6 @@ export class GreenhouseManageService {
   //api get request to newsAPI to get all articles related to the plant type
   getRelatedArticles(plantType: string) {
     let url = 'http://newsapi.org/v2/everything?qInTitle=' + plantType + '&sortBy=publishedAt&apiKey=6c3cd712f87541beb1743c8ec1d727d0';
-   return this.http.get(url);
+    return this.http.get(url);
   }
 }
