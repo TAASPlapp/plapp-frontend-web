@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SpringConnectService } from './spring-connect.service';
+import { UserManageService } from './user-manage.service';
 
-describe('SpringConnectService', () => {
+describe('UserManageService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: SpringConnectService = TestBed.get(SpringConnectService);
+    const service: UserManageService = TestBed.get(UserManageService);
     expect(service).toBeTruthy();
   });
 });
-
