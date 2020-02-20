@@ -4,46 +4,45 @@ import {Observable, of} from 'rxjs';
 import {filter, map} from 'rxjs/operators';
 
 import {Plant} from "../models/Plant";
-import {PLANTS} from "../../assets/mocks/mock-plants";
 import {Schedule} from "../models/Schedule";
 import {SCHEDULES} from "../../assets/mocks/mock-schedule";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {RECOMMENDATION} from "../../assets/mocks/mock-recplant";
 import {PlantInfo} from "../models/PlantInfo";
 import {STORYBOARD} from "../../assets/mocks/mock.storyboard";
 import {Storyboard} from "../models/Storyboard";
+import {urls} from "../../assets/urls";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GreenhouseManageService {
+  private baseUrl: string = urls.apiServerUrl + 'greenhouse/';
 
   constructor(private http: HttpClient) {
   }
 
-
-  // data service REST call
+  //TODO: capire se serve sapere l'id dell'utente chiamante
   getAllPlants(): Observable<Plant[]> {
-    return of(PLANTS);
+    return this.http.get<Plant[]>(this.baseUrl + 'plants/');
   }
 
-  getSchedule(id: number | string) {
-    return of(SCHEDULES).pipe(
-      map((schedule: Schedule[]) => schedule.filter(s => s.plantID === +id))
-    );
+  getSchedules(id: number | string) {
+    return this.http.get<Schedule[]>(this.baseUrl + 'schedules/', {
+      params: new HttpParams().set("plantId", id.toString())
+    });
   }
 
   getStoryboard(id: number | string) {
-    return of(STORYBOARD).pipe(
-      map((storyboards: Storyboard[]) => storyboards.find(s => s.plant.id === +id))
-    );
+    return this.http.get<Storyboard>(this.baseUrl + 'storyboard/', {
+      params: new HttpParams().set("plantId", id.toString())
+    });
   }
 
   getPlant(id: number | string) {
-    return this.getAllPlants().pipe(
-      // (+) before `id` turns the string into a number
-      map((plants: Plant[]) => plants.find(p => p.id === +id))
-    );
+    return this.http.get<Plant>(this.baseUrl + 'plant/', {
+      params: new HttpParams().set("plantId", id.toString())
+    });
   }
 
 

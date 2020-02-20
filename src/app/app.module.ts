@@ -10,7 +10,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgImageSliderModule} from "ng-image-slider";
 
 @NgModule({
-  //where components go including appComponent (auto update using cli)
   declarations: [
     AppComponent,
     FooterComponent,
@@ -24,6 +23,7 @@ import {NgImageSliderModule} from "ng-image-slider";
     NgImageSliderModule,
   ],
   providers: [],
+  exports: [],
 
   bootstrap: [AppComponent]
 })

@@ -23,7 +23,9 @@ export class DiscoverComponent implements OnInit {
 
   ngOnInit() {
     this.storyboards = this.service.getAllStoryboards();
+    console.log(this.storyboards);
   }
+
 
 
 }

@@ -31,6 +31,7 @@ import {NgbCarouselModule, NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {DateAgoPipe} from "../../pipes/date-ago.pipe";
 import { CommentComponent } from './comment/comment.component';
 import { CaruselStoryboardComponent } from './carusel-storyboard/carusel-storyboard.component';
+import {DateWillPipe} from "../../pipes/date-will.pipe";
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { CaruselStoryboardComponent } from './carusel-storyboard/carusel-storybo
     AddStoryboardItemComponent,
     ModalGalleryComponent,
     DateAgoPipe,
+    DateWillPipe,
     CommentComponent,
     CaruselStoryboardComponent,
 
@@ -77,7 +79,7 @@ import { CaruselStoryboardComponent } from './carusel-storyboard/carusel-storybo
 
   ],
   bootstrap: [ModalGalleryComponent],
-  exports: [ModalGalleryComponent, DateAgoPipe],
+  exports: [ModalGalleryComponent, DateAgoPipe, DateWillPipe ],
 
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },]
 })

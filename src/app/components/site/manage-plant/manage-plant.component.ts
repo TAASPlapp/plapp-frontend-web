@@ -67,7 +67,7 @@ export class ManagePlantComponent implements OnInit {
     );
     this.schedule$ = this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
-        this.service.getSchedule(params.get('id')))
+        this.service.getSchedules(params.get('id')))
     );
     this.recommendation$ = this.route.queryParams.pipe(
       switchMap((params: ParamMap) =>
