@@ -26,7 +26,8 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-6" *ngIf="storyboardItems">
-                                        <app-carusel-storyboard [storyboardItems]="storyboardItems"></app-carusel-storyboard>
+                                        <app-carusel-storyboard
+                                                [storyboardItems]="storyboardItems"></app-carusel-storyboard>
                                     </div>
                                     <div class="col-md-6" *ngIf="!storyboardItems"><p>No storyboard available</p></div>
                                     <div class="col-md-4 text-center d-flex align-items-center justify-content-center row-padding">
@@ -82,139 +83,192 @@
                     </div>
                 </div>
 
+                <div *ngIf="recommendation$ | async as r">
+                    <!--    RECOMMENDATIONS SECTION-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">{{r.name}} ({{r.sname}})</h6>
+                                </div>
 
-                <!--    RECOMMENDATIONS SECTION-->
-                <div class="row" *ngIf="recommendation$ | async as r">
-                    <div class="col-lg-12">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h6 class="m-0 font-weight-bold text-primary">{{r.name}} ({{r.sname}})</h6>
-                            </div>
+                                <div class="card-body ">
+                                    <p>{{r.description}}<br>Find out more about {{r.name}} on <a
+                                            href="{{r.wiki}}">Wikipedia</a></p>
+                                    <hr>
+                                    <h6><strong>Reccomandations</strong></h6>
+                                    <div class="row card-body-padding">
+                                        <div class="col-xl-3 col-md-6 mb-4">
+                                            <div class="card border-left-info shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                                Watering every
+                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.watering}}
+                                                                hr | {{r.wamount}}ml
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <i class="fas  fa-water fa-2x text-gray-300"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6 mb-4">
+                                            <div class="card border-left-info shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                                Temperature
+                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.temperature}}
+                                                                °C
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <i class="fas fa-temperature-high fa-2x text-gray-300"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6 mb-4">
+                                            <div class="card border-left-warning shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                                Light
+                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.light}}
+                                                                k
+                                                                Lux
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <i class="fas fa-lightbulb fa-2x text-gray-300"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6 mb-4">
+                                            <div class="card border-left-warning shadow h-100 py-2">
+                                                <div class="card-body">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col mr-2">
+                                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                                Humidity
+                                                            </div>
+                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.humidity}}
+                                                                %
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <i class="fas fa-tint fa-2x text-gray-300"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-                            <div class="card-body ">
-                                <p>{{r.description}}<br>Find out more about {{r.name}} on <a
-                                        href="{{r.wiki}}">Wikipedia</a></p>
-                                <hr>
-                                <h6><strong>Reccomandations</strong></h6>
-                                <div class="row card-body-padding">
-                                    <div class="col-xl-3 col-md-6 mb-4">
-                                        <div class="card border-left-info shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                            Watering every
-                                                        </div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.watering}}
-                                                            hr | {{r.wamount}}ml
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <i class="fas  fa-water fa-2x text-gray-300"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                    <div class="col-xl-3 col-md-6 mb-4">
-                                        <div class="card border-left-info shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                            Temperature
-                                                        </div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.temperature}}
-                                                            °C
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <i class="fas fa-temperature-high fa-2x text-gray-300"></i>
-                                                    </div>
+                                    <hr>
+
+                                    <!-- Reccomended Articles-->
+                                    <h6><strong>News About {{p.type}}</strong></h6>
+                                    <div class="row card-body-padding">
+                                        <div class="col-xs-6 col-md-4" *ngFor="let a of articles">
+                                            <div class="card shadow mb-4">
+                                                <div class="card-header py-3">
+                                                    <h6 class="m-0 font-weight-bold text-primary"><a
+                                                            href="{{a.url}}">{{a.title}}</a></h6>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="d-none d-sm-block">
+                                                        <strong>Description: </strong> {{a.description}}</p>
+                                                    <p><strong>Source: </strong> {{a.source.name}}</p>
+                                                    <p><strong>Published at: </strong> {{a.publishedAt}}</p>
+
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6 mb-4">
-                                        <div class="card border-left-warning shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                            Light
-                                                        </div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.light}}k
-                                                            Lux
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <i class="fas fa-lightbulb fa-2x text-gray-300"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div *ngIf="articles.length == 0">
+                                            <p>No articles found for {{p.type}}</p>
                                         </div>
-                                    </div>
-                                    <div class="col-xl-3 col-md-6 mb-4">
-                                        <div class="card border-left-warning shadow h-100 py-2">
-                                            <div class="card-body">
-                                                <div class="row no-gutters align-items-center">
-                                                    <div class="col mr-2">
-                                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                            Humidity
-                                                        </div>
-                                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{r.humidity}}
-                                                            %
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto">
-                                                        <i class="fas fa-tint fa-2x text-gray-300"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
 
                                 </div>
-                                <hr>
-
-                                <!--                                Reccomended Articles-->
-                                <h6><strong>News About {{p.type}}</strong></h6>
-                                <div class="row card-body-padding">
-                                    <div class="col-xs-6 col-md-4" *ngFor="let a of articles">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header py-3">
-                                                <h6 class="m-0 font-weight-bold text-primary"><a
-                                                        href="{{a.url}}">{{a.title}}</a></h6>
-                                            </div>
-                                            <div class="card-body">
-                                                <p class="d-none d-sm-block">
-                                                    <strong>Description: </strong> {{a.description}}</p>
-                                                <p><strong>Source: </strong> {{a.source.name}}</p>
-                                                <p><strong>Published at: </strong> {{a.publishedAt}}</p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
 
                             </div>
-
                         </div>
                     </div>
-                </div>
 
 
-                <!-- HEALTHCARE SECTION-->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h6 class="m-0 font-weight-bold text-primary">Healthcare</h6>
-                            </div>
+                    <!-- HEALTHCARE SECTION-->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">Healthcare</h6>
+                                </div>
 
-                            <div class="card-body ">
+                                <div class="card-body ">
+                                    <h6><strong>Common disease for {{p.type}}</strong></h6>
+                                    <div class="col-12 mb-4 row-padding-top" *ngFor="let d of r.diseases ">
+                                        <div class="card border-left-info shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                            {{d.name}}
+                                                        </div>
+                                                        <div class=" mb-0  text-gray-800">
+                                                            {{d.description}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <h6><strong>Prevention </strong></h6>
+                                    <div class="col-12 mb-4 row-padding-top">
+                                        <div class="card border-left-warning shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class=" mb-0  text-gray-800">
+                                                            {{r.dprevention}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h6><strong>Treating diseases</strong></h6>
+                                    <div class="col-12 mb-4 row-padding-top" >
+                                        <div class="card border-left-danger shadow h-100 py-2">
+                                            <div class="card-body">
+                                                <div class="row no-gutters align-items-center">
+                                                    <div class="col mr-2">
+                                                        <div class=" mb-0  text-gray-800">
+                                                            {{r.treating}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
                             </div>
                         </div>
                     </div>

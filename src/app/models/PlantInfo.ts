@@ -8,4 +8,7 @@ export class PlantInfo {
   temperature: number;
   light: number;
   humidity: number;
+  diseases: [{name:string; description:string;}];
+  dprevention: string;
+  treating: string;
 }
