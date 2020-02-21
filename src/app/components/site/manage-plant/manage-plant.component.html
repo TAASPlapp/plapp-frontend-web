@@ -192,7 +192,7 @@
                                                     <p class="d-none d-sm-block">
                                                         <strong>Description: </strong> {{a.description}}</p>
                                                     <p><strong>Source: </strong> {{a.source.name}}</p>
-                                                    <p><strong>Published at: </strong> {{a.publishedAt}}</p>
+                                                    <p><strong>Published: </strong> {{a.publishedAt | dateAgo}}</p>
 
                                                 </div>
                                             </div>
@@ -211,7 +211,7 @@
 
 
                     <!-- HEALTHCARE SECTION-->
-                    <div class="row">
+                    <div class="row" *ngIf="r.diseases.length != 0 ">
                         <div class="col-lg-12">
                             <div class="card mb-4">
                                 <div class="card-header">
@@ -253,7 +253,7 @@
                                     </div>
 
                                     <h6><strong>Treating diseases</strong></h6>
-                                    <div class="col-12 mb-4 row-padding-top" >
+                                    <div class="col-12 mb-4 row-padding-top">
                                         <div class="card border-left-danger shadow h-100 py-2">
                                             <div class="card-body">
                                                 <div class="row no-gutters align-items-center">
@@ -266,8 +266,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>

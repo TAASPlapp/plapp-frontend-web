@@ -8,7 +8,6 @@ import {Schedule} from "../models/Schedule";
 import {SCHEDULES} from "../../assets/mocks/mock-schedule";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {PlantInfo} from "../models/PlantInfo";
-import {STORYBOARD} from "../../assets/mocks/mock.storyboard";
 import {Storyboard} from "../models/Storyboard";
 import {urls} from "../../assets/urls";
 
@@ -49,6 +48,11 @@ export class GreenhouseManageService {
   getRecommended(type: string) {
     return this.http.get<PlantInfo>(this.plantsInfoApiUrl + 'plants/'+ this.capitalizeFirstLetter(type));
   }
+
+  getPlantTypes(){
+    return this.http.get<string[]>(this.plantsInfoApiUrl + 'get_types/')
+  }
+
   capitalizeFirstLetter(str:string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }

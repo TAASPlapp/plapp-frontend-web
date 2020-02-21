@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {GreenhouseManageService} from "../../../services/greenhouse-manage.service";
 
 
 @Component({
@@ -14,6 +15,8 @@ export class AddPlantComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  typeControl = new FormControl('', Validators.required);
+  types:string[];
 
 
   onFileChanged(event) {
@@ -24,7 +27,12 @@ export class AddPlantComponent implements OnInit {
   onUpload() {
     // upload code goes here
   }
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder, private service: GreenhouseManageService) {
+
+    this.service.getPlantTypes().subscribe(res=>{
+      this.types = res;
+    });
+  }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({

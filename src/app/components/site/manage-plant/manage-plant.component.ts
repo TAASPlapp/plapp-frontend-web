@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {switchMap} from 'rxjs/operators';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {Observable} from 'rxjs';
@@ -15,8 +15,6 @@ import {NewsApiResponse} from "../../../models/NewsApiResponse";
 import {AddStoryboardItemComponent} from "./add-storyboard-item/add-storyboard-item.component";
 import {Storyboard} from "../../../models/Storyboard";
 import {StoryboardItem} from "../../../models/StoryboardItem";
-import {NgbCarousel, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {ModalGalleryComponent} from "../modal-gallery/modal-gallery.component";
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -49,7 +47,6 @@ export class ManagePlantComponent implements OnInit {
     private router: Router,
     private service: GreenhouseManageService,
     private bottomSheet: MatBottomSheet,
-    private modalService: NgbModal,
   ) {
     this.date = new Date();
     this.route.paramMap.subscribe(params => {
@@ -79,14 +76,12 @@ export class ManagePlantComponent implements OnInit {
     this.service.getRelatedArticles(this.plantType).subscribe((res: NewsApiResponse) => {
       this.articles = res.articles.splice(0, this.maxArticles);
     });
-
     this.service.getStoryboard(this.plantId).subscribe((res: Storyboard) => {
       this.storyboardItems = res.storyboardItems;
       this.storyboardDescription = res.summary;
     });
   }
 
-  //this is for making the carousel static, not spinning!
 
 
   openBottomSheet(): void {
