@@ -24,7 +24,7 @@
             </div>
             <hr>
             <div class="comments" *ngFor="let c of comments$ | async">
-                <app-comment [comment]="c" ></app-comment>
+                <app-comment [comment]="c" [activeModal]="activeModal" ></app-comment>
             </div>
         </div>
 

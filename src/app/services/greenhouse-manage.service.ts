@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 
-import {Observable, of} from 'rxjs';
-import {filter, map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 import {Plant} from "../models/Plant";
 import {Schedule} from "../models/Schedule";
@@ -23,17 +22,17 @@ export class GreenhouseManageService {
 
   //TODO: capire se serve sapere l'id dell'utente chiamante
   getAllPlants(): Observable<Plant[]> {
-    return this.http.get<Plant[]>(this.apiBaseUrl + 'plants/');
+    return this.http.get<Plant[]>(this.apiBaseUrl + 'plants');
   }
 
   getSchedules(id: number | string) {
-    return this.http.get<Schedule[]>(this.apiBaseUrl + 'schedules/', {
+    return this.http.get<Schedule[]>(this.apiBaseUrl + 'schedules', {
       params: new HttpParams().set("plantId", id.toString())
     });
   }
 
   getStoryboard(id: number | string) {
-    return this.http.get<Storyboard>(this.apiBaseUrl + 'storyboard/', {
+    return this.http.get<Storyboard>(this.apiBaseUrl + 'storyboard', {
       params: new HttpParams().set("plantId", id.toString())
     });
   }

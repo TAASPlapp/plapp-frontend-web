@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Comment} from "../../../models/Comment";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-comment',
@@ -9,10 +10,17 @@ import {Comment} from "../../../models/Comment";
 export class CommentComponent implements OnInit {
 
   @Input() comment: Comment;
+  @Input() activeModal: NgbActiveModal;
 
-  constructor() { }
+
+  constructor(
+  ) {
+  }
 
   ngOnInit() {
   }
 
+  closeModal(){
+    this.activeModal.close()
+  }
 }

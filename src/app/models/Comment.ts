@@ -5,6 +5,6 @@ export class Comment {
   fromUser: UserInfo;
   toStroyboardItemId: number;
   publishedAt: Date;
-  text: string;
+  content: string;
 }
 

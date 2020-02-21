@@ -16,6 +16,7 @@ const routes: Routes = [
   {path: 'greenhouse/add-plant', component: AddPlantComponent},
   {path: 'discover', component: DiscoverComponent},
   {path: 'account', component: AccountComponent},
+  {path: 'account/:id', component: AccountComponent},
   {path: 'settings', component: SettingsComponent},
   {path: 'about', component: AboutComponent}
 ];

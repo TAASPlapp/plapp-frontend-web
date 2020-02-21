@@ -78,8 +78,8 @@ import {DateWillPipe} from "../../pipes/date-will.pipe";
     NgbModule,
 
   ],
-  bootstrap: [ModalGalleryComponent],
-  exports: [ModalGalleryComponent, DateAgoPipe, DateWillPipe ],
+  bootstrap: [ModalGalleryComponent, TopBarComponent],
+  exports: [ModalGalleryComponent, DateAgoPipe, DateWillPipe, TopBarComponent],
 
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },]
 })

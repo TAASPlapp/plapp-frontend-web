@@ -1,7 +1,7 @@
 <ngb-carousel class="storyboard" #carousel>
     <ng-template ngbSlide *ngFor="let item of storyboardItems">
         <span (click)="open(item)">
-            <img src="{{item.thumbImage}}" class="story-image"
+            <img src="{{item.image}}" class="story-image"
                  alt="{{item.description}}">
         </span>
         <div class="carousel-caption">

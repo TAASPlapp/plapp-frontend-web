@@ -3,7 +3,6 @@ import {StoryboardItem} from "../../../models/StoryboardItem";
 import {ModalGalleryComponent} from "../modal-gallery/modal-gallery.component";
 import {SocialManagerService} from "../../../services/social-manager.service";
 import {NgbCarousel, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {Storyboard} from "../../../models/Storyboard";
 
 @Component({
   selector: 'app-carusel-storyboard',
@@ -33,7 +32,6 @@ export class CaruselStoryboardComponent implements OnInit, AfterViewInit {
   open(item: StoryboardItem) {
     const modalRef = this.modalService.open(ModalGalleryComponent, {size: "xl", scrollable: true, centered: true});
     modalRef.componentInstance.item = item;
-
 
   }
 

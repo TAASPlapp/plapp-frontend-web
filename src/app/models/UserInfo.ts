@@ -1,5 +1,9 @@
 export class UserInfo {
-  id: number;
+  userId: number;
   username: string;
-  profileImage: string;
+  firstName: string;
+  lastName: string;
+  bio:string;
+  birthdate: Date;
+  profilePicture: string;
 }
