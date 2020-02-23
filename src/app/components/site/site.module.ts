@@ -32,6 +32,7 @@ import {DateAgoPipe} from "../../pipes/date-ago.pipe";
 import { CommentComponent } from './comment/comment.component';
 import { CaruselStoryboardComponent } from './carusel-storyboard/carusel-storyboard.component';
 import {DateWillPipe} from "../../pipes/date-will.pipe";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import {DateWillPipe} from "../../pipes/date-will.pipe";
     CaruselStoryboardComponent,
 
   ],
-  entryComponents: [AddScheduleComponent, AddStoryboardItemComponent, ModalGalleryComponent,],
+  entryComponents: [AddScheduleComponent, AddStoryboardItemComponent, ModalGalleryComponent],
 
   imports: [
     CommonModule,
@@ -76,6 +77,7 @@ import {DateWillPipe} from "../../pipes/date-will.pipe";
     MatStepperModule,
     NgbCarouselModule,
     NgbModule,
+    MatCheckboxModule,
 
   ],
   bootstrap: [ModalGalleryComponent, TopBarComponent],

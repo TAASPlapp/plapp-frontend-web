@@ -14,34 +14,39 @@
     <div *ngIf="selectedAction != 'Watering' ">
         <mat-form-field [color]="colorControl.value">
             <mat-label>Choose a date</mat-label>
-            <label>
-                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
-            </label>
+            <input matInput [matDatepicker]="picker"  [(ngModel)]="selectedDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field  class="schedule-form-field" [color]="colorControl.value" >
+            <mat-label>Every(days):</mat-label>
+            <input matInput type="number" placeholder="Ex. 2" [formControl]="periodicityControl" min="1" >
+            <span matSuffix>days</span>
+            <mat-error *ngIf="periodicityControl.invalid">Min days: 1</mat-error>
         </mat-form-field>
     </div>
     <div  *ngIf="selectedAction == 'Watering' ">
         <div>
             <mat-form-field  class="schedule-form-field" [color]="colorControl.value">
                 <mat-label>Every(days):</mat-label>
-                <input matInput type="number" placeholder="Ex. 2" [formControl]="wateringDaysControl" min="1">
+                <input matInput type="number" placeholder="Ex. 2" [formControl]="periodicityControl" min="1" >
                 <span matSuffix>days</span>
-                <mat-error *ngIf="wateringDaysControl.invalid">Min days: 1</mat-error>
+                <mat-error *ngIf="periodicityControl.invalid">Min days: 1</mat-error>
             </mat-form-field>
         </div>
         <mat-form-field  class="schedule-form-field" [color]="colorControl.value">
             <mat-label>What time:</mat-label>
-            <input matInput type="number" placeholder="Ex. 18" [formControl]="wateringTimeControl" min="1" max="24">
+            <input matInput type="number" placeholder="Ex. 18" [formControl]="wateringTimeControl" min="1" max="24" >
             <span matSuffix>hour</span>
-            <mat-error *ngIf="wateringDaysControl.invalid">Min 1 and max 24</mat-error>
+            <mat-error *ngIf="periodicityControl.invalid">Min 1 and max 24</mat-error>
         </mat-form-field>
         <div>
             <mat-form-field class="schedule-form-field" [color]="colorControl.value">
                 <mat-label>Quantity(ml):</mat-label>
-                <input matInput type="number" placeholder="Ex. 200" [formControl]="wQuantityControl" min="10">
+                <input matInput type="number" placeholder="Ex. 200" [formControl]="wQuantityControl" min="10" >
                 <span matSuffix>ml</span>
-                <mat-error *ngIf="wateringDaysControl.invalid">Min ml: 10</mat-error>
+                <mat-error *ngIf="periodicityControl.invalid">Min ml: 10</mat-error>
             </mat-form-field>
         </div>
 

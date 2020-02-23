@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 
 import {Plant} from "../models/Plant";
 import {Schedule} from "../models/Schedule";
-import {SCHEDULES} from "../../assets/mocks/mock-schedule";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {PlantInfo} from "../models/PlantInfo";
 import {Storyboard} from "../models/Storyboard";
@@ -21,7 +20,6 @@ export class GreenhouseManageService {
   constructor(private http: HttpClient) {
   }
 
-  //TODO: capire se serve sapere l'id dell'utente chiamante
   getAllPlants(): Observable<Plant[]> {
     return this.http.get<Plant[]>(this.apiBaseUrl + 'plants');
   }
@@ -61,9 +59,17 @@ export class GreenhouseManageService {
     return ["Watering", "Manure", "Harvest", "Pruning", "Treating"]
   }
 
-  addScheduleAction(data: any, action: string, date: Date) {
-    //todo:mod
-    // SCHEDULES.push({userId: Math.random(), action: action, plantId: data.plantID, date: date})
+  addScheduleAction(schedule: Schedule) {
+    console.log(schedule);
+    return this.http.get(this.apiScheduleUrl + "add", {
+      params: new HttpParams().set("action", schedule.toString())
+    });
+
+  }
+  removeSchedule(schedule:Schedule){
+    return this.http.get(this.apiScheduleUrl + "remove", {
+      params: new HttpParams().set("action", schedule.toString())
+    });
   }
 
 

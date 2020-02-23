@@ -31,7 +31,7 @@ export class ManagePlantComponent implements OnInit {
   schedule$: Observable<Schedule[]>;
   recommendation$: Observable<PlantInfo>;
   storyboardItems: StoryboardItem[];
-  articles: Article[];
+  articles: Article[] =[];
   storyboardDescription: string;
 
   maxArticles: number = 3;
@@ -82,21 +82,22 @@ export class ManagePlantComponent implements OnInit {
     });
   }
 
-
-
   openBottomSheet(): void {
     this.bottomSheet.open(AddScheduleComponent, {
-      data: {plantID: this.plantId}
+      data: {plantId: this.plantId}
     });
   }
 
+
   openBottomSheetStoryboard(): void {
     this.bottomSheet.open(AddStoryboardItemComponent, {
-      data: {plantID: this.plantId}
+      data: {plantId: this.plantId}
     })
   }
 
-
+  removeSchedule(schedule:Schedule){
+    this.service.removeSchedule(schedule);
+  }
 
 
 }

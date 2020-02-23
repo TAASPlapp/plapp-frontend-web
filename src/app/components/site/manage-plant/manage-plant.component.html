@@ -58,8 +58,10 @@
                                                             <div class=" font-weight-bold text-primary text-uppercase mb-1">
                                                                 {{s.action}}
                                                             </div>
+
+
                                                             <div class="text-xs mb-0 font-weight-bold text-gray-800">
-                                                                {{s.date | dateWill}}
+                                                                <span *ngIf="s.additionalInfo != ''">about {{s.additionalInfo}}ml</span> {{s.date | dateWill}}
                                                             </div>
                                                         </div>
                                                         <div class="col-auto">
@@ -69,8 +71,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="#" class="margin-top btn btn-sm btn-primary shadow-sm">
-                                            <i class="fas fa-edit fa-sm text-white-50"></i> Edit</a>
+                                        <button (click)="removeSchedule(s)" class="margin-top btn btn-sm btn-primary shadow-sm">
+                                            <i class="fas fa-edit fa-sm text-white-50"></i> Remove
+                                        </button>
                                     </div>
                                     <hr>
                                 </div>

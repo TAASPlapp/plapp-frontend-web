@@ -12,6 +12,7 @@ export class AddStoryboardItemComponent implements OnInit {
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  plantId:number;
 
   selectedFile: File;
   fileName: String = "";
@@ -24,6 +25,7 @@ export class AddStoryboardItemComponent implements OnInit {
 
   onUpload() {
     // upload code goes here
+
   }
 
 
