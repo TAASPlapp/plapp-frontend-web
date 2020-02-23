@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {urls} from "../../assets/urls";
-import {UserInfo} from "../models/UserInfo";
+import {UserDetails} from "../models/UserDetails";
 import {USERS} from "../../assets/mocks/mock-user";
 import {map} from "rxjs/operators";
 import {Storyboard} from "../models/Storyboard";
@@ -20,17 +20,17 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  getInfo(): Observable<UserInfo> {
+  getInfo(): Observable<UserDetails> {
     //todo:modificare
     //return this.http.get(API_URL + 'all', {responseType: 'text'});
     return (of(USERS).pipe(
-      map((users: UserInfo[]) => users.find(u => u.userId === 2434))
+      map((users: UserDetails[]) => users.find(u => u.userId === 2434))
     ));
   }
 
-  getUserInfo(id: number | string): Observable<UserInfo> {
+  getUserInfo(id: number | string): Observable<UserDetails> {
     return of(USERS).pipe(
-      map((users: UserInfo[]) => users.find(u => u.userId === +id))
+      map((users: UserDetails[]) => users.find(u => u.userId === +id))
     );
   }
 

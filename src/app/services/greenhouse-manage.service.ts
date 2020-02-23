@@ -16,6 +16,7 @@ import {urls} from "../../assets/urls";
 export class GreenhouseManageService {
   private apiBaseUrl: string = urls.apiServerUrl + 'greenhouse/';
   private plantsInfoApiUrl: string = urls.plantsInfoApiUrl;
+  private apiScheduleUrl: string = urls.apiServerUrl + "schedule/";
 
   constructor(private http: HttpClient) {
   }
@@ -23,12 +24,6 @@ export class GreenhouseManageService {
   //TODO: capire se serve sapere l'id dell'utente chiamante
   getAllPlants(): Observable<Plant[]> {
     return this.http.get<Plant[]>(this.apiBaseUrl + 'plants');
-  }
-
-  getSchedules(id: number | string) {
-    return this.http.get<Schedule[]>(this.apiBaseUrl + 'schedules', {
-      params: new HttpParams().set("plantId", id.toString())
-    });
   }
 
   getStoryboard(id: number | string) {
@@ -45,15 +40,21 @@ export class GreenhouseManageService {
 
 
   getRecommended(type: string) {
-    return this.http.get<PlantInfo>(this.plantsInfoApiUrl + 'plants/'+ this.capitalizeFirstLetter(type));
+    return this.http.get<PlantInfo>(this.plantsInfoApiUrl + 'plants/' + this.capitalizeFirstLetter(type));
   }
 
-  getPlantTypes(){
+  getPlantTypes() {
     return this.http.get<string[]>(this.plantsInfoApiUrl + 'get_types/')
   }
 
-  capitalizeFirstLetter(str:string) {
+  capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  getSchedules(id: number | string) {
+    return this.http.get<Schedule[]>(this.apiScheduleUrl, {
+      params: new HttpParams().set("plantId", id.toString())
+    });
   }
 
   getScheduleActions() {
@@ -62,7 +63,7 @@ export class GreenhouseManageService {
 
   addScheduleAction(data: any, action: string, date: Date) {
     //todo:mod
-    SCHEDULES.push({id: Math.random(), action: action, plantID: data.plantID, date: date})
+    // SCHEDULES.push({userId: Math.random(), action: action, plantId: data.plantID, date: date})
   }
 
 

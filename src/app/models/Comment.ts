@@ -1,9 +1,11 @@
-import {UserInfo} from "./UserInfo";
+import {UserDetails} from "./UserDetails";
+import {MediaContentType} from "./MediaContentType";
 
 export class Comment {
   id: number;
-  fromUser: UserInfo;
-  toStroyboardItemId: number;
+  mediaContentType : MediaContentType;
+  fromUser: UserDetails;
+  itemId: number;
   publishedAt: Date;
   content: string;
 }

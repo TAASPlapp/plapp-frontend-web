@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../../services/auth.service";
 import {
   MatSnackBar,
-  MatSnackBarConfig,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
 } from '@angular/material';
 import {Router} from "@angular/router";
 
@@ -16,6 +13,7 @@ import {Router} from "@angular/router";
 export class RegisterComponent implements OnInit {
 
   form: any = {};
+  registerForm: any = {};
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -26,7 +24,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     console.log("pressed");
-    this.authService.register(this.form).subscribe(
+    this.authService.register(this.registerForm).subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;
@@ -36,8 +34,8 @@ export class RegisterComponent implements OnInit {
       err => {
         this.errorMessage = err.error.message;
         this.isSignUpFailed = true;
-        let snackBarRef  = this.snackBar.open('Error login!', 'Close');
-        console.log("Error!!")
+        let snackBarRef  = this.snackBar.open('Error Register! Try again later...', 'Close');
+        console.log(err.error.message)
 
       }
     );

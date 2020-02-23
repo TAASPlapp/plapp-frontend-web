@@ -25,15 +25,15 @@
                                         <input type="text"
                                                class="form-control form-control-user"
                                                name="username"
-                                               [(ngModel)]="form.username"
+                                               [(ngModel)]="form.email"
                                                required
-                                               #username="ngModel"
-                                               placeholder="Username">
+                                               #email="ngModel"
+                                               placeholder="Email">
                                         <div class="alert alert-danger-form "
                                              role="alert"
-                                             *ngIf="f.submitted && username.invalid"
+                                             *ngIf="f.submitted && email.invalid"
                                         >
-                                            * Username is required!
+                                            * Email is required!
                                         </div>
                                     </div>
                                     <div class="form-group">

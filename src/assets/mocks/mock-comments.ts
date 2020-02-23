@@ -1,9 +1,11 @@
 import {Comment} from "../../app/models/Comment";
+import {MediaContentType} from "../../app/models/MediaContentType";
 
 
 export const COMMENTS: Comment[] = [
   {
     id: 912,
+    mediaContentType: MediaContentType.StoryboardItem,
     fromUser: {
       userId: 2,
       username: "valka-getz",
@@ -25,12 +27,13 @@ export const COMMENTS: Comment[] = [
       birthdate: new Date(1995, 5, 25),
       profilePicture: "https://source.unsplash.com/bXq8pVfP-fY/60x60",
     },
-    toStroyboardItemId: 9891,
+    itemId: 9891,
     publishedAt: new Date,
     content: "ciao mamma!! bel fiore",
   },
   {
     id: 913,
+    mediaContentType: MediaContentType.StoryboardItem,
     fromUser: {
       userId: 2,
       username: "valka-getz",
@@ -52,12 +55,13 @@ export const COMMENTS: Comment[] = [
       birthdate: new Date(1995, 5, 25),
       profilePicture: "https://source.unsplash.com/bXq8pVfP-fY/60x60",
     },
-    toStroyboardItemId: 9891,
+    itemId: 9891,
     publishedAt: new Date,
     content: "Anzi non mi piace più",
   },
   {
     id: 914,
+    mediaContentType: MediaContentType.StoryboardItem,
     fromUser: {
       userId: 2,
       username: "valka-getz",
@@ -79,7 +83,7 @@ export const COMMENTS: Comment[] = [
       birthdate: new Date(1995, 5, 25),
       profilePicture: "https://source.unsplash.com/bXq8pVfP-fY/60x60",
     },
-    toStroyboardItemId: 9891,
+    itemId: 9891,
     publishedAt: new Date,
     content: "mah, si può fare di meglio",
   }

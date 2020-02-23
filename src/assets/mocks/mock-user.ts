@@ -1,6 +1,6 @@
-import {UserInfo} from "../../app/models/UserInfo";
+import {UserDetails} from "../../app/models/UserDetails";
 
-export const USERS: UserInfo[] = [
+export const USERS: UserDetails[] = [
   {
     userId: 2434,
     username: "jack93",

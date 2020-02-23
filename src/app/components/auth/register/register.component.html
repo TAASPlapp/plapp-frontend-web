@@ -41,7 +41,7 @@
                             <input type="email"
                                    class="form-control form-control-user"
                                    name="email"
-                                   [(ngModel)]="form.email"
+                                   [(ngModel)]="registerForm.email"
                                    required
                                    email
                                    #email="ngModel"
@@ -58,7 +58,7 @@
                                 <input type="password"
                                        class="form-control form-control-user"
                                        name="password"
-                                       [(ngModel)]="form.password"
+                                       [(ngModel)]="registerForm.password"
                                        required
                                        minlength="6"
                                        #password="ngModel"
@@ -70,12 +70,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <input type="password"
-                                       class="form-control form-control-user"
-                                       name="rPassword"
-                                       placeholder="Repeat Password">
-                            </div>
+
+<!--                            <div class="col-sm-6">-->
+<!--                                <input type="password"-->
+<!--                                       class="form-control form-control-user"-->
+<!--                                       name="rPassword"-->
+<!--                                       [(ngModel)]="form.rpassword"-->
+<!--                                       required-->
+<!--                                       placeholder="Repeat Password"-->
+<!--                                       #rpassword="ngModel"-->
+<!--                                >-->
+<!--                                <div class="alert-danger-form" *ngIf="f.submitted && rpassword.invalid">-->
+<!--                                    <div *ngIf="rpassword.errors.required">* Password is required</div>-->
+<!--                                    <div *ngIf="rpassword != password">-->
+<!--                                        * Passwords must be the same-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                -->
+<!--                            </div>-->
 
                         </div>
                         <button class="btn btn-primary btn-user btn-block" >Sign up!</button>

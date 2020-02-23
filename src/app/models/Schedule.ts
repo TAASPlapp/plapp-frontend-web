@@ -1,7 +1,9 @@
 export class Schedule {
-  id: number;
-  plantID: number;
+  userId: number;
+  plantId: number;
   date: Date;
-  action: String;
+  action: string;
+  periodicity: number;
+  additionalInfo: string;
 
 }

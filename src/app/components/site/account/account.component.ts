@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {UserInfo} from "../../../models/UserInfo";
+import {UserDetails} from "../../../models/UserDetails";
 import {UserService} from "../../../services/user-manage.service";
 import {ActivatedRoute} from "@angular/router";
 import {Storyboard} from "../../../models/Storyboard";
@@ -11,7 +11,7 @@ import {Storyboard} from "../../../models/Storyboard";
 })
 export class AccountComponent implements OnInit {
 
-  userInfo: UserInfo;
+  userInfo: UserDetails;
   storyboard: Storyboard[];
 
 

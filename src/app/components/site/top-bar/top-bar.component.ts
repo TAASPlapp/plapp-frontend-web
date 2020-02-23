@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../services/user-manage.service";
-import {UserInfo} from "../../../models/UserInfo";
+import {UserDetails} from "../../../models/UserDetails";
 import {Observable} from "rxjs";
 
 @Component({
@@ -9,7 +9,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./top-bar.component.css']
 })
 export class TopBarComponent implements OnInit {
-  userInfo:UserInfo;
+  userInfo:UserDetails;
 
 
   constructor(private service:UserService) {
