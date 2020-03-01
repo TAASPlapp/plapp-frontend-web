@@ -8,6 +8,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {PlantInfo} from "../models/PlantInfo";
 import {Storyboard} from "../models/Storyboard";
 import {urls} from "../../assets/urls";
+import {ApiResponse} from "../models/ApiResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -20,18 +21,19 @@ export class GreenhouseManageService {
   constructor(private http: HttpClient) {
   }
 
-  getAllPlants(): Observable<Plant[]> {
-    return this.http.get<Plant[]>(this.apiBaseUrl + 'plants');
+  //TODO:mod
+  getAllPlants(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.apiBaseUrl + 'plants');
   }
 
-  getStoryboard(id: number | string) {
-    return this.http.get<Storyboard>(this.apiBaseUrl + 'storyboard', {
+  getStoryboard(id: number | string): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.apiBaseUrl + 'storyboard', {
       params: new HttpParams().set("plantId", id.toString())
     });
   }
 
-  getPlant(id: number | string) {
-    return this.http.get<Plant>(this.apiBaseUrl + 'plant/', {
+  getPlant(id: number | string): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.apiBaseUrl + 'plant/', {
       params: new HttpParams().set("plantId", id.toString())
     });
   }
@@ -41,6 +43,7 @@ export class GreenhouseManageService {
     return this.http.get<PlantInfo>(this.plantsInfoApiUrl + 'plants/' + this.capitalizeFirstLetter(type));
   }
 
+  //TODO:mod
   getPlantTypes() {
     return this.http.get<string[]>(this.plantsInfoApiUrl + 'get_types/')
   }
@@ -49,8 +52,9 @@ export class GreenhouseManageService {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  getSchedules(id: number | string) {
-    return this.http.get<Schedule[]>(this.apiScheduleUrl, {
+  //TODO:mod
+  getSchedules(id: number | string): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.apiScheduleUrl, {
       params: new HttpParams().set("plantId", id.toString())
     });
   }
@@ -61,14 +65,15 @@ export class GreenhouseManageService {
 
   addScheduleAction(schedule: Schedule) {
     console.log(schedule);
-    return this.http.get(this.apiScheduleUrl + "add", {
-      params: new HttpParams().set("action", schedule.toString())
+    return this.http.post(this.apiScheduleUrl + "add", {
+      params: new HttpParams().set("action", JSON.stringify(schedule))
     });
 
   }
-  removeSchedule(schedule:Schedule){
+
+  removeSchedule(schedule: Schedule) {
     return this.http.get(this.apiScheduleUrl + "remove", {
-      params: new HttpParams().set("action", schedule.toString())
+      params: new HttpParams().set("action", JSON.stringify(schedule))
     });
   }
 

@@ -1,10 +1,6 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Storyboard} from "../../../models/Storyboard";
-import {Observable} from "rxjs";
 import {SocialManagerService} from "../../../services/social-manager.service";
-import {NgbCarousel, NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {ModalGalleryComponent} from "../modal-gallery/modal-gallery.component";
-import {StoryboardItem} from "../../../models/StoryboardItem";
 
 @Component({
   selector: 'app-discover',
@@ -13,7 +9,7 @@ import {StoryboardItem} from "../../../models/StoryboardItem";
 })
 export class DiscoverComponent implements OnInit {
 
-  private storyboards: Observable<Storyboard[]>;
+  private storyboards: Storyboard[];
   private currentDate: Date = new Date();
 
   constructor(
@@ -22,8 +18,11 @@ export class DiscoverComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.storyboards = this.service.getAllStoryboards();
-    console.log(this.storyboards);
+    this.service.getAllStoryboards().subscribe(res =>{
+      this.storyboards = res.content
+    });
+
+
   }
 
 

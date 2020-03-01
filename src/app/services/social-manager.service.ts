@@ -6,6 +6,7 @@ import {STORYBOARD} from "../../assets/mocks/mock.storyboard";
 import {Storyboard} from "../models/Storyboard";
 import {COMMENTS} from "../../assets/mocks/mock-comments";
 import {urls} from "../../assets/urls";
+import {ApiResponse} from "../models/ApiResponse";
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class SocialManagerService {
   }
 
   // data service REST call
-  getAllStoryboards(): Observable<Storyboard[]> {
-    return this.http.get<Storyboard[]>(this.baseUrl + 'storyboards/');
+  getAllStoryboards(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(urls.apiServerUrl + 'greenhouse/storyboards/');
   }
 
   getComments(id: number) {

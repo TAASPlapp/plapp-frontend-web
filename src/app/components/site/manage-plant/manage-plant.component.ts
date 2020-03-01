@@ -16,6 +16,7 @@ import {AddStoryboardItemComponent} from "./add-storyboard-item/add-storyboard-i
 import {Storyboard} from "../../../models/Storyboard";
 import {StoryboardItem} from "../../../models/StoryboardItem";
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
+import {ApiResponse} from "../../../models/ApiResponse";
 
 
 @Component({
@@ -27,11 +28,11 @@ import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 })
 
 export class ManagePlantComponent implements OnInit {
-  plant$: Observable<Plant>;
-  schedule$: Observable<Schedule[]>;
+  plant: Plant;
+  schedule: Schedule[];
   recommendation$: Observable<PlantInfo>;
   storyboardItems: StoryboardItem[];
-  articles: Article[] =[];
+  articles: Article[] = [];
   storyboardDescription: string;
 
   maxArticles: number = 3;
@@ -58,27 +59,29 @@ export class ManagePlantComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.plant$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.service.getPlant(params.get('id')))
-    );
-    this.schedule$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.service.getSchedules(params.get('id')))
-    );
+
     this.recommendation$ = this.route.queryParams.pipe(
       switchMap((params: ParamMap) =>
         this.service.getRecommended(params['type']))
     );
 
 
+    this.service.getPlant(this.plantId).subscribe(res =>{
+      this.plant = res.content;
+    });
+
+    this.service.getSchedules(this.plantId).subscribe(res => {
+      this.schedule = res.content;
+    });
+
     //get news about the plant
     this.service.getRelatedArticles(this.plantType).subscribe((res: NewsApiResponse) => {
       this.articles = res.articles.splice(0, this.maxArticles);
     });
-    this.service.getStoryboard(this.plantId).subscribe((res: Storyboard) => {
-      this.storyboardItems = res.storyboardItems;
-      this.storyboardDescription = res.summary;
+
+    this.service.getStoryboard(this.plantId).subscribe((res: ApiResponse) => {
+      this.storyboardItems = res.content.storyboardItems;
+      this.storyboardDescription = res.content.summary;
     });
   }
 
@@ -95,7 +98,7 @@ export class ManagePlantComponent implements OnInit {
     })
   }
 
-  removeSchedule(schedule:Schedule){
+  removeSchedule(schedule: Schedule) {
     this.service.removeSchedule(schedule);
   }
 

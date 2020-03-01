@@ -7,6 +7,7 @@ import {USERS} from "../../assets/mocks/mock-user";
 import {map} from "rxjs/operators";
 import {Storyboard} from "../models/Storyboard";
 import {STORYBOARD} from "../../assets/mocks/mock.storyboard";
+import {ApiResponse} from "../models/ApiResponse";
 
 const API_URL = urls.apiServerUrl;
 
@@ -39,4 +40,13 @@ export class UserService {
       map((storyboards: Storyboard[]) => storyboards.filter(s => s.plant.owner == +id))
     );
   }
+
+  // addUser(user:UserDetails):Observable<ApiResponse>{
+  //   return this.http.post<ApiResponse>(this.apiBaseUrl+'/user/add', JSON.stringify(user))
+  // }
+
+
+
+
+
 }

@@ -3,6 +3,8 @@ import {UserDetails} from "../../../models/UserDetails";
 import {UserService} from "../../../services/user-manage.service";
 import {ActivatedRoute} from "@angular/router";
 import {Storyboard} from "../../../models/Storyboard";
+import {HttpResponse} from "@angular/common/http";
+import {ApiResponse} from "../../../models/ApiResponse";
 
 @Component({
   selector: 'app-account',
@@ -13,6 +15,7 @@ export class AccountComponent implements OnInit {
 
   userInfo: UserDetails;
   storyboard: Storyboard[];
+  response:ApiResponse;
 
 
   constructor(private service: UserService, private route: ActivatedRoute) {
@@ -32,6 +35,8 @@ export class AccountComponent implements OnInit {
     this.service.getStoryboard(this.userInfo.userId).subscribe((s: Storyboard[]) => {
       this.storyboard = s;
     });
+
+
 
 
   }

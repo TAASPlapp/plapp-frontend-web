@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Plant} from "../../../models/Plant";
-import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
+import {switchMap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 import {GreenhouseManageService} from "../../../services/greenhouse-manage.service";
-
-
 
 
 @Component({
@@ -14,23 +12,25 @@ import {GreenhouseManageService} from "../../../services/greenhouse-manage.servi
   styleUrls: ['./greenhouse.component.css']
 })
 export class GreenhouseComponent implements OnInit {
-  plants: Observable<Plant[]>;
+  plants: Plant[];
   selectedId: number;
 
 
   constructor(
     private service: GreenhouseManageService,
     private route: ActivatedRoute,
-  ) {}
+  ) {
+
+  }
 
   ngOnInit() {
-    this.plants = this.route.paramMap.pipe(
-      switchMap(params => {
-        // (+) before `params.get()` turns the string into a number
-        this.selectedId = +params.get('id');
-        return this.service.getAllPlants();
-      })
-    );
+    this.route.paramMap.subscribe(params => {
+      this.selectedId = +params.get('id')
+    });
+
+    this.service.getAllPlants().subscribe(res => {
+      this.plants = res.content;
+    });
   }
 
 }
