@@ -1,4 +1,4 @@
 export enum MediaContentType {
-  Storyboard, StoryboardItem
+  Storyboard = 'Storyboard', StoryboardItem = 'StoryboardItem'
 }
 

@@ -8,6 +8,13 @@ import {FooterComponent} from './components/footer/footer.component';
 import {Error404Component} from './components/errorPage/error404.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgImageSliderModule} from "ng-image-slider";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {environment} from "../environments/environment";
+import {AngularFireModule} from "@angular/fire";
+import {AngularFireMessagingModule} from "@angular/fire/messaging";
+import {AngularFireAuthModule} from "@angular/fire/auth";
+import {AsyncPipe} from "@angular/common";
+import {PushNotificationService} from "./services/push-notification.service";
 
 @NgModule({
   declarations: [
@@ -21,8 +28,12 @@ import {NgImageSliderModule} from "ng-image-slider";
     HttpClientModule,
     BrowserAnimationsModule,
     NgImageSliderModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [],
+  providers: [PushNotificationService,AsyncPipe],
   exports: [],
 
   bootstrap: [AppComponent]

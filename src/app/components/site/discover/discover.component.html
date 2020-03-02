@@ -37,21 +37,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="row">
-                                    <div class="col-3 offset-1"><i class="far fa-thumbs-up"></i> {{s.numLikes}}</div>
-                                </div>
-
-                                <hr>
-                                <div class="row">
-                                    <div class="col-3 offset-3"><a href=""><i class="far fa-thumbs-up"></i> Like</a>
-                                    </div>
-                                    <div class="col-3"><a href=""> <i class="far fa-comment"></i> Comment</a></div>
-                                </div>
-                                <hr>
-                                <div class="card-body">
-                                    <p>robaa</p>
-                                </div>
-
+                                <app-stroyboard-comments-component [storyboardId]="s.id"></app-stroyboard-comments-component>
                             </div>
                         </div>
 

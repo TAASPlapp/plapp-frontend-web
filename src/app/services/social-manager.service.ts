@@ -7,6 +7,8 @@ import {Storyboard} from "../models/Storyboard";
 import {COMMENTS} from "../../assets/mocks/mock-comments";
 import {urls} from "../../assets/urls";
 import {ApiResponse} from "../models/ApiResponse";
+import {MediaContentType} from "../models/MediaContentType";
+import {LIKES} from "../../assets/mocks/mock-like";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +25,19 @@ export class SocialManagerService {
     return this.http.get<ApiResponse>(urls.apiServerUrl + 'greenhouse/storyboards/');
   }
 
-  getComments(id: number) {
-    return of(COMMENTS)
+
+  //TODO: questi devono tutti ritronare oggetti ApiResponse
+  getComments(id: number, media: MediaContentType): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.baseUrl + 'comments', {
+      params: new HttpParams().set("contentType",media.toString()).set("itemId", id.toString())
+    })
+
   }
+
+  getLikes(id: number, media: MediaContentType): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.baseUrl + 'likes', {
+      params: new HttpParams().set("contentType", media.toString()).set("itemId", id.toString())
+    })
+  }
+
 }

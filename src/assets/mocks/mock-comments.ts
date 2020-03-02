@@ -6,7 +6,7 @@ export const COMMENTS: Comment[] = [
   {
     id: 912,
     mediaContentType: MediaContentType.StoryboardItem,
-    fromUser: {
+    author: {
       userId: 2,
       username: "valka-getz",
       firstName: "Valka",
@@ -34,7 +34,7 @@ export const COMMENTS: Comment[] = [
   {
     id: 913,
     mediaContentType: MediaContentType.StoryboardItem,
-    fromUser: {
+    author: {
       userId: 2,
       username: "valka-getz",
       firstName: "Valka",
@@ -62,7 +62,7 @@ export const COMMENTS: Comment[] = [
   {
     id: 914,
     mediaContentType: MediaContentType.StoryboardItem,
-    fromUser: {
+    author: {
       userId: 2,
       username: "valka-getz",
       firstName: "Valka",

@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-3 text-xs"><i class="far fa-thumbs-up"></i> {{item.numLike}}</div>
+                <div class="col-3 text-xs"><i class="far fa-thumbs-up"></i> {{likes.length}}</div>
             </div>
             <hr>
             <div class="row">
@@ -23,7 +23,7 @@
                 <div class="col-4"><a href=""> <i class="far fa-comment"></i> Comment</a></div>
             </div>
             <hr>
-            <div class="comments" *ngFor="let c of comments$ | async">
+            <div class="comments" *ngFor="let c of comments">
                 <app-comment [comment]="c" [activeModal]="activeModal" ></app-comment>
             </div>
         </div>

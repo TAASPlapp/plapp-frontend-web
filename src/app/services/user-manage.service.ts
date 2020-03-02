@@ -41,10 +41,6 @@ export class UserService {
     );
   }
 
-  // addUser(user:UserDetails):Observable<ApiResponse>{
-  //   return this.http.post<ApiResponse>(this.apiBaseUrl+'/user/add', JSON.stringify(user))
-  // }
-
 
 
 

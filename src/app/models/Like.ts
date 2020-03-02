@@ -1,12 +1,11 @@
-import {UserDetails} from "./UserDetails";
 import {MediaContentType} from "./MediaContentType";
+import {UserDetails} from "./UserDetails";
 
-export class Comment {
+export class Like {
   id: number;
-  author: UserDetails;
   mediaContentType : MediaContentType;
   itemId: number;
+  author: UserDetails;
   publishedAt: Date;
-  content: string;
 }
 

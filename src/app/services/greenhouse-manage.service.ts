@@ -83,6 +83,8 @@ export class GreenhouseManageService {
     let url = 'http://newsapi.org/v2/everything?qInTitle=' + plantType + '&sortBy=publishedAt&apiKey=6c3cd712f87541beb1743c8ec1d727d0';
     return this.http.get(url);
   }
+  //TODO:
+  addPlant(plant: Plant){}
 
 
 }

@@ -33,6 +33,7 @@ import { CommentComponent } from './comment/comment.component';
 import { CaruselStoryboardComponent } from './carusel-storyboard/carusel-storyboard.component';
 import {DateWillPipe} from "../../pipes/date-will.pipe";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { StroyboardCommentsComponentComponent } from './stroyboard-comments-component/stroyboard-comments-component.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     DateWillPipe,
     CommentComponent,
     CaruselStoryboardComponent,
+    StroyboardCommentsComponentComponent,
 
   ],
   entryComponents: [AddScheduleComponent, AddStoryboardItemComponent, ModalGalleryComponent],

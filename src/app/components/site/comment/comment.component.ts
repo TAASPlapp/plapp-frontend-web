@@ -10,7 +10,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 export class CommentComponent implements OnInit {
 
   @Input() comment: Comment;
-  @Input() activeModal: NgbActiveModal;
+  @Input() activeModal : NgbActiveModal;
 
 
   constructor(
@@ -21,6 +21,7 @@ export class CommentComponent implements OnInit {
   }
 
   closeModal(){
-    this.activeModal.close()
+    if(this.activeModal)
+      this.activeModal.close()
   }
 }
