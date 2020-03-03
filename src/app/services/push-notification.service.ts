@@ -22,6 +22,7 @@ export class PushNotificationService {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
         console.log(token);
+
       },
       (err) => {
         console.error('Unable to get permission to notify.', err);
@@ -36,6 +37,4 @@ export class PushNotificationService {
         this.currentMessage.next(payload);
       })
   }
-
-
 }

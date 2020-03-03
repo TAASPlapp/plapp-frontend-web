@@ -33,7 +33,7 @@ import { CommentComponent } from './comment/comment.component';
 import { CaruselStoryboardComponent } from './carusel-storyboard/carusel-storyboard.component';
 import {DateWillPipe} from "../../pipes/date-will.pipe";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import { StroyboardCommentsComponentComponent } from './stroyboard-comments-component/stroyboard-comments-component.component';
+import { StroyboardCommentsComponent } from './stroyboard-comments-component/stroyboard-comments.component';
 import {NgxSpinnerModule} from "ngx-spinner";
 import { SpinnerComponent } from './spinner/spinner.component';
 
@@ -56,7 +56,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     DateWillPipe,
     CommentComponent,
     CaruselStoryboardComponent,
-    StroyboardCommentsComponentComponent,
+    StroyboardCommentsComponent,
     SpinnerComponent,
 
   ],

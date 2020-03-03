@@ -6,15 +6,15 @@ import {UserDetails} from "../../../models/UserDetails";
 
 @Component({
   selector: 'app-stroyboard-comments-component',
-  templateUrl: './stroyboard-comments-component.component.html',
-  styleUrls: ['./stroyboard-comments-component.component.css']
+  templateUrl: './stroyboard-comments.component.html',
+  styleUrls: ['./stroyboard-comments.component.css']
 })
-export class StroyboardCommentsComponentComponent implements OnInit {
+export class StroyboardCommentsComponent implements OnInit {
 
 
   @Input() storyboardId: number;
   private comments : Comment[];
-  private likes: UserDetails[];
+  private likes: UserDetails[] = [];
   private enableWrite: Boolean = false;
 
 
@@ -23,14 +23,12 @@ export class StroyboardCommentsComponentComponent implements OnInit {
 
   ngOnInit() {
 
-    //TODO: ritorna api, quindi modificare
     this.socialManagerService.getComments(this.storyboardId, MediaContentType.Storyboard).subscribe( res =>{
-       this.comments = res.content
-      console.log(res.content)
+       this.comments = res.content;
     });
+
     this.socialManagerService.getLikes(this.storyboardId, MediaContentType.Storyboard).subscribe(res=>{
-      this.likes = res.content
-      console.log(res)
+      this.likes = res.content;
     })
 
   }

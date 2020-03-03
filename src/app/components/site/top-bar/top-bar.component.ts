@@ -3,6 +3,8 @@ import {UserService} from "../../../services/user-manage.service";
 import {UserDetails} from "../../../models/UserDetails";
 import {Observable} from "rxjs";
 import {PushNotificationService} from "../../../services/push-notification.service";
+import {AuthService} from "../../../services/auth.service";
+import {ApiResponse} from "../../../models/ApiResponse";
 
 @Component({
   selector: 'app-top-bar',
@@ -14,7 +16,11 @@ export class TopBarComponent implements OnInit {
   messages;
 
 
-  constructor(private service:UserService, private notification: PushNotificationService) {
+  constructor(
+    private userService:UserService,
+    private notification: PushNotificationService,
+    private authService: AuthService
+  ) {
 
   }
 
@@ -24,7 +30,12 @@ export class TopBarComponent implements OnInit {
     this.messages = this.notification.currentMessage;
     // this.messages.push(this.notification.currentMessage)
 
-    this.service.getInfo().subscribe(user => this.userInfo = user)
+    this.userService.getInfo().subscribe(user => this.userInfo = user.content)
   }
 
+  logout() {
+    this.authService.logout().subscribe((res: ApiResponse) => {
+      console.log(res.content)
+    });
+  }
 }

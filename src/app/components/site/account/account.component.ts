@@ -15,28 +15,33 @@ export class AccountComponent implements OnInit {
 
   userInfo: UserDetails;
   storyboard: Storyboard[];
-  response:ApiResponse;
+  response: ApiResponse;
+  userId: number;
 
 
-  constructor(private service: UserService, private route: ActivatedRoute) {
+  constructor(
+    private service: UserService,
+    private route: ActivatedRoute
+  ) {
+    this.route.params.subscribe((params: any) => {
+      if (params.id) {
+        this.service.getUserInfo(params.id).subscribe(user => this.userInfo = user.content)
+      }
+    });
   }
 
   ngOnInit() {
 
-    this.route.params.subscribe((params: any) => {
-      if (params.id) {
-        this.service.getUserInfo(params.id).subscribe(user => this.userInfo = user)
-      } else {
-        this.service.getInfo().subscribe(user => this.userInfo = user)
-      }
-    });
+    if (this.userId) {
+      this.service.getUserInfo(this.userId).subscribe(user => this.userInfo = user.content);
+    } else {
+      this.service.getInfo().subscribe(user => this.userInfo = user.content);
+    }
 
 
-    this.service.getStoryboard(this.userInfo.userId).subscribe((s: Storyboard[]) => {
+    this.service.getStoryboards(this.userInfo.userId).subscribe((s: Storyboard[]) => {
       this.storyboard = s;
     });
-
-
 
 
   }

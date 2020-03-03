@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {urls} from "../../assets/urls";
+import {ApiResponse} from "../models/ApiResponse";
 
-const AUTH_API = urls.serverUrl+"api/auth/";
+const AUTH_API = urls.serverUrl + "api/auth/";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'}),
@@ -31,5 +32,10 @@ export class AuthService {
       email: user.email,
       password: user.password
     }, httpOptions);
+  }
+
+  //TODO:implementare
+  logout() {
+    return this.http.get(AUTH_API + "logout");
   }
 }

@@ -16,11 +16,7 @@
                 </button>
             </div>
         </div>
-        <div>
-            <p>            {{ messages | async | json }}
-            </p>
-
-        </div>
+        <div></div>
     </form>
 
     <!-- Topbar Navbar -->
@@ -145,9 +141,9 @@
                     </a>
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <button class="dropdown-item" routerLink="/auth/login"   routerLinkActive="active"  (click)="logout()" data-toggle="modal" data-target="#logoutModal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
-                    </a>
+                    </button>
                 </div>
             </div>
         </li>

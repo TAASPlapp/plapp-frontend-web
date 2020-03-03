@@ -28,10 +28,10 @@ import {NgxSpinnerService} from "ngx-spinner";
 
 })
 
-export class ManagePlantComponent implements OnInit{
+export class ManagePlantComponent implements OnInit {
   plant: Plant;
   schedule: Schedule[];
-  recommendation$: Observable<PlantInfo>;
+  recommendation: PlantInfo;
   storyboardItems: StoryboardItem[];
   articles: Article[] = [];
   storyboardDescription: string;
@@ -42,7 +42,7 @@ export class ManagePlantComponent implements OnInit{
   isHealty: boolean = true;
   plantId: string;
   plantType: string;
-  showSpinner = true;
+  isSpinner = true;
 
 
   constructor(
@@ -59,40 +59,20 @@ export class ManagePlantComponent implements OnInit{
     this.route.queryParams.subscribe(params => {
       this.plantType = params['type']
     });
-    this.spinner.show();
-    this.showSpinner = true;
+    this.showSpinner();
   }
 
-
-
   ngOnInit() {
-
-    this.recommendation$ = this.route.queryParams.pipe(
-      switchMap((params: ParamMap) =>
-        this.service.getRecommended(params['type']))
-    );
-
-    this.service.getPlant(this.plantId).subscribe(res =>{
-      this.plant = res.content;
-    });
-
-    this.service.getSchedules(this.plantId).subscribe(res => {
-      this.schedule = res.content;
-    });
-
-    this.service.getStoryboard(this.plantId).subscribe((res: ApiResponse) => {
-      this.storyboardItems = res.content.storyboardItems;
-      this.storyboardDescription = res.content.summary;
-    });
-
-    //get news about the plant
-    this.service.getRelatedArticles(this.plantType).subscribe((res: NewsApiResponse) => {
-      this.articles = res.articles.splice(0, this.maxArticles);
+    this.service.requestDataFromMultipleSources(this.plantId, this.plantType).subscribe(res => {
+      this.plant = res[0].content;
+      this.storyboardItems = res[1].content.storyboardItems;
+      this.storyboardDescription = res[1].content.summary;
+      this.schedule = res[2].content;
+      this.recommendation = res[3];
+      this.articles = res[4].articles.splice(0, this.maxArticles);
       this.hideSpinner();
     });
   }
-
-
 
   openBottomSheet(): void {
     this.bottomSheet.open(AddScheduleComponent, {
@@ -112,10 +92,13 @@ export class ManagePlantComponent implements OnInit{
   }
 
   hideSpinner(): void {
-    this.showSpinner = false;
+    this.isSpinner = false;
     this.spinner.hide()
 
   }
 
-
+  showSpinner(): void {
+    this.spinner.show();
+    this.isSpinner = true;
+  }
 }

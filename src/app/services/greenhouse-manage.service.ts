@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-import {Observable} from 'rxjs';
+import {forkJoin, Observable} from 'rxjs';
 
 import {Plant} from "../models/Plant";
 import {Schedule} from "../models/Schedule";
@@ -39,7 +39,7 @@ export class GreenhouseManageService {
   }
 
 
-  getRecommended(type: string) {
+  getRecommended(type: string): Observable<PlantInfo> {
     return this.http.get<PlantInfo>(this.plantsInfoApiUrl + 'plants/' + this.capitalizeFirstLetter(type));
   }
 
@@ -83,8 +83,23 @@ export class GreenhouseManageService {
     let url = 'http://newsapi.org/v2/everything?qInTitle=' + plantType + '&sortBy=publishedAt&apiKey=6c3cd712f87541beb1743c8ec1d727d0';
     return this.http.get(url);
   }
+
   //TODO:
-  addPlant(plant: Plant){}
+  addPlant(plant: Plant) {
+
+  }
+
+
+  requestDataFromMultipleSources(id: string, type: string): Observable<any[]> {
+    let plant = this.getPlant(id);
+    let stroyboard = this.getStoryboard(id);
+    let schedules = this.getSchedules(id);
+    let reccomended = this.getRecommended(type);
+    let related = this.getRelatedArticles(type);
+
+    // Observable.forkJoin (RxJS 5) changes to just forkJoin() in RxJS 6
+    return forkJoin([plant, stroyboard, schedules, reccomended, related]);
+  }
 
 
 }

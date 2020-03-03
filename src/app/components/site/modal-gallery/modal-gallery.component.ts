@@ -16,7 +16,7 @@ export class ModalGalleryComponent implements OnInit {
 
 
   private comments: Comment[];
-  private likes: UserDetails[];
+  private likes: UserDetails[] = [];
   private enableWrite:Boolean = false;
 
 

@@ -15,34 +15,27 @@ const API_URL = urls.apiServerUrl;
   providedIn: 'root'
 })
 export class UserService {
-  private apiBaseUrl: string = urls.apiServerUrl + "social";
+  private apiBaseUrl: string = urls.apiServerUrl + "social/";
 
 
   constructor(private http: HttpClient) {
   }
 
-  getInfo(): Observable<UserDetails> {
-    //todo:modificare
-    //return this.http.get(API_URL + 'all', {responseType: 'text'});
-    return (of(USERS).pipe(
-      map((users: UserDetails[]) => users.find(u => u.userId === 2434))
-    ));
+  getInfo(): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.apiBaseUrl + 'user');
   }
 
-  getUserInfo(id: number | string): Observable<UserDetails> {
-    return of(USERS).pipe(
-      map((users: UserDetails[]) => users.find(u => u.userId === +id))
-    );
+  getUserInfo(id: number | string): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.apiBaseUrl + 'user',{
+      params: new HttpParams().set("userId", id.toString())
+    });
   }
 
-  getStoryboard(id: number | string): Observable<Storyboard[]> {
+  //todo: implementare quando sarà pronta dal gateway
+  getStoryboards(id: number | string): Observable<Storyboard[]> {
     return of(STORYBOARD).pipe(
       map((storyboards: Storyboard[]) => storyboards.filter(s => s.plant.owner == +id))
     );
   }
-
-
-
-
 
 }

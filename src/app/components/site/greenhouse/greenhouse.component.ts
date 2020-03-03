@@ -14,7 +14,7 @@ import {NgxSpinnerService} from "ngx-spinner";
 })
 export class GreenhouseComponent implements OnInit {
   plants: Plant[];
-  showSpinner: Boolean = true;
+  isSpinner: Boolean = true;
   selectedId: number;
 
 
@@ -22,9 +22,8 @@ export class GreenhouseComponent implements OnInit {
     private service: GreenhouseManageService,
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
-
   ) {
-
+    this.showSpinner();
   }
 
   ngOnInit() {
@@ -34,14 +33,18 @@ export class GreenhouseComponent implements OnInit {
 
     this.service.getAllPlants().subscribe(res => {
       this.plants = res.content;
-      console.log(res)
       this.hideSpinner();
     });
   }
 
   hideSpinner(): void {
-    this.showSpinner = false;
+    this.isSpinner = false;
     this.spinner.hide()
+  }
+
+  showSpinner(): void {
+    this.spinner.show();
+    this.isSpinner = true;
   }
 
 }

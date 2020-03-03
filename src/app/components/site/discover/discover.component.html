@@ -4,7 +4,8 @@
         <!-- Main Content -->
         <div id="content">
             <app-top-bar></app-top-bar>
-            <div class="container-fluid">
+            <app-spinner></app-spinner>
+            <div class="container-fluid" *ngIf="!isSpinner">
 
                 <!--   Card social-->
 
@@ -33,11 +34,13 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12 ">
-                                        <app-carusel-storyboard [storyboardItems]="s.storyboardItems"></app-carusel-storyboard>
+                                        <app-carusel-storyboard
+                                                [storyboardItems]="s.storyboardItems"></app-carusel-storyboard>
                                     </div>
                                 </div>
                                 <hr>
-                                <app-stroyboard-comments-component [storyboardId]="s.id"></app-stroyboard-comments-component>
+                                <app-stroyboard-comments-component
+                                        [storyboardId]="s.id"></app-stroyboard-comments-component>
                             </div>
                         </div>
 

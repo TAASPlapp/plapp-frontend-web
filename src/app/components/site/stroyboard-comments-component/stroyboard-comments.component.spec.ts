@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StroyboardCommentsComponentComponent } from './stroyboard-comments-component.component';
+import { StroyboardCommentsComponent } from './stroyboard-comments.component';
 
 describe('StroyboardCommentsComponentComponent', () => {
-  let component: StroyboardCommentsComponentComponent;
-  let fixture: ComponentFixture<StroyboardCommentsComponentComponent>;
+  let component: StroyboardCommentsComponent;
+  let fixture: ComponentFixture<StroyboardCommentsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StroyboardCommentsComponentComponent ]
+      declarations: [ StroyboardCommentsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StroyboardCommentsComponentComponent);
+    fixture = TestBed.createComponent(StroyboardCommentsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
