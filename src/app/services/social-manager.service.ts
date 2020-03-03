@@ -29,7 +29,7 @@ export class SocialManagerService {
   //TODO: questi devono tutti ritronare oggetti ApiResponse
   getComments(id: number, media: MediaContentType): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(this.baseUrl + 'comments', {
-      params: new HttpParams().set("contentType",media.toString()).set("itemId", id.toString())
+      params: new HttpParams().set("contentType", media.toString()).set("itemId", id.toString())
     })
 
   }

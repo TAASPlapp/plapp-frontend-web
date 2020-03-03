@@ -34,6 +34,8 @@ import { CaruselStoryboardComponent } from './carusel-storyboard/carusel-storybo
 import {DateWillPipe} from "../../pipes/date-will.pipe";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { StroyboardCommentsComponentComponent } from './stroyboard-comments-component/stroyboard-comments-component.component';
+import {NgxSpinnerModule} from "ngx-spinner";
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
@@ -55,6 +57,7 @@ import { StroyboardCommentsComponentComponent } from './stroyboard-comments-comp
     CommentComponent,
     CaruselStoryboardComponent,
     StroyboardCommentsComponentComponent,
+    SpinnerComponent,
 
   ],
   entryComponents: [AddScheduleComponent, AddStoryboardItemComponent, ModalGalleryComponent],
@@ -80,6 +83,7 @@ import { StroyboardCommentsComponentComponent } from './stroyboard-comments-comp
     NgbCarouselModule,
     NgbModule,
     MatCheckboxModule,
+    NgxSpinnerModule,
 
   ],
   bootstrap: [ModalGalleryComponent, TopBarComponent],

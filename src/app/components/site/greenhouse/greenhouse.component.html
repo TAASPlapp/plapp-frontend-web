@@ -4,7 +4,8 @@
         <!-- Main Content -->
         <div id="content">
             <app-top-bar></app-top-bar>
-            <div class="container-fluid">
+            <app-spinner></app-spinner>
+            <div class="container-fluid" *ngIf="!showSpinner">
 
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Greenhouse</h1>
@@ -17,9 +18,11 @@
                             <div class="card-header">
                                 {{p.name}} ({{p.type}}) -
                                 <span [ngClass]="{
-                                    'text-success': p.status == 'healthy',
-                                    'text-danger' : p.status == 'sick'
-                                    }"> {{p.status}}</span>
+                                    'text-success': p.status == 'Healthy',
+                                    'text-danger' : p.status == 'Sick'
+                                    }"> {{p.status}}
+                                </span>
+
                             </div>
 
                             <div class="card-body text-center">

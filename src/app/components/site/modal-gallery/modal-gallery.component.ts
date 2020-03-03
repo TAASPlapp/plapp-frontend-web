@@ -17,6 +17,7 @@ export class ModalGalleryComponent implements OnInit {
 
   private comments: Comment[];
   private likes: UserDetails[];
+  private enableWrite:Boolean = false;
 
 
 
@@ -30,6 +31,10 @@ export class ModalGalleryComponent implements OnInit {
       this.likes = res.content
     })
 
+  }
+
+  writeComment() {
+    this.enableWrite = !this.enableWrite
   }
 
 }

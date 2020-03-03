@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {switchMap} from 'rxjs/operators';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {Observable} from 'rxjs';
@@ -17,6 +17,7 @@ import {Storyboard} from "../../../models/Storyboard";
 import {StoryboardItem} from "../../../models/StoryboardItem";
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import {ApiResponse} from "../../../models/ApiResponse";
+import {NgxSpinnerService} from "ngx-spinner";
 
 
 @Component({
@@ -27,7 +28,7 @@ import {ApiResponse} from "../../../models/ApiResponse";
 
 })
 
-export class ManagePlantComponent implements OnInit {
+export class ManagePlantComponent implements OnInit{
   plant: Plant;
   schedule: Schedule[];
   recommendation$: Observable<PlantInfo>;
@@ -41,6 +42,7 @@ export class ManagePlantComponent implements OnInit {
   isHealty: boolean = true;
   plantId: string;
   plantType: string;
+  showSpinner = true;
 
 
   constructor(
@@ -48,6 +50,7 @@ export class ManagePlantComponent implements OnInit {
     private router: Router,
     private service: GreenhouseManageService,
     private bottomSheet: MatBottomSheet,
+    private spinner: NgxSpinnerService,
   ) {
     this.date = new Date();
     this.route.paramMap.subscribe(params => {
@@ -56,7 +59,11 @@ export class ManagePlantComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.plantType = params['type']
     });
+    this.spinner.show();
+    this.showSpinner = true;
   }
+
+
 
   ngOnInit() {
 
@@ -64,7 +71,6 @@ export class ManagePlantComponent implements OnInit {
       switchMap((params: ParamMap) =>
         this.service.getRecommended(params['type']))
     );
-
 
     this.service.getPlant(this.plantId).subscribe(res =>{
       this.plant = res.content;
@@ -74,16 +80,19 @@ export class ManagePlantComponent implements OnInit {
       this.schedule = res.content;
     });
 
-    //get news about the plant
-    this.service.getRelatedArticles(this.plantType).subscribe((res: NewsApiResponse) => {
-      this.articles = res.articles.splice(0, this.maxArticles);
-    });
-
     this.service.getStoryboard(this.plantId).subscribe((res: ApiResponse) => {
       this.storyboardItems = res.content.storyboardItems;
       this.storyboardDescription = res.content.summary;
     });
+
+    //get news about the plant
+    this.service.getRelatedArticles(this.plantType).subscribe((res: NewsApiResponse) => {
+      this.articles = res.articles.splice(0, this.maxArticles);
+      this.hideSpinner();
+    });
   }
+
+
 
   openBottomSheet(): void {
     this.bottomSheet.open(AddScheduleComponent, {
@@ -100,6 +109,12 @@ export class ManagePlantComponent implements OnInit {
 
   removeSchedule(schedule: Schedule) {
     this.service.removeSchedule(schedule);
+  }
+
+  hideSpinner(): void {
+    this.showSpinner = false;
+    this.spinner.hide()
+
   }
 
 

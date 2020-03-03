@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {switchMap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {GreenhouseManageService} from "../../../services/greenhouse-manage.service";
+import {NgxSpinnerService} from "ngx-spinner";
 
 
 @Component({
@@ -13,12 +14,15 @@ import {GreenhouseManageService} from "../../../services/greenhouse-manage.servi
 })
 export class GreenhouseComponent implements OnInit {
   plants: Plant[];
+  showSpinner: Boolean = true;
   selectedId: number;
 
 
   constructor(
     private service: GreenhouseManageService,
     private route: ActivatedRoute,
+    private spinner: NgxSpinnerService,
+
   ) {
 
   }
@@ -30,7 +34,14 @@ export class GreenhouseComponent implements OnInit {
 
     this.service.getAllPlants().subscribe(res => {
       this.plants = res.content;
+      console.log(res)
+      this.hideSpinner();
     });
+  }
+
+  hideSpinner(): void {
+    this.showSpinner = false;
+    this.spinner.hide()
   }
 
 }
