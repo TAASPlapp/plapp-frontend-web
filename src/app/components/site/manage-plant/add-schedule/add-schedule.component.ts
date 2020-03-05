@@ -30,7 +30,7 @@ export class AddScheduleComponent implements OnInit {
               private userService: UserService,
               @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {
     this.plantId = data.plantId;
-    this.userService.getInfo().subscribe(res => this.userId = res.userId);
+    this.userService.getInfo().subscribe(res => this.userId = res.content.userId);
   }
 
 
