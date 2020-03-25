@@ -27,15 +27,11 @@ export class GreenhouseManageService {
   }
 
   getStoryboard(id: number | string): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(this.apiBaseUrl + 'storyboard', {
-      params: new HttpParams().set("plantId", id.toString())
-    });
+    return this.http.get<ApiResponse>(this.apiBaseUrl + 'plant/'+id+'/storyboard');
   }
 
   getPlant(id: number | string): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(this.apiBaseUrl + 'plant/', {
-      params: new HttpParams().set("plantId", id.toString())
-    });
+    return this.http.get<ApiResponse>(this.apiBaseUrl + 'plant/'+id);
   }
 
 

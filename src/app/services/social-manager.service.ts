@@ -22,7 +22,7 @@ export class SocialManagerService {
 
   // data service REST call
   getAllStoryboards(): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(urls.apiServerUrl + 'greenhouse/storyboards/');
+    return this.http.get<ApiResponse>(urls.apiServerUrl + 'greenhouse/storyboards/feed');
   }
 
 
