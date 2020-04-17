@@ -23,11 +23,6 @@ export class TokenStorageService {
     return sessionStorage.getItem(TOKEN_KEY);
   }
 
-  public saveUser(user) {
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user.username));
-  }
-
   public getUser() {
     console.log("KEY: " + USER_KEY);
     console.log("SESSION: " + sessionStorage.getItem(TOKEN_KEY));

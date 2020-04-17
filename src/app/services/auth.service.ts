@@ -34,7 +34,6 @@ export class AuthService {
     }, httpOptions);
   }
 
-  //TODO:implementare
   logout() {
     return this.http.get(AUTH_API + "logout");
   }

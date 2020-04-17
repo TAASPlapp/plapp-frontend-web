@@ -15,6 +15,7 @@ import {AngularFireMessagingModule} from "@angular/fire/messaging";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {AsyncPipe} from "@angular/common";
 import {PushNotificationService} from "./services/push-notification.service";
+import {authInterceptorProviders} from "./auth-interceptor";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import {PushNotificationService} from "./services/push-notification.service";
     AngularFireMessagingModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [PushNotificationService,AsyncPipe],
+  providers: [PushNotificationService,AsyncPipe, authInterceptorProviders],
   exports: [],
 
   bootstrap: [AppComponent]

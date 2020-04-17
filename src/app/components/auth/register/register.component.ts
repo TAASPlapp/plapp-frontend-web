@@ -23,13 +23,13 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    console.log("pressed");
     this.authService.register(this.registerForm).subscribe(
       data => {
-        console.log(data);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
-        console.log("Account registered!!")
+        if(data.status == 200){
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+          console.log("Account registered!!")
+        }
       },
       err => {
         this.errorMessage = err.error.message;
