@@ -31,7 +31,6 @@ export class UserService {
     });
   }
 
-  //todo: implementare quando sarà pronta dal gateway
   getStoryboards(id: number | string): Observable<Storyboard[]> {
     return of(STORYBOARD).pipe(
       map((storyboards: Storyboard[]) => storyboards.filter(s => s.plant.owner == +id))

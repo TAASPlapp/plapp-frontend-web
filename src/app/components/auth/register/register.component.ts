@@ -3,7 +3,6 @@ import {AuthService} from "../../../services/auth.service";
 import {
   MatSnackBar,
 } from '@angular/material';
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',

@@ -22,7 +22,7 @@ export class TopBarComponent implements OnInit {
     private userService:UserService,
     private notification: PushNotificationService,
     private authService: AuthService,
-    private tokenServie: TokenStorageService,
+    private tokenService: TokenStorageService,
   ) {
 
   }
@@ -39,7 +39,7 @@ export class TopBarComponent implements OnInit {
   logout() {
     this.authService.logout().subscribe((res: ApiResponse) => {
       console.log(res.content)
-      this.tokenServie.signOut()
+      this.tokenService.signOut()
       this.router.navigate(['/auth'])
     });
   }

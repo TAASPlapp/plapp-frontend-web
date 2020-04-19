@@ -12,6 +12,10 @@
                 </div>
 
                 <!-- Default Plant Card  -->
+                <div class="row text-center" *ngIf="plants.length == 0">
+                    <p>You have no plants. </p>
+                    <p>Add more to your collection.</p>
+                </div>
                 <div class="row">
                     <div class="col-lg-6" *ngFor="let p of plants">
                         <div class="card mb-4">

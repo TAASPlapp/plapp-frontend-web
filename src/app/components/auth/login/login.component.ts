@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveToken(data.body.content);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
+        snackBarRef.dismiss();
         this.router.navigate(['/site'])
       },
       err => {

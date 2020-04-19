@@ -1,4 +1,4 @@
-import {HTTP_INTERCEPTORS, HttpHeaders} from '@angular/common/http';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
 
@@ -14,7 +14,6 @@ export class AuthInterceptor implements HttpInterceptor {
     let request = req;
     const token = this.token.getToken();
     if (token != null) {
-
       request = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
@@ -24,7 +23,6 @@ export class AuthInterceptor implements HttpInterceptor {
     console.log(request)
     return next.handle(request);
   }
-
 }
 
 export const authInterceptorProviders = [
