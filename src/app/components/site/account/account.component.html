@@ -6,10 +6,6 @@
             <app-top-bar></app-top-bar>
             <div class="container-fluid">
 
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Account of {{userInfo.firstName}} {{userInfo.lastName}}</h1>
-                </div>
-
                 <div class="row row-padding-top">
                     <div class="col-md-2 offset-md-5">
                         <img src="{{userInfo.profilePicture}}" class="account-image" alt="{{userInfo.username}}">
@@ -18,31 +14,110 @@
                 <hr>
                 <div class="row text-center justify-content-center">
                     <p><strong>{{userInfo.username}}</strong></p>
-                    <p>{{userInfo.bio}}</p>
+                    <div *ngIf="userInfo.bio != undefined">
+                        <p>{{userInfo.bio}}</p>
+                    </div>
 
                 </div>
                 <div class="row row-padding-top">
-                    <div class="col-md-6" *ngFor="let s of storyboard">
+                    <div *ngIf="storyboards.length != 0 ">
+                        <div class="col-md-6" *ngFor="let s of storyboards">
 
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h6 class="m-0 font-weight-bold text-primary">{{s.plant.name}}</h6>
-                            </div>
-                            <div class="card-body ">
-                                <div *ngIf="s.summary">
-                                    <cite>{{s.summary}}</cite>
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">{{s.plant.name}}</h6>
                                 </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-6" *ngIf="s.storyboardItems">
-                                        <app-carusel-storyboard
-                                                [storyboardItems]="s.storyboardItems"></app-carusel-storyboard>
+                                <div class="card-body ">
+                                    <div *ngIf="s.summary">
+                                        <cite>{{s.summary}}</cite>
                                     </div>
-                                    <div class="col-md-6" *ngIf="!s.storyboardItems"><p>No storyboard available</p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6" *ngIf="s.storyboardItems">
+                                            <app-carusel-storyboard
+                                                    [storyboardItems]="s.storyboardItems"></app-carusel-storyboard>
+                                        </div>
+                                        <div class="col-md-6" *ngIf="!s.storyboardItems"><p>No storyboard available</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row row-padding-top">
+                    <button class="btn btn-primary text-center  offset-5 col-2" *ngIf="!edit" (click)="edit = true">Edit
+                        profile
+                    </button>
+                    <div *ngIf="edit" class="col-4 offset-4">
+
+                        <form class="profile"
+                              name="formGroup"
+                              (ngSubmit)="onSubmit()"
+                              #f="ngForm"
+                              novalidate>
+
+                            <!-- START FORM ADD PLANT -->
+                            <div id="add-plant-photo" class="form-group row">
+                                <div class="col-sm-12 mb-3 mb-sm-0">
+                                    <label>Modify profile image!</label>
+                                    <input style="display: none"
+                                           type="file"
+                                           (change)="onFileChanged($event)"
+                                           #fileInput
+                                           required
+                                    >
+                                    <button class="btn btn-link" (click)="fileInput.click()">Select File
+                                    </button>
+                                    <p [innerHTML]="fileName"></p>
+                                    <button class="btn btn-primary btn-user btn-block" (click)="onUpload()">
+                                        Upload!
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <p><strong>Profile information </strong></p>
+
+                            <div class="form-group row">
+                                <div class="col-sm-12 mb-3 mb-sm-0">
+                                    <label for="firstname"> First Name:</label>
+                                    <input type="text"
+                                           class="form-control form-control-user"
+                                           [(ngModel)]="formGroup.firstName"
+                                           name="firstname"
+                                           id="firstname"
+
+                                    >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12 mb-3 mb-sm-0">
+                                    <label for="lastname"> First Name:</label>
+                                    <input type="text"
+                                           class="form-control form-control-user"
+                                           [(ngModel)]="formGroup.lastName"
+                                           name="lastName"
+                                           id="lastname"
+
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bio">Bio:</label>
+                                <input type="text"
+                                       class="form-control form-control-user"
+                                       id="bio"
+                                       name="bio"
+                                       [(ngModel)]="formGroup.bio"
+
+                                >
+                            </div>
+
+                            <button class="btn btn-primary btn-user btn-block">Update user info</button>
+                        </form>
+
                     </div>
                 </div>
             </div>

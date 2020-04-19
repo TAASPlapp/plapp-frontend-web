@@ -1,4 +1,5 @@
 import {Storyboard} from "../../app/models/Storyboard";
+import {Status} from "../../app/models/Status";
 
 
 //todo: mandare le foto delle piante 50x50
@@ -11,7 +12,7 @@ export const STORYBOARD: Storyboard[] = [
       owner: 2434,
       name: "Giorgia",
       type: "Peony",
-      status: "Healthy",
+      status: Status.HEALTHY,
       image: "https:/source.unsplash.com/XEmaJaM-4nE/50x50"
     },
     summary: 'The story of my peony named Giorgia',
@@ -26,7 +27,7 @@ export const STORYBOARD: Storyboard[] = [
         '.\n' +
         '#watercolorpainting #LynnDPrattpaint #watercolor #realisticart #watercolouring #hyperrealism #realisticwatercolor',
       title: 'Suspiria',
-      status: 'Healthy',
+      status: Status.HEALTHY,
       numLike: 23,
     }, {
       id:9421,
@@ -36,7 +37,7 @@ export const STORYBOARD: Storyboard[] = [
         'Celebratory, Bold, Lush, and S E A S O N A L !\n' +
         'Until Spring comes, we will be over here. Enjoying Saturdays while counting down the days until our own tulips, peonies , poppies, foxglove push through the soil... #patienceisavirtue ? // *sigh*. Hands up if you\'re over these sub-zero temps and ready for those fresh \'n\' fragrant Spring blooms? 🙋‍♀️🙋‍♂️',
       title: 'My funny valentine',
-      status: 'Healthy',
+      status: Status.HEALTHY,
       numLike: 2,
     }, {
       id:9851,
@@ -44,7 +45,7 @@ export const STORYBOARD: Storyboard[] = [
       thumbImage: 'https://source.unsplash.com/9A_peGrSbZc/600x800',
       description: 'Our peony wall in Amsterdam 🌸💗💗🌸💗 #mypeonysociety #mypeony #peony #peonyaddict #peonyseason',
       title: 'New flower',
-      status: 'Healthy',
+      status: Status.HEALTHY,
       numLike: 54,
     }],
   },
@@ -57,7 +58,7 @@ export const STORYBOARD: Storyboard[] = [
       name: "Prosperina",
       type: "Cactus",
       image: "https://source.unsplash.com/f7PfM2NklZ4/50x50",
-      status: "Sick",
+      status: Status.HEALTHY,
 
     },
     summary: 'The story of my cactus named Prosperina',
@@ -77,7 +78,7 @@ export const STORYBOARD: Storyboard[] = [
       thumbImage: 'https://source.unsplash.com/YTc2kHz5L9s/600x800',
       description: 'In the air',
       title: 'On Air',
-      status: 'Healthy',
+      status: Status.HEALTHY,
       numLike: 44,
     }, {
       id:9876,
@@ -85,7 +86,7 @@ export const STORYBOARD: Storyboard[] = [
       thumbImage: 'https://source.unsplash.com/y_yKkAYsQRQ/600x800',
       description: 'Cactus life',
       title: 'Growing Bigger',
-      status: 'Healthy',
+      status: Status.HEALTHY,
       numLike: 25,
     }],
   },

@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
+    let snackBarRef  = this.snackBar.open('Wait for registration...', 'Close');
     this.authService.register(this.registerForm).subscribe(
       data => {
         if(data.status == 200){

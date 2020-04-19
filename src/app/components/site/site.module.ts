@@ -36,6 +36,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import { StroyboardCommentsComponent } from './stroyboard-comments-component/stroyboard-comments.component';
 import {NgxSpinnerModule} from "ngx-spinner";
 import { SpinnerComponent } from './spinner/spinner.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -84,7 +85,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     NgbModule,
     MatCheckboxModule,
     NgxSpinnerModule,
-
+    MatSnackBarModule,
   ],
   bootstrap: [ModalGalleryComponent, TopBarComponent],
   exports: [ModalGalleryComponent, DateAgoPipe, DateWillPipe, TopBarComponent],

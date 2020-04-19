@@ -4,6 +4,7 @@ import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
 import {HttpResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserService} from "../../../services/user-manage.service";
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
 
   constructor(private authService: AuthService,
+              private userService: UserService,
               private tokenStorage: TokenStorageService,
               private router: Router,
               public snackBar: MatSnackBar) {
@@ -33,6 +35,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.form).subscribe(
       (data: HttpResponse<any>) => {
         this.tokenStorage.saveToken(data.body.content);
+        this.userService.getInfo().subscribe(res =>{
+          this.tokenStorage.saveUser(res.content.userId)
+        });
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         snackBarRef.dismiss();

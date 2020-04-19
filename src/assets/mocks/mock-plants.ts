@@ -1,4 +1,5 @@
 import {Plant} from "../../app/models/Plant";
+import {Status} from "../../app/models/Status";
 
 export const PLANTS: Plant[] = [
 
@@ -8,7 +9,7 @@ export const PLANTS: Plant[] = [
     owner: 2434,
     name: "Giorgia",
     type: "Peony",
-    status: "healthy",
+    status: Status.HEALTHY,
     image: "https://source.unsplash.com/XEmaJaM-4nE/300x300"
   },
   {
@@ -17,7 +18,7 @@ export const PLANTS: Plant[] = [
     owner: 2434,
     name: "Prosperina",
     type: "Cactus",
-    status: "sick",
+    status: Status.HEALTHY,
     image: "https://source.unsplash.com/f7PfM2NklZ4/300x300"
   },
   {
@@ -26,7 +27,7 @@ export const PLANTS: Plant[] = [
     owner: 2434,
     name: "Anita",
     type: "Thyme",
-    status: "healthy",
+    status: Status.HEALTHY,
     image: "https://source.unsplash.com/Wnr2ohKUIYw/300x300"
   },
   {
@@ -35,7 +36,7 @@ export const PLANTS: Plant[] = [
     owner: 2434,
     name: "Sveva",
     type: "Philodendron",
-    status: "healthy",
+    status: Status.HEALTHY,
     image: "https://source.unsplash.com/N1_pgcSgbEk/300x300"
   }
   ];

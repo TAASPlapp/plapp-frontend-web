@@ -14,9 +14,13 @@ import {ApiResponse} from "../../../models/ApiResponse";
 export class AccountComponent implements OnInit {
 
   userInfo: UserDetails;
-  storyboard: Storyboard[];
+  storyboards: Storyboard[] = [];
   response: ApiResponse;
   userId: number;
+  edit: boolean = false;
+  selectedFile: File;
+  fileName: string;
+  formGroup: any = {};
 
 
   constructor(
@@ -31,18 +35,34 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
-
     if (this.userId) {
       this.service.getUserInfo(this.userId).subscribe(user => this.userInfo = user.content);
+
     } else {
-      this.service.getInfo().subscribe(user => this.userInfo = user.content);
+      this.service.getInfo().subscribe(user => {
+        this.userInfo = user.content
+        console.log(this.userInfo)
+
+      });
     }
 
-
     this.service.getStoryboards(this.userInfo.userId).subscribe((s: Storyboard[]) => {
-      this.storyboard = s;
+      this.storyboards = s;
     });
 
+  }
+
+  onSubmit() {
 
   }
+
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+    this.fileName = this.selectedFile.name
+  }
+
+  onUpload() {
+    // upload code goes here
+  }
+
 }

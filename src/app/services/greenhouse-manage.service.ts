@@ -9,6 +9,8 @@ import {PlantInfo} from "../models/PlantInfo";
 import {Storyboard} from "../models/Storyboard";
 import {urls} from "../../assets/urls";
 import {ApiResponse} from "../models/ApiResponse";
+import {UserDetails} from "../models/UserDetails";
+import {Status} from "../models/Status";
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +29,11 @@ export class GreenhouseManageService {
   }
 
   getStoryboard(id: number | string): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(this.apiBaseUrl + 'plant/'+id+'/storyboard');
+    return this.http.get<ApiResponse>(this.apiBaseUrl + 'plant/' + id + '/storyboard');
   }
 
   getPlant(id: number | string): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(this.apiBaseUrl + 'plant/'+id);
+    return this.http.get<ApiResponse>(this.apiBaseUrl + 'plant/' + id);
   }
 
 
@@ -81,8 +83,11 @@ export class GreenhouseManageService {
   }
 
   //TODO:
-  addPlant(plant: Plant) {
-
+  addPlant(url: string, form, user: UserDetails): Observable<ApiResponse> {
+    let plant: Plant = new Plant(-1, user.userId, form.name, form.description, form.type, Status.HEALTHY, url)
+    return this.http.post<ApiResponse>(this.apiScheduleUrl + "remove", {
+      params: new HttpParams().set("action", JSON.stringify(plant))
+    });
   }
 
 

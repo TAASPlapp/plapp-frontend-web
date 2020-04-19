@@ -12,10 +12,8 @@ export class ServicesGuard implements CanActivate {
   canActivate(): boolean {
     if (!this.token.isAuthenticated()) {
       this.router.navigate(['auth']);
-      console.log("Activate: FALSE")
       return false;
     }
-    console.log("Activate: TRUE")
 
     return true;
   }

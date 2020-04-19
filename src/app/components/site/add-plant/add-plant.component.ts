@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {GreenhouseManageService} from "../../../services/greenhouse-manage.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {UserService} from "../../../services/user-manage.service";
+import {UserDetails} from "../../../models/UserDetails";
 
 
 @Component({
@@ -11,13 +14,26 @@ import {GreenhouseManageService} from "../../../services/greenhouse-manage.servi
 export class AddPlantComponent implements OnInit {
 
   selectedFile: File;
-  fileName: String = "";
+  fileName: string = "";
   isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  formGroup: any = {};
+  isSuccessful = false;
   typeControl = new FormControl('', Validators.required);
-  types:string[];
+  types: string[];
+  user: UserDetails;
 
+
+  constructor(private _formBuilder: FormBuilder,
+              private plantService: GreenhouseManageService,
+              private userService: UserService,
+              public snackBar: MatSnackBar) {
+    this.plantService.getPlantTypes().subscribe(res => {
+      this.types = res;
+    });
+    this.userService.getInfo().subscribe(res => {
+      this.user = res.content;
+    })
+  }
 
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
@@ -27,20 +43,28 @@ export class AddPlantComponent implements OnInit {
   onUpload() {
     // upload code goes here
   }
-  constructor(private _formBuilder: FormBuilder, private service: GreenhouseManageService) {
 
-    this.service.getPlantTypes().subscribe(res=>{
-      this.types = res;
-    });
+  onSubmit() {
+    this.plantService.addPlant(this.fileName, this.formGroup, this.user).subscribe(
+      data => {
+        this.isSuccessful = true;
+        let snackBarRef = this.snackBar.open('Account registered!', 'Close');
+        console.log("Account registered!!")
+      },
+      err => {
+        let snackBarRef = this.snackBar.open(err.error.message, 'Close');
+        console.log(err.error.message)
+      }
+    );
   }
+
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
+    this.formGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+
   }
+
 
 }
