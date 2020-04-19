@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {urls} from "../../assets/urls";
-import {ApiResponse} from "../models/ApiResponse";
 
 const AUTH_API = urls.serverUrl + "api/auth/";
 

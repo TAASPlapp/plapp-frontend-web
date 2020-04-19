@@ -28,4 +28,11 @@ export class TokenStorageService {
     console.log("SESSION: " + sessionStorage.getItem(TOKEN_KEY));
     return JSON.parse(sessionStorage.getItem(USER_KEY));
   }
+
+  public isAuthenticated(): boolean {
+    const token = sessionStorage.getItem(TOKEN_KEY);
+    // Check whether the token is expired and return
+    // true or false
+    return (token != null);
+  }
 }
