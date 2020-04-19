@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from "../../../services/token-storage.service";
 import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
 import {HttpResponse} from "@angular/common/http";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,9 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
               private tokenStorage: TokenStorageService,
-              private router: Router) {}
+              private router: Router,
+              public snackBar: MatSnackBar) {
+  }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
@@ -26,6 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    let snackBarRef = this.snackBar.open('Logging in...', 'Close');
     this.authService.login(this.form).subscribe(
       (data: HttpResponse<any>) => {
         this.tokenStorage.saveToken(data.body.content);
@@ -36,6 +40,8 @@ export class LoginComponent implements OnInit {
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
+        let snackBarRef = this.snackBar.open('ERROR: ' + this.errorMessage, 'Close');
+
       }
     );
   }

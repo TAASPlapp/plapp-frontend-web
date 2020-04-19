@@ -33,7 +33,7 @@ export class AuthService {
     }, httpOptions);
   }
 
-  logout() {
+  logout(): Observable<any> {
     return this.http.get(AUTH_API + "logout");
   }
 }

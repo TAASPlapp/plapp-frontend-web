@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, public snackBar: MatSnackBar, private router: Router) { }
+  constructor(private authService: AuthService, public snackBar: MatSnackBar) { }
 
   ngOnInit() {}
 
@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
         if(data.status == 200){
           this.isSuccessful = true;
           this.isSignUpFailed = false;
+          let snackBarRef  = this.snackBar.open('Account registered!', 'Close');
           console.log("Account registered!!")
         }
       },
