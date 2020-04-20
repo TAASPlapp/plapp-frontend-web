@@ -225,9 +225,9 @@
                                         <h6 class="m-0 font-weight-bold text-primary">Healthcare</h6>
                                     </div>
 
-                                    <div class="card-body ">
+                                    <div class="card-body " *ngFor="let d of r.diseases ">
                                         <h6><strong>Common disease for {{p.type}}</strong></h6>
-                                        <div class="col-12 mb-4 row-padding-top" *ngFor="let d of r.diseases ">
+                                        <div class="col-12 mb-4 row-padding-top" >
                                             <div class="card border-left-info shadow h-100 py-2">
                                                 <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
@@ -251,7 +251,7 @@
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div class=" mb-0  text-gray-800">
-                                                                {{r.dprevention}}
+                                                                {{d.prevention}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -266,7 +266,7 @@
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div class=" mb-0  text-gray-800">
-                                                                {{r.treating}}
+                                                                {{d.treating}}
                                                             </div>
                                                         </div>
                                                     </div>

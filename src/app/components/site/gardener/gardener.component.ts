@@ -31,6 +31,7 @@ export class GardenerComponent implements OnInit {
         if(this.uploadedLink){
             this.gardenerServuice.getDiagnosis().subscribe(res =>{
                 this.results = res.content;
+                this.analyzed = true;
             });
         }
     }
