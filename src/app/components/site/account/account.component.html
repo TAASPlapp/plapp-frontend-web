@@ -4,7 +4,7 @@
         <!-- Main Content -->
         <div id="content">
             <app-top-bar></app-top-bar>
-            <div class="container-fluid">
+            <div class="container-fluid" *ngIf="userInfo">
 
                 <div class="row row-padding-top">
                     <div class="col-md-2 offset-md-5">
@@ -13,10 +13,11 @@
                 </div>
                 <hr>
                 <div class="row text-center justify-content-center">
-                    <p><strong>{{userInfo.username}}</strong></p>
-                    <div *ngIf="userInfo.bio != undefined">
-                        <p>{{userInfo.bio}}</p>
-                    </div>
+                    <article>
+                        <p><strong>{{userInfo.username}}</strong></p><br>
+                        <p>{{userInfo.firstName}} {{userInfo.lastName}}: {{userInfo.bio}}</p>
+                    </article>
+
 
                 </div>
                 <div class="row row-padding-top">
@@ -49,8 +50,9 @@
                     <button class="btn btn-primary text-center  offset-5 col-2" *ngIf="!edit" (click)="edit = true">Edit
                         profile
                     </button>
-                    <div *ngIf="edit" class="col-4 offset-4 ">
-
+                    <div *ngIf="edit" class="col-6 offset-3 ">
+                        <p><strong>Upload a profile image </strong></p>
+                        <app-upload (urlEmitter)="linkUploadedHandler($event)"></app-upload>
                         <form class="profile"
                               name="formGroup"
                               (ngSubmit)="onSubmit()"
@@ -58,8 +60,7 @@
                               novalidate>
 
                             <!-- START FORM MOD ACCOUNT -->
-                            <p><strong>Upload a profile image </strong></p>
-                            <app-upload (urlEmitter)="linkUploadedHandler($event)"></app-upload>
+
                             <p><strong>Profile information </strong></p>
 
                             <div class="form-group row">
@@ -70,17 +71,19 @@
                                            [(ngModel)]="formGroup.firstName"
                                            name="firstname"
                                            id="firstname"
+                                           required
                                     >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-12 mb-3 mb-sm-0">
-                                    <label for="lastname"> First Name:</label>
+                                    <label for="lastname"> Last Name:</label>
                                     <input type="text"
                                            class="form-control form-control-user"
                                            [(ngModel)]="formGroup.lastName"
                                            name="lastName"
                                            id="lastname"
+                                           required
                                     >
                                 </div>
                             </div>
@@ -92,6 +95,7 @@
                                        id="bio"
                                        name="bio"
                                        [(ngModel)]="formGroup.bio"
+                                       required
                                 >
                             </div>
                             <button class="btn btn-primary btn-user btn-block">Update user info</button>

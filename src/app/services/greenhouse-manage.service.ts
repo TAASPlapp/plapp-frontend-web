@@ -96,7 +96,6 @@ export class GreenhouseManageService {
         let reccomended = this.getRecommended(type);
         let related = this.getRelatedArticles(type);
 
-        // Observable.forkJoin (RxJS 5) changes to just forkJoin() in RxJS 6
         return forkJoin([plant, stroyboard, schedules, reccomended, related]);
     }
 

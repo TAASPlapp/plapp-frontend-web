@@ -23,8 +23,8 @@
                             <div class="card-header">
                                 {{p.name}} ({{p.type}}) -
                                 <span [ngClass]="{
-                                    'text-success': p.status == 'Healthy',
-                                    'text-danger' : p.status == 'Sick'
+                                    'text-success': p.status == 'HEALTHY',
+                                    'text-danger' : p.status == 'SICK'
                                     }"> {{p.status}}
                                 </span>
 

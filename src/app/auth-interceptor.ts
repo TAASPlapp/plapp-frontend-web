@@ -23,7 +23,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }
     }
 
-    //console.log(request)
+    console.log(request)
     return next.handle(request);
   }
 }

@@ -41,6 +41,7 @@ import {UploadComponent} from './upload/upload.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatIconModule} from "@angular/material/icon";
+import { GardenerComponent } from './gardener/gardener.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import {MatIconModule} from "@angular/material/icon";
         StroyboardCommentsComponent,
         SpinnerComponent,
         UploadComponent,
+        GardenerComponent,
 
     ],
     entryComponents: [AddScheduleComponent, AddStoryboardItemComponent, ModalGalleryComponent],

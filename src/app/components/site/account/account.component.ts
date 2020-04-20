@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Storyboard} from "../../../models/Storyboard";
 import {HttpResponse} from "@angular/common/http";
 import {ApiResponse} from "../../../models/ApiResponse";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
     selector: 'app-account',
@@ -24,18 +25,14 @@ export class AccountComponent implements OnInit {
 
     constructor(
         private service: UserService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        public snackBar: MatSnackBar
     ) {
         this.route.params.subscribe((params: any) => {
             if (params.id) {
-                this.service.getUserInfo(params.id).subscribe(user => this.userInfo = user.content)
+                this.userId = params.id;
             }
         });
-    }
-
-    linkUploadedHandler($event: any) {
-        this.uploadedLink = $event;
-        console.log("UPLOADED LINK:", this.uploadedLink)
     }
 
     ngOnInit() {
@@ -44,21 +41,45 @@ export class AccountComponent implements OnInit {
 
         } else {
             this.service.getInfo().subscribe(user => {
-                this.userInfo = user.content
+                this.userInfo = user.content;
                 console.log(this.userInfo)
-
+                this.service.getStoryboards(this.userInfo.userId).subscribe((s: Storyboard[]) => {
+                    this.storyboards = s;
+                });
             });
         }
-
-        this.service.getStoryboards(this.userInfo.userId).subscribe((s: Storyboard[]) => {
-            this.storyboards = s;
-        });
-
     }
 
+    linkUploadedHandler($event: any) {
+        this.uploadedLink = $event;
+        console.log("UPLOADED LINK:", this.uploadedLink)
+    }
+
+
+
     onSubmit() {
+        let link = "";
+        if (this.uploadedLink != "") {
+            link = this.uploadedLink;
+        }
+        else {link = this.userInfo.profilePicture;}
 
+        let user: UserDetails = new UserDetails(
+            this.userInfo.userId, link,
+            this.userInfo.username, this.formGroup.firstName,
+            this.formGroup.lastName, this.formGroup.bio);
 
+        this.service.updateUser(user).subscribe(
+            res => {
+                this.ngOnInit();
+                this.edit = false;
+                let snackBarRef = this.snackBar.open('User updated!', 'Close');
+            },
+            err => {
+                let snackBarRef = this.snackBar.open(err.error.message, 'Close');
+                console.log(err.error.message)
+            }
+        );
     }
 
 
