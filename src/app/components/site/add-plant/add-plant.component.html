@@ -17,7 +17,6 @@
                             <div class="col-lg-7">
                                 <div class="p-5">
                                     <form class="user"
-                                          *ngIf="!isSuccessful"
                                           name="formGroup"
                                           (ngSubmit)="f.form.valid && onSubmit()"
                                           #f="ngForm"
@@ -28,18 +27,7 @@
                                             <div class="col-sm-12 mb-3 mb-sm-0">
                                                 <p><i class="fas fa-arrow-right"></i> 1. Let's first select a profile
                                                     image for your plant!</p>
-                                                <input style="display: none"
-                                                       type="file"
-                                                       (change)="onFileChanged($event)"
-                                                       #fileInput
-                                                       required
-                                                >
-                                                <button class="btn btn-link" (click)="fileInput.click()">Select File
-                                                </button>
-                                                <p [innerHTML]="fileName"></p>
-                                                <button class="btn btn-primary btn-user btn-block" (click)="onUpload()">
-                                                    Upload!
-                                                </button>
+                                                <app-upload (urlEmitter)="linkUploadedHandler($event)"></app-upload>
                                             </div>
                                         </div>
                                         <hr>
@@ -63,7 +51,6 @@
                                                 <input type="date" id="start"
                                                        name="date"
                                                        value="Date of birth"
-                                                       min="2001-01-01" max="2019-12-31"
                                                        class="form-control form-control-user"
                                                        [(ngModel)]="formGroup.date"
                                                        required
@@ -99,12 +86,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block">Register Plant</button>
-<!--                                        <div class="alert-danger-form" *ngIf="f.submitted ">-->
-<!--                                            <div *ngIf="formGroup.invalid">-->
-<!--                                                * Complete all fields-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                        <button class="btn btn-primary btn-user btn-block" >Register Plant</button>
                                     </form>
                                     <hr>
                                 </div>

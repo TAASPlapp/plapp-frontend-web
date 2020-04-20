@@ -7,62 +7,59 @@ import {HttpResponse} from "@angular/common/http";
 import {ApiResponse} from "../../../models/ApiResponse";
 
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+    selector: 'app-account',
+    templateUrl: './account.component.html',
+    styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
 
-  userInfo: UserDetails;
-  storyboards: Storyboard[] = [];
-  response: ApiResponse;
-  userId: number;
-  edit: boolean = false;
-  selectedFile: File;
-  fileName: string;
-  formGroup: any = {};
+    userInfo: UserDetails;
+    storyboards: Storyboard[] = [];
+    response: ApiResponse;
+    userId: number;
+    edit: boolean = false;
+    formGroup: any = {};
+    uploadedLink: string = "";
 
 
-  constructor(
-    private service: UserService,
-    private route: ActivatedRoute
-  ) {
-    this.route.params.subscribe((params: any) => {
-      if (params.id) {
-        this.service.getUserInfo(params.id).subscribe(user => this.userInfo = user.content)
-      }
-    });
-  }
-
-  ngOnInit() {
-    if (this.userId) {
-      this.service.getUserInfo(this.userId).subscribe(user => this.userInfo = user.content);
-
-    } else {
-      this.service.getInfo().subscribe(user => {
-        this.userInfo = user.content
-        console.log(this.userInfo)
-
-      });
+    constructor(
+        private service: UserService,
+        private route: ActivatedRoute
+    ) {
+        this.route.params.subscribe((params: any) => {
+            if (params.id) {
+                this.service.getUserInfo(params.id).subscribe(user => this.userInfo = user.content)
+            }
+        });
     }
 
-    this.service.getStoryboards(this.userInfo.userId).subscribe((s: Storyboard[]) => {
-      this.storyboards = s;
-    });
+    linkUploadedHandler($event: any) {
+        this.uploadedLink = $event;
+        console.log("UPLOADED LINK:", this.uploadedLink)
+    }
 
-  }
+    ngOnInit() {
+        if (this.userId) {
+            this.service.getUserInfo(this.userId).subscribe(user => this.userInfo = user.content);
 
-  onSubmit() {
+        } else {
+            this.service.getInfo().subscribe(user => {
+                this.userInfo = user.content
+                console.log(this.userInfo)
 
-  }
+            });
+        }
 
-  onFileChanged(event) {
-    this.selectedFile = event.target.files[0];
-    this.fileName = this.selectedFile.name
-  }
+        this.service.getStoryboards(this.userInfo.userId).subscribe((s: Storyboard[]) => {
+            this.storyboards = s;
+        });
 
-  onUpload() {
-    // upload code goes here
-  }
+    }
+
+    onSubmit() {
+
+
+    }
+
 
 }

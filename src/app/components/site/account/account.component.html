@@ -45,11 +45,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="row row-padding-top">
+                <div class="row row-padding">
                     <button class="btn btn-primary text-center  offset-5 col-2" *ngIf="!edit" (click)="edit = true">Edit
                         profile
                     </button>
-                    <div *ngIf="edit" class="col-4 offset-4">
+                    <div *ngIf="edit" class="col-4 offset-4 ">
 
                         <form class="profile"
                               name="formGroup"
@@ -57,26 +57,9 @@
                               #f="ngForm"
                               novalidate>
 
-                            <!-- START FORM ADD PLANT -->
-                            <div id="add-plant-photo" class="form-group row">
-                                <div class="col-sm-12 mb-3 mb-sm-0">
-                                    <label>Modify profile image!</label>
-                                    <input style="display: none"
-                                           type="file"
-                                           (change)="onFileChanged($event)"
-                                           #fileInput
-                                           required
-                                    >
-                                    <button class="btn btn-link" (click)="fileInput.click()">Select File
-                                    </button>
-                                    <p [innerHTML]="fileName"></p>
-                                    <button class="btn btn-primary btn-user btn-block" (click)="onUpload()">
-                                        Upload!
-                                    </button>
-                                </div>
-                            </div>
-                            <hr>
-
+                            <!-- START FORM MOD ACCOUNT -->
+                            <p><strong>Upload a profile image </strong></p>
+                            <app-upload (urlEmitter)="linkUploadedHandler($event)"></app-upload>
                             <p><strong>Profile information </strong></p>
 
                             <div class="form-group row">
@@ -87,7 +70,6 @@
                                            [(ngModel)]="formGroup.firstName"
                                            name="firstname"
                                            id="firstname"
-
                                     >
                                 </div>
                             </div>
@@ -99,7 +81,6 @@
                                            [(ngModel)]="formGroup.lastName"
                                            name="lastName"
                                            id="lastname"
-
                                     >
                                 </div>
                             </div>
@@ -111,10 +92,8 @@
                                        id="bio"
                                        name="bio"
                                        [(ngModel)]="formGroup.bio"
-
                                 >
                             </div>
-
                             <button class="btn btn-primary btn-user btn-block">Update user info</button>
                         </form>
 
