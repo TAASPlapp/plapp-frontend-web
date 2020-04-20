@@ -4,13 +4,17 @@ import {forkJoin, Observable} from 'rxjs';
 
 import {Plant} from "../models/Plant";
 import {Schedule} from "../models/Schedule";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {PlantInfo} from "../models/PlantInfo";
 import {Storyboard} from "../models/Storyboard";
 import {urls} from "../../assets/urls";
 import {ApiResponse} from "../models/ApiResponse";
 import {UserDetails} from "../models/UserDetails";
 import {Status} from "../models/Status";
+
+const httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
     providedIn: 'root'
@@ -19,6 +23,7 @@ export class GreenhouseManageService {
     private apiBaseUrl: string = urls.apiServerUrl + 'greenhouse/';
     private plantsInfoApiUrl: string = urls.plantsInfoApiUrl;
     private apiScheduleUrl: string = urls.apiServerUrl + "schedule/";
+
 
     constructor(private http: HttpClient) {
     }
@@ -63,16 +68,11 @@ export class GreenhouseManageService {
 
     addScheduleAction(schedule: Schedule) {
         console.log(schedule);
-        return this.http.post(this.apiScheduleUrl + "add", {
-            params: new HttpParams().set("action", JSON.stringify(schedule))
-        });
-
+        return this.http.post(this.apiScheduleUrl + "add", JSON.stringify(schedule), httpOptions);
     }
 
     removeSchedule(schedule: Schedule) {
-        return this.http.get(this.apiScheduleUrl + "remove", {
-            params: new HttpParams().set("action", JSON.stringify(schedule))
-        });
+        return this.http.post(this.apiScheduleUrl + "remove", JSON.stringify(schedule), httpOptions);
     }
 
 
@@ -85,10 +85,7 @@ export class GreenhouseManageService {
     //TODO:
     addPlant(url: string, form, user: UserDetails): Observable<ApiResponse> {
         let plant: Plant = new Plant(-1, user.userId, form.name, form.description, form.type, Status.HEALTHY, url);
-        console.log(plant);
-        return this.http.post<ApiResponse>(this.apiBaseUrl + "plants/add", {
-            params: new HttpParams().set("action", JSON.stringify(plant))
-        });
+        return this.http.post<ApiResponse>(this.apiBaseUrl + "plants/add", JSON.stringify(plant), httpOptions);
     }
 
 
