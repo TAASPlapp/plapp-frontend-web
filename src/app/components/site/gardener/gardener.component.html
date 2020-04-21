@@ -17,8 +17,40 @@
                         <app-upload (urlEmitter)="linkUploadedHandler($event)"></app-upload>
                         <button class="btn btn-primary" (click)="diagnosis()">Diagnosis</button>
                         <div *ngIf="analyzed">
-                            <h3>RESULTS:</h3>
-                            <p>{{results}}</p>
+                            <h6><strong>RESULTS: </strong></h6>
+                            <div class="col-12 mb-4 row-padding-top" >
+                                <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Description: {{results.name}}
+                                                </div>
+                                                <div class=" mb-0  text-gray-800">
+                                                    {{results.description}}
+                                                </div><hr>
+                                            </div>
+                                        </div>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Prevention:
+                                            </div>
+                                            <div class=" mb-0  text-gray-800">
+                                                {{results.prevention}}
+                                            </div><hr>
+                                        </div>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Treating:
+                                            </div>
+                                            <div class=" mb-0  text-gray-800">
+                                                {{results.treating}}
+                                            </div><hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p *ngIf="healthy">Your plant si Healty!</p>
                         </div>
                     </div>
 

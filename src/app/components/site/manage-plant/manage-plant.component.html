@@ -182,7 +182,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <hr>
 
@@ -224,55 +223,71 @@
                                     <div class="card-header">
                                         <h6 class="m-0 font-weight-bold text-primary">Healthcare</h6>
                                     </div>
-
                                     <div class="card-body " *ngFor="let d of r.diseases ">
-                                        <h6><strong>Common disease for {{p.type}}</strong></h6>
-                                        <div class="col-12 mb-4 row-padding-top" >
+                                        <div class="col-12 mb-4 row-padding-top">
                                             <div class="card border-left-info shadow h-100 py-2">
                                                 <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
                                                         <div class="col mr-2">
                                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                                {{d.name}}
+                                                                Description: {{d.name}}
                                                             </div>
                                                             <div class=" mb-0  text-gray-800">
                                                                 {{d.description}}
                                                             </div>
+                                                            <hr>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <h6><strong>Prevention </strong></h6>
-                                        <div class="col-12 mb-4 row-padding-top">
-                                            <div class="card border-left-warning shadow h-100 py-2">
-                                                <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class=" mb-0  text-gray-800">
-                                                                {{d.prevention}}
-                                                            </div>
+                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                            Prevention:
                                                         </div>
+                                                        <div class=" mb-0  text-gray-800">
+                                                            {{d.prevention}}
+                                                        </div>
+                                                        <hr>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <h6><strong>Treating diseases</strong></h6>
-                                        <div class="col-12 mb-4 row-padding-top">
-                                            <div class="card border-left-danger shadow h-100 py-2">
-                                                <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class=" mb-0  text-gray-800">
-                                                                {{d.treating}}
-                                                            </div>
+                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                            Treating:
                                                         </div>
+                                                        <div class=" mb-0  text-gray-800">
+                                                            {{d.treating}}
+                                                        </div>
+                                                        <hr>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!--                                        <h6><strong>Prevention </strong></h6>-->
+                                        <!--                                        <div class="col-12 mb-4 row-padding-top">-->
+                                        <!--                                            <div class="card border-left-warning shadow h-100 py-2">-->
+                                        <!--                                                <div class="card-body">-->
+                                        <!--                                                    <div class="row no-gutters align-items-center">-->
+                                        <!--                                                        <div class="col mr-2">-->
+                                        <!--                                                            <div class=" mb-0  text-gray-800">-->
+                                        <!--                                                                {{d.prevention}}-->
+                                        <!--                                                            </div>-->
+                                        <!--                                                        </div>-->
+                                        <!--                                                    </div>-->
+                                        <!--                                                </div>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
+
+                                        <!--                                        <h6><strong>Treating diseases</strong></h6>-->
+                                        <!--                                        <div class="col-12 mb-4 row-padding-top">-->
+                                        <!--                                            <div class="card border-left-danger shadow h-100 py-2">-->
+                                        <!--                                                <div class="card-body">-->
+                                        <!--                                                    <div class="row no-gutters align-items-center">-->
+                                        <!--                                                        <div class="col mr-2">-->
+                                        <!--                                                            <div class=" mb-0  text-gray-800">-->
+                                        <!--                                                                {{d.treating}}-->
+                                        <!--                                                            </div>-->
+                                        <!--                                                        </div>-->
+                                        <!--                                                    </div>-->
+                                        <!--                                                </div>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
                                     </div>
                                 </div>
                             </div>

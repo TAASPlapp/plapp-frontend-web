@@ -56,13 +56,13 @@ export class AccountComponent implements OnInit {
     }
 
 
-
     onSubmit() {
         let link = "";
         if (this.uploadedLink != "") {
             link = this.uploadedLink;
+        } else {
+            link = this.userInfo.profilePicture;
         }
-        else {link = this.userInfo.profilePicture;}
 
         let user: UserDetails = new UserDetails(
             this.userInfo.userId, link,

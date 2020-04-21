@@ -1,3 +1,5 @@
+import {Disease} from "./Disease";
+
 export class PlantInfo {
     name: string;
     sname: string;
@@ -8,11 +10,6 @@ export class PlantInfo {
     temperature: number;
     light: number;
     humidity: number;
-    diseases: [{
-        name: string;
-        description: string;
-        prevention: string;
-        treating: string;
-    }];
+    diseases: Disease[];
 
 }
