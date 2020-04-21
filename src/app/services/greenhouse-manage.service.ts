@@ -46,7 +46,6 @@ export class GreenhouseManageService {
         return this.http.get<PlantInfo>(this.plantsInfoApiUrl + 'plants/' + this.capitalizeFirstLetter(type));
     }
 
-    //TODO:mod
     getPlantTypes() {
         return this.http.get<string[]>(this.plantsInfoApiUrl + 'get_types/')
     }

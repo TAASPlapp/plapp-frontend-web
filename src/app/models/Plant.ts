@@ -18,5 +18,4 @@ export class Plant {
     this.status = status;
     this.image = image;
   }
-
 }

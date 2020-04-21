@@ -16,9 +16,10 @@
                         <p><i class="fas fa-arrow-right"></i> Upload your plant photo (leaf photos only) </p>
                         <app-upload (urlEmitter)="linkUploadedHandler($event)"></app-upload>
                         <button class="btn btn-primary" (click)="diagnosis()">Diagnosis</button>
-                        <div *ngIf="analyzed">
+                        <div *ngIf="analyzed" class="row-padding-top">
                             <h6><strong>RESULTS: </strong></h6>
-                            <div class="col-12 mb-4 row-padding-top" >
+                            <hr>
+                            <div class="col-12 mb-4 row-padding-top">
                                 <div class="card border-left-info shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
@@ -28,25 +29,29 @@
                                                 </div>
                                                 <div class=" mb-0  text-gray-800">
                                                     {{results.description}}
-                                                </div><hr>
+                                                </div>
+                                                <hr>
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Prevention:
+                                                </div>
+                                                <div class=" mb-0  text-gray-800">
+                                                    {{results.prevention}}
+                                                </div>
+                                                <hr>
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                    Treating:
+                                                </div>
+                                                <div class=" mb-0  text-gray-800">
+                                                    {{results.treating}}
+                                                </div>
+                                                <hr>
                                             </div>
                                         </div>
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Prevention:
-                                            </div>
-                                            <div class=" mb-0  text-gray-800">
-                                                {{results.prevention}}
-                                            </div><hr>
-                                        </div>
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Treating:
-                                            </div>
-                                            <div class=" mb-0  text-gray-800">
-                                                {{results.treating}}
-                                            </div><hr>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>

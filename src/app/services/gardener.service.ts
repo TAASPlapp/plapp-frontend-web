@@ -21,13 +21,11 @@ export class GardenerService {
     }
 
     getDiagnosis(url: string): Observable<ApiResponse> {
-        //chiamata alla rete neurale todo mod
-        return this.http.get<ApiResponse>(this.apiBaseUrl + "diagnose", {
-            params: new HttpParams().set("plantImageURL", url)
-        });
+        return this.http.post<ApiResponse>(this.apiBaseUrl + "diagnose",
+            JSON.stringify({"plantImageURL": url}), httpOptions);
     }
 
     getDiseaseInfo(plant: string, disease: string): Observable<PlantInfoResponse> {
-        return this.http.get<PlantInfoResponse>(this.plantInfoUrl + plant + disease);
+        return this.http.get<PlantInfoResponse>(this.plantInfoUrl + plant + "/" + disease);
     }
 }
