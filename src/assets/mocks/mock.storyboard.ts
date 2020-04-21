@@ -70,7 +70,7 @@ export const STORYBOARD: Storyboard[] = [
       thumbImage: 'https://source.unsplash.com/UkH7L-aag8A/600x800',
       description: 'Peony in flower',
       title: 'Flower in summer',
-      status: 'Healthy',
+      status: Status.HEALTHY,
       numLike: 54,
     }, {
       id:9861,

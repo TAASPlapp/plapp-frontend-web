@@ -43,8 +43,8 @@ export class AccountComponent implements OnInit {
             this.service.getInfo().subscribe(user => {
                 this.userInfo = user.content;
                 console.log(this.userInfo)
-                this.service.getStoryboards(this.userInfo.userId).subscribe((s: Storyboard[]) => {
-                    this.storyboards = s;
+                this.service.getStoryboards(this.userInfo.userId).subscribe((s: ApiResponse) => {
+                    this.storyboards = s.content;
                 });
             });
         }

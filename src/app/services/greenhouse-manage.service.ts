@@ -11,6 +11,7 @@ import {urls} from "../../assets/urls";
 import {ApiResponse} from "../models/ApiResponse";
 import {UserDetails} from "../models/UserDetails";
 import {Status} from "../models/Status";
+import {StoryboardItem} from "../models/StoryboardItem";
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -23,6 +24,7 @@ export class GreenhouseManageService {
     private apiBaseUrl: string = urls.apiServerUrl + 'greenhouse/';
     private plantsInfoApiUrl: string = urls.plantsInfoApiUrl;
     private apiScheduleUrl: string = urls.apiServerUrl + "schedule/";
+    private storyboardItemUrl: string = urls.apiServerUrl + "greenhouse/storyboard/";
 
 
     constructor(private http: HttpClient) {
@@ -37,10 +39,13 @@ export class GreenhouseManageService {
         return this.http.get<ApiResponse>(this.apiBaseUrl + 'plant/' + id + '/storyboard');
     }
 
+    addStoryboardItem(item: StoryboardItem, storyboardId: number | string): Observable<ApiResponse> {
+        return this.http.post<ApiResponse>(this.storyboardItemUrl + storyboardId + "/item/add", JSON.stringify(item), httpOptions);
+    }
+
     getPlant(id: number | string): Observable<ApiResponse> {
         return this.http.get<ApiResponse>(this.apiBaseUrl + 'plant/' + id);
     }
-
 
     getRecommended(type: string): Observable<PlantInfo> {
         return this.http.get<PlantInfo>(this.plantsInfoApiUrl + 'plants/' + this.capitalizeFirstLetter(type));
@@ -54,7 +59,6 @@ export class GreenhouseManageService {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
-    //TODO:mod
     getSchedules(id: number | string): Observable<ApiResponse> {
         return this.http.get<ApiResponse>(this.apiScheduleUrl, {
             params: new HttpParams().set("plantId", id.toString())
@@ -65,13 +69,12 @@ export class GreenhouseManageService {
         return ["Watering", "Manure", "Harvest", "Pruning", "Treating"]
     }
 
-    addScheduleAction(schedule: Schedule) {
-        console.log(schedule);
-        return this.http.post(this.apiScheduleUrl + "add", JSON.stringify(schedule), httpOptions);
+    addScheduleAction(schedule: Schedule): Observable<ApiResponse> {
+        return this.http.post<ApiResponse>(this.apiScheduleUrl + "add", JSON.stringify(schedule), httpOptions);
     }
 
-    removeSchedule(schedule: Schedule) {
-        return this.http.post(this.apiScheduleUrl + "remove", JSON.stringify(schedule), httpOptions);
+    removeSchedule(schedule: Schedule): Observable<ApiResponse> {
+        return this.http.post<ApiResponse>(this.apiScheduleUrl + "remove", JSON.stringify(schedule), httpOptions);
     }
 
 
@@ -81,7 +84,6 @@ export class GreenhouseManageService {
         return this.http.get(url);
     }
 
-    //TODO:
     addPlant(url: string, form, user: UserDetails): Observable<ApiResponse> {
         let plant: Plant = new Plant(-1, user.userId, form.name, form.description, form.type, Status.HEALTHY, url);
         return this.http.post<ApiResponse>(this.apiBaseUrl + "plants/add", JSON.stringify(plant), httpOptions);

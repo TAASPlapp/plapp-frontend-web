@@ -42,17 +42,18 @@ export class UploadComponent implements OnInit {
             }),
             catchError((error: HttpErrorResponse) => {
                 file.inProgress = false;
+                console.log(error);
                 return of(`${file.data.name} upload failed.`);
-            })).subscribe((event: any) => {
-            if (typeof (event) === 'object') {
-                //console.log(event.body);
-                let snackBarRef = this.snackBar.open('Image Uploaded', 'Close');
-                this.updatedUrl = event.body.link
+            }))
+            .subscribe((event: any) => {
+                if (typeof (event) === 'object') {
+                    let snackBarRef = this.snackBar.open('Image Uploaded', 'Close');
+                    this.updatedUrl = event.body
 
-                // return url to parent
-                this.urlEmitter.emit(this.updatedUrl);
-            }
-        });
+                    // return url to parent
+                    this.urlEmitter.emit(this.updatedUrl);
+                }
+            });
     }
 
     private uploadFiles() {

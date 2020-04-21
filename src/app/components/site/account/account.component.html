@@ -22,9 +22,9 @@
                 </div>
                 <div class="row row-padding-top">
                     <div *ngIf="storyboards.length != 0 ">
-                        <div class="col-md-6" *ngFor="let s of storyboards">
+                        <div class="col-md-12" *ngFor="let s of storyboards">
 
-                            <div class="card mb-4">
+                            <div class="card md-6">
                                 <div class="card-header">
                                     <h6 class="m-0 font-weight-bold text-primary">{{s.plant.name}}</h6>
                                 </div>
@@ -37,8 +37,6 @@
                                         <div class="col-md-6" *ngIf="s.storyboardItems">
                                             <app-carusel-storyboard
                                                     [storyboardItems]="s.storyboardItems"></app-carusel-storyboard>
-                                        </div>
-                                        <div class="col-md-6" *ngIf="!s.storyboardItems"><p>No storyboard available</p>
                                         </div>
                                     </div>
                                 </div>

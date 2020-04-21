@@ -41,10 +41,8 @@ export class UserService {
     }
 
     //TODO
-    getStoryboards(id: number | string): Observable<Storyboard[]> {
-        return of(STORYBOARD).pipe(
-            map((storyboards: Storyboard[]) => storyboards.filter(s => s.plant.owner == +id))
-        );
+    getStoryboards(userId: number | string): Observable<ApiResponse> {
+        return this.http.get<ApiResponse>(urls.apiServerUrl+"greenhouse/storyboards/" + userId);
     }
 
 }

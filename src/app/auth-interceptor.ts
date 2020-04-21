@@ -12,7 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     let request = req;
-    if(req.url != "https://file.io/") {
+    if(!req.url.startsWith("https://plapp-resource-service.herokuapp.com/")) {
         const token = this.token.getToken();
         if (token != null) {
             request = req.clone({

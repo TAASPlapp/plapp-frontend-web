@@ -2609,6 +2609,7 @@ fieldset:disabled a.btn {
     border-color: #858796;
 }
 
+/*
 .mat-selected {
     color: white !important;
 }
@@ -2616,7 +2617,7 @@ fieldset:disabled a.btn {
 .mat-bottom-sheet-container {
     background: #0f6848 !important;
     color: white;
-}
+}*/
 
 .schedule-form-field {
     display: block !important;
@@ -6947,6 +6948,7 @@ button.bg-dark:focus {
 
 .rounded-circle {
     border-radius: 50% !important;
+    width: 60px;
 }
 
 .rounded-pill {
@@ -12285,7 +12287,7 @@ body {
 .cursor {
     cursor: copy;
 }
-
+/*
 .mat-horizontal-content-container, .mat-horizontal-stepper-header-container {
     background: #0f6848;
 }
@@ -12296,7 +12298,7 @@ body {
 
 .mat-focused {
     caret-color: #2a96a5 !important;
-}
+}*/
 
 .mat-stepper-horizontal {
     margin-top: 8px;
