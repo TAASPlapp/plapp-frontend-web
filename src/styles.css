@@ -12315,6 +12315,7 @@ body {
 .avatar-image {
     border-radius: 50%;
     cursor: pointer;
+    width: 40px;
 }
 
 .comment-row {

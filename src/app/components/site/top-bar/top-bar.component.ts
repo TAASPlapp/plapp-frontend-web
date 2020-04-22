@@ -31,7 +31,7 @@ export class TopBarComponent implements OnInit {
 
   ngOnInit() {
     this.notification.requestPermission();
-    this.notification.receiveMessage().add();
+    this.notification.receiveMessage();
     this.currentMessage = this.notification.currentMessage;
     // this.messages.push(this.notification.currentMessage)
 

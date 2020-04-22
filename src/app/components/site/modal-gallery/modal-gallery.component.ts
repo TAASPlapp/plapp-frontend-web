@@ -23,7 +23,6 @@ export class ModalGalleryComponent implements OnInit {
     private comment: string = "";
 
 
-
     constructor(public activeModal: NgbActiveModal,
                 private socialManagerService: SocialManagerService,
                 private userService: UserService) {
@@ -43,29 +42,35 @@ export class ModalGalleryComponent implements OnInit {
     writeComment() {
         this.enableWrite = !this.enableWrite;
         let c: Comment = new Comment();
-        this.userService.getInfo().subscribe(res => c.author = res.content.userId);
-        c.content = this.comment;
-        c.itemId = this.item.id;
-        c.mediaContentType = MediaContentType.StoryboardItem;
-        c.publishedAt = new Date();
-        c.id = 1;
-        this.socialManagerService.addComment(c).subscribe(res => {
-            console.log(res.success)
+        this.userService.getInfo().subscribe(res => {
+            c.author = res.content.userId
+            c.content = this.comment;
+            c.itemId = this.item.id;
+            c.mediaContentType = MediaContentType.StoryboardItem;
+            c.publishedAt = new Date();
+            c.id = 1;
+            this.socialManagerService.addComment(c).subscribe(res => {
+                this.ngOnInit();
+            });
         });
+
     }
 
 
     addLike() {
         console.log("LIKE")
         let l: Like = new Like()
-        this.userService.getInfo().subscribe(res => l.author = res.content.userId);
-        l.id = 1;
-        l.itemId = this.item.id;
-        l.mediaContentType = MediaContentType.StoryboardItem;
-        l.publishedAt = new Date();
-        this.socialManagerService.addLike(l).subscribe(res => {
-            console.log(res.success)
+        this.userService.getInfo().subscribe(res => {
+            l.author = res.content.userId
+            l.id = 1;
+            l.itemId = this.item.id;
+            l.mediaContentType = MediaContentType.StoryboardItem;
+            l.publishedAt = new Date();
+            this.socialManagerService.addLike(l).subscribe(res => {
+                this.ngOnInit();
+            });
         });
+
     }
 
 }
