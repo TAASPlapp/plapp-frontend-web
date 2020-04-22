@@ -12307,6 +12307,10 @@ body {
 .mat-stepper-horizontal {
     margin-top: 8px;
 }
+.card-image {
+    height: 300px;
+    width: auto;
+}
 
 .mat-form-field {
     margin-top: 16px;
