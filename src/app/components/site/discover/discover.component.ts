@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Storyboard} from "../../../models/Storyboard";
 import {SocialManagerService} from "../../../services/social-manager.service";
+// @ts-ignore
 import {NgxSpinnerService} from "ngx-spinner";
 import {MediaContentType} from "../../../models/MediaContentType";
 

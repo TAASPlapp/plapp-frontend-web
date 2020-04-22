@@ -15,9 +15,11 @@ import {NewsApiResponse} from "../../../models/NewsApiResponse";
 import {AddStoryboardItemComponent} from "./add-storyboard-item/add-storyboard-item.component";
 import {Storyboard} from "../../../models/Storyboard";
 import {StoryboardItem} from "../../../models/StoryboardItem";
+// @ts-ignore
 import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import {ApiResponse} from "../../../models/ApiResponse";
-import {NgxSpinnerService} from "ngx-spinner";
+// @ts-ignore
+import {NgxSpinnerService} from 'ngx-spinner';
 
 
 @Component({
@@ -98,7 +100,11 @@ export class ManagePlantComponent implements OnInit {
     }
 
     removeSchedule(schedule: Schedule) {
-        this.service.removeSchedule(schedule).subscribe(res =>console.log(res.success));
+        this.service.removeSchedule(schedule).subscribe(res =>{
+            this.service.getSchedules(this.plantId).subscribe(res => {
+               this.schedule = res.content;
+            });
+        });
     }
 
     hideSpinner(): void {

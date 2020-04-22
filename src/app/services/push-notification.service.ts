@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+// @ts-ignore
 import {AngularFireMessaging} from '@angular/fire/messaging';
 import {BehaviorSubject, Observable, Subscription} from 'rxjs'
 import {HttpClient, HttpParams} from "@angular/common/http";
@@ -18,12 +19,12 @@ export class PushNotificationService {
         private angularFireMessaging: AngularFireMessaging,
         private http: HttpClient,
     ) {
-        /*this.angularFireMessaging.messaging.subscribe(
+        this.angularFireMessaging.messaging.subscribe(
             (_messaging) => {
                 _messaging.onMessage = _messaging.onMessage.bind(_messaging);
                 _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
             }
-        )*/
+        )
     }
 
     requestPermission() {
