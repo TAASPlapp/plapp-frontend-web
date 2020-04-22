@@ -1,0 +1,16 @@
+<div class="row comment-row">
+    <div [routerLink]="['/site/account', comment.author.userId]" (click)="closeModal()">
+        <img class="avatar-image" src="{{comment.author.profilePicture}}" alt="">
+    </div>
+    <div class="comment-body align-self-center">
+        <p>
+            <a><strong>{{comment.author.username}}</strong></a>: {{comment.content}} <br>
+            <span class="text-xs">
+                Published: {{comment.publishedAt | dateAgo}}
+            </span>
+        </p>
+        <hr>
+    </div>
+    <div class="clearfix"></div>
+
+</div>

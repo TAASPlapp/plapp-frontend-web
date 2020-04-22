@@ -4,34 +4,46 @@ export const SCHEDULES: Schedule[] = [
 
   //if action is == 'Watering' the water
   {
-    id: 12,
-    plantID: 134325,
+    userId: 12,
+    plantId: 134325,
     date: new Date(2020,4,16,3,1),
-    action: "manure"
+    action: "manure",
+    periodicity: 15,
+    additionalInfo: "",
 
   },
   {
-    id: 13,
-    plantID: 264574,
+    userId: 13,
+    plantId: 264574,
     date: new Date(2020,2,19,1,14),
-    action: "manure"
+    action: "manure",
+    periodicity: 43,
+    additionalInfo: "",
   },
   {
-    id: 387587,
-    plantID: 387587,
+    userId: 387587,
+    plantId: 387587,
     date: new Date(2020,5,4,21,15),
-    action: "manure"
+    action: "manure",
+    periodicity: 34,
+    additionalInfo: "",
+
+
   },
   {
-    id: 3829,
-    plantID: 387587,
+    userId: 3829,
+    plantId: 387587,
     date: new Date(2020,4,24,24,12),
-    action: "watering"
+    action: "watering",
+    periodicity: 2,
+    additionalInfo: "200 ml",
   },
   {
-    id: 45252,
-    plantID: 4,
+    userId: 45252,
+    plantId: 4,
     date: new Date(2020,7,7,2,15),
-    action: "manure"
+    action: "manure",
+    periodicity: 2,
+    additionalInfo: "",
   }
 ];

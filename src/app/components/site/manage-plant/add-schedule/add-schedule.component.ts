@@ -1,45 +1,74 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from "@angular/material/bottom-sheet";
 import {GreenhouseManageService} from "../../../../services/greenhouse-manage.service";
 import {FormControl, Validators} from "@angular/forms";
+import {Schedule} from "../../../../models/Schedule";
+import {UserService} from "../../../../services/user-manage.service";
 
 @Component({
-  selector: 'app-add-schedule',
-  templateUrl: './add-schedule.component.html',
-  styleUrls: ['./add-schedule.component.css']
+    selector: 'app-add-schedule',
+    templateUrl: './add-schedule.component.html',
+    styleUrls: ['./add-schedule.component.css']
 })
 export class AddScheduleComponent implements OnInit {
-  private minDate: Date;
-  private maxDate: Date;
-  private actions: string[];
-  private colorControl = new FormControl('accent');
-  private floatLabelControl = new FormControl('auto');
-  private selectedAction: string;
-  private wateringHoursControl = new FormControl(12, Validators.min(1));
-  private wQuantityControl = new FormControl(200, Validators.min(10));
+    private actions: string[];
+    private colorControl = new FormControl('accent');
+    private floatLabelControl = new FormControl('auto');
+    private periodicityControl = new FormControl(1, Validators.min(0));
+    private wateringTimeControl = new FormControl(9, Validators.max(24))
+    private wQuantityControl = new FormControl(200, Validators.min(10));
 
 
+    private plantId: number;
+    private userId: number;
+    private selectedDate: Date;
+    private selectedAction: string;
 
 
-  constructor(private _bottomSheetRef: MatBottomSheetRef<AddScheduleComponent>, private service: GreenhouseManageService, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {
-    const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear - 20, 0, 1);
-    this.maxDate = new Date(currentYear + 1, 11, 31);
-  }
+    constructor(private _bottomSheetRef: MatBottomSheetRef<AddScheduleComponent>,
+                private service: GreenhouseManageService,
+                private userService: UserService,
 
-
-  ngOnInit() {
-    //todo:add actions different way
-    this.actions = this.service.getScheduleActions();
-  }
-
-  createScheduleAction(){
-    if (this.selectedAction){
-      //todo: capire come fare ad aggiungere sia date sia watering
-      this.service.addScheduleAction(this.data, this.selectedAction, new Date());
-      console.log('added');
-      this._bottomSheetRef.dismiss();
+                @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {
+        this.plantId = data.plantId;
+        this.userService.getInfo().subscribe(res => this.userId = res.content.userId);
     }
-  }
+
+
+    ngOnInit() {
+        this.actions = this.service.getScheduleActions();
+    }
+
+    createScheduleAction() {
+        if (this.selectedAction != "Watering") {
+            this.service.addScheduleAction(
+                new Schedule(this.userId, this.plantId,
+                    this.selectedDate, this.selectedAction,
+                    this.periodicityControl.value))
+                .subscribe(res => {
+                    console.log(res.success)
+                });
+            this._bottomSheetRef.dismiss();
+        } else {
+
+            //the new date to begin watering = today + periodicity at selected time
+            let newDate = new Date();
+            newDate.setDate(newDate.getDate() + this.periodicityControl.value);
+            newDate.setHours(this.wateringTimeControl.value);
+            newDate.setMinutes(0);
+            console.log(newDate);
+            this.service.addScheduleAction(
+                new Schedule(
+                    this.userId, this.plantId, newDate, this.selectedAction,
+                    this.periodicityControl.value, this.wQuantityControl.value.toString()))
+                .subscribe(res => {
+                    console.log(res.content);
+                    console.log(res.message);
+                });
+            console.log(`added: date-> ${this.selectedDate},  action->${this.selectedAction}, periodicity-> ${this.periodicityControl.value},  , wateringtime -> ${this.wateringTimeControl.value}, wamount-> ${this.wQuantityControl.value} `);
+            this._bottomSheetRef.dismiss();
+
+        }
+    }
 
 }

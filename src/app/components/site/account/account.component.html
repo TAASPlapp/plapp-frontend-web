@@ -1,13 +1,107 @@
-
 <div id="wrapper">
     <app-side-bar></app-side-bar>
     <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
             <app-top-bar></app-top-bar>
-            <p>account works!</p>
+            <div class="container-fluid" *ngIf="userInfo">
+
+                <div class="row row-padding-top">
+                    <div class="col-md-2 offset-md-5">
+                        <img src="{{userInfo.profilePicture}}" class="account-image" alt="{{userInfo.username}}">
+                    </div>
+                </div>
+                <hr>
+                <div class="row text-center justify-content-center">
+                    <article>
+                        <p><strong>{{userInfo.username}}</strong></p><br>
+                        <p>{{userInfo.firstName}} {{userInfo.lastName}}: {{userInfo.bio}}</p>
+                    </article>
 
 
+                </div>
+                <div class="row row-padding-top">
+                    <div *ngIf="storyboards.length != 0 ">
+                        <div class="col-md-12" *ngFor="let s of storyboards">
+
+                            <div class="card md-6">
+                                <div class="card-header">
+                                    <h6 class="m-0 font-weight-bold text-primary">{{s.plant.name}}</h6>
+                                </div>
+                                <div class="card-body ">
+                                    <div *ngIf="s.summary">
+                                        <cite>{{s.summary}}</cite>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-6" *ngIf="s.storyboardItems">
+                                            <app-carusel-storyboard
+                                                    [storyboardItems]="s.storyboardItems"></app-carusel-storyboard>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-padding">
+                    <button class="btn btn-primary text-center  offset-5 col-2" *ngIf="!edit" (click)="edit = true">Edit
+                        profile
+                    </button>
+                    <div *ngIf="edit" class="col-6 offset-3 ">
+                        <p><strong>Upload a profile image </strong></p>
+                        <app-upload (urlEmitter)="linkUploadedHandler($event)"></app-upload>
+                        <form class="profile"
+                              name="formGroup"
+                              (ngSubmit)="onSubmit()"
+                              #f="ngForm"
+                              novalidate>
+
+                            <!-- START FORM MOD ACCOUNT -->
+
+                            <p><strong>Profile information </strong></p>
+
+                            <div class="form-group row">
+                                <div class="col-sm-12 mb-3 mb-sm-0">
+                                    <label for="firstname"> First Name:</label>
+                                    <input type="text"
+                                           class="form-control form-control-user"
+                                           [(ngModel)]="formGroup.firstName"
+                                           name="firstname"
+                                           id="firstname"
+                                           required
+                                    >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12 mb-3 mb-sm-0">
+                                    <label for="lastname"> Last Name:</label>
+                                    <input type="text"
+                                           class="form-control form-control-user"
+                                           [(ngModel)]="formGroup.lastName"
+                                           name="lastName"
+                                           id="lastname"
+                                           required
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bio">Bio:</label>
+                                <input type="text"
+                                       class="form-control form-control-user"
+                                       id="bio"
+                                       name="bio"
+                                       [(ngModel)]="formGroup.bio"
+                                       required
+                                >
+                            </div>
+                            <button class="btn btn-primary btn-user btn-block">Update user info</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

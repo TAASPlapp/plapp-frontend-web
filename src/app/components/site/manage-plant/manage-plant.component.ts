@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {switchMap} from 'rxjs/operators';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {Observable} from 'rxjs';
@@ -14,82 +14,101 @@ import {Article} from "../../../models/Article";
 import {NewsApiResponse} from "../../../models/NewsApiResponse";
 import {AddStoryboardItemComponent} from "./add-storyboard-item/add-storyboard-item.component";
 import {Storyboard} from "../../../models/Storyboard";
+import {StoryboardItem} from "../../../models/StoryboardItem";
+import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
+import {ApiResponse} from "../../../models/ApiResponse";
+import {NgxSpinnerService} from "ngx-spinner";
+
 
 @Component({
-  selector: 'app-manage-plant',
-  templateUrl: './manage-plant.component.html',
-  styleUrls: ['./manage-plant.component.css']
+    selector: 'app-manage-plant',
+    templateUrl: './manage-plant.component.html',
+    styleUrls: ['./manage-plant.component.css'],
+    providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
+
 })
 
 export class ManagePlantComponent implements OnInit {
-  plant$: Observable<Plant>;
-  schedule$: Observable<Schedule[]>;
-  recommendation$: Observable<PlantInfo>;
-  storyboardItems: Array<object>;
-  articles: Article[];
-  storyboardDescription: string;
+    plant: Plant;
+    schedule: Schedule[];
+    recommendation: PlantInfo;
+    storyboard: Storyboard;
+    storyboardItems: StoryboardItem[];
+    articles: Article[] = [];
+    storyboardDescription: string;
 
-  maxArticles: number = 3;
+    maxArticles: number = 3;
 
-  date: Date;
-  isHealty: boolean = true;
-  plantID: string;
-  plantType: string;
-
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private service: GreenhouseManageService,
-    private bottomSheet: MatBottomSheet,
-  ) {
-    this.date = new Date();
-    this.route.paramMap.subscribe(params => {
-      this.plantID = params.get('id')
-    });
-    this.route.queryParams.subscribe(params => {
-      this.plantType = params['type']
-    });
-
-  }
-
-  ngOnInit() {
-    this.plant$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.service.getPlant(params.get('id')))
-    );
-    this.schedule$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.service.getSchedule(params.get('id')))
-    );
-    this.recommendation$ = this.route.queryParams.pipe(
-      switchMap((params: ParamMap) =>
-        this.service.getRecommended(params['type']))
-    );
-
-    //get news about the plant
-    this.service.getRelatedArticles(this.plantType).subscribe((res: NewsApiResponse) => {
-      this.articles = res.articles.splice(0, this.maxArticles);
-    });
-    this.service.getStoryboard(this.plantID).subscribe((res: Storyboard) => {
-      console.log(res);
-      this.storyboardItems = res.storyboardItems;
-      this.storyboardDescription = res.summary;
-    });
-
-  }
-
-  openBottomSheet(): void {
-    this.bottomSheet.open(AddScheduleComponent, {
-      data: {plantID: this.plantID}
-    });
-  }
-
-  openBottomSheetStoryboard(): void {
-    this.bottomSheet.open(AddStoryboardItemComponent, {
-      data: {plantID: this.plantID}
-    })
-  }
+    date: Date;
+    isHealty: boolean = true;
+    plantId: string;
+    plantType: string;
+    isSpinner = true;
 
 
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private service: GreenhouseManageService,
+        private bottomSheet: MatBottomSheet,
+        private spinner: NgxSpinnerService,
+    ) {
+        this.date = new Date();
+        this.route.paramMap.subscribe(params => {
+            this.plantId = params.get('id')
+        });
+        this.route.queryParams.subscribe(params => {
+            this.plantType = params['type']
+        });
+        this.showSpinner();
+    }
+
+    ngOnInit() {
+        this.service.requestDataFromMultipleSources(this.plantId, this.plantType).subscribe(res => {
+            this.plant = res[0].content;
+            this.storyboard = res[1].content;
+            this.storyboardItems = res[1].content.storyboardItems;
+            this.storyboardDescription = res[1].content.summary;
+            this.schedule = res[2].content;
+            this.recommendation = res[3];
+            this.articles = res[4].articles.splice(0, this.maxArticles);
+            this.hideSpinner();
+        });
+    }
+
+    openBottomSheet(): void {
+        let sheet = this.bottomSheet.open(AddScheduleComponent, {
+            data: {plantId: this.plantId}
+        });
+        sheet.afterDismissed().subscribe(x =>{
+            this.service.getSchedules(this.plantId).subscribe(res => this.schedule = res.content)
+        });
+    }
+
+
+    openBottomSheetStoryboard(): void {
+        let sheet = this.bottomSheet.open(AddStoryboardItemComponent, {
+            data: {plantId: this.plantId, storyboardId: this.storyboard.id}
+
+        });
+        sheet.afterDismissed().subscribe(x =>{
+            this.service.getStoryboard(this.plantId).subscribe(
+                res => this.storyboardItems = res.content.storyboardItems)
+        });
+    }
+
+    removeSchedule(schedule: Schedule) {
+        this.service.removeSchedule(schedule).subscribe(res =>console.log(res.success));
+    }
+
+    hideSpinner(): void {
+        this.isSpinner = false;
+        this.spinner.hide()
+
+    }
+
+    showSpinner(): void {
+        this.spinner.show();
+        this.isSpinner = true;
+    }
 }

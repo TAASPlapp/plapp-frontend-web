@@ -7,22 +7,25 @@ import {AboutComponent} from "./about/about.component";
 import {DiscoverComponent} from "./discover/discover.component";
 import {AddPlantComponent} from "./add-plant/add-plant.component";
 import {ManagePlantComponent} from "./manage-plant/manage-plant.component";
+import {GardenerComponent} from "./gardener/gardener.component";
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'greenhouse', pathMatch: 'full'},
-  {path: 'greenhouse', component: GreenhouseComponent},
-  {path: 'greenhouse/manage-plant/:id', component: ManagePlantComponent},
-  {path: 'greenhouse/add-plant', component: AddPlantComponent},
-  {path: 'discover', component: DiscoverComponent},
-  {path: 'account', component: AccountComponent},
-  {path: 'settings', component: SettingsComponent},
-  {path: 'about', component: AboutComponent}
+    {path: '', redirectTo: 'greenhouse', pathMatch: 'full'},
+    {path: 'greenhouse', component: GreenhouseComponent},
+    {path: 'greenhouse/manage-plant/:id', component: ManagePlantComponent},
+    {path: 'greenhouse/add-plant', component: AddPlantComponent},
+    {path: 'gardener', component: GardenerComponent},
+    {path: 'discover', component: DiscoverComponent},
+    {path: 'account', component: AccountComponent},
+    {path: 'account/:id', component: AccountComponent},
+    {path: 'settings', component: SettingsComponent},
+    {path: 'about', component: AboutComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class SiteRoutingModule {
 }

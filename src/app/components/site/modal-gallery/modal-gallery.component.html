@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <img src="{{item.image}}" alt="">
+        </div>
+        <div class="col-md-4">
+            <div class="row row-padding-top">
+                <div class="col-md-12">
+                    <p>{{item.description}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 text-xs"><i class="far fa-thumbs-up"></i> {{likes.length}}</div>
+            </div>
+            <hr>
+            <div class="row">
+                <button class="btn col-4"><span class="cursor-pointer" (click)="addLike()"><i class="far fa-thumbs-up"></i> Like</span></button>
+                <button class="btn col-4"><span class="cursor-pointer" (click)="enableWrite = !enableWrite"><i class="far fa-comment"></i> Comment</span>
+                </button>
+            </div>
+            <hr>
+            <div *ngIf="enableWrite" class="row form-group">
+
+                <div class="col-sm-8">
+                    <input type="text"
+                           class="form-control form-control-user"
+                           [(ngModel)]="comment"
+                           id="commentAdd"
+                           placeholder="Add comment">
+                </div>
+
+                <button class="btn btn-primary col-sm-4" (click)="writeComment()">Comment</button>
+                <div class="clearfix"></div>
+
+            </div>
+            <div class="comments" *ngFor="let c of comments">
+                <app-comment [comment]="c" [activeModal]="activeModal"></app-comment>
+            </div>
+        </div>
+
+    </div>
+</div>
+

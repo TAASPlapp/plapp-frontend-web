@@ -1,0 +1,12 @@
+<ngb-carousel class="storyboard" #carousel>
+    <ng-template ngbSlide *ngFor="let item of storyboardItems">
+        <span (click)="open(item)">
+            <img src="{{item.image}}" class="story-image"
+                 alt="{{item.description}}">
+        </span>
+        <div class="carousel-caption">
+            <h3>{{item.title}}</h3>
+            <p>{{item.status}}</p>
+        </div>
+    </ng-template>
+</ngb-carousel>

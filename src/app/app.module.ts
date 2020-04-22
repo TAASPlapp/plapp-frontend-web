@@ -8,10 +8,16 @@ import {FooterComponent} from './components/footer/footer.component';
 import {Error404Component} from './components/errorPage/error404.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgImageSliderModule} from "ng-image-slider";
-import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {environment} from "../environments/environment";
+import {AngularFireModule} from "@angular/fire";
+import {AngularFireMessagingModule} from "@angular/fire/messaging";
+import {AngularFireAuthModule} from "@angular/fire/auth";
+import {AsyncPipe} from "@angular/common";
+import {PushNotificationService} from "./services/push-notification.service";
+import {authInterceptorProviders} from "./auth-interceptor";
 
 @NgModule({
-  //where components go including appComponent (auto update using cli)
   declarations: [
     AppComponent,
     FooterComponent,
@@ -23,8 +29,14 @@ import {MatBottomSheet} from "@angular/material/bottom-sheet";
     HttpClientModule,
     BrowserAnimationsModule,
     NgImageSliderModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [],
+  providers: [PushNotificationService,AsyncPipe, authInterceptorProviders],
+  exports: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {
