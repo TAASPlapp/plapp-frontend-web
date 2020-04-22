@@ -1,6 +1,6 @@
 export const urls  = {
-  serverUrl: 'https://plapp-api-gataway.herokuapp.com/',
-  apiServerUrl: 'https://plapp-api-gataway.herokuapp.com/api/',
+  serverUrl: 'https://plapp-api-gateway.herokuapp.com/',
+  apiServerUrl: 'https://plapp-api-gateway.herokuapp.com/api/',
   plantsInfoApiUrl: "https://plant-info-api.herokuapp.com/"
 
 };
