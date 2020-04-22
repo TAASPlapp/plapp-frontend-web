@@ -26,7 +26,7 @@ export class DiscoverComponent implements OnInit {
 
   ngOnInit() {
     this.service.getAllStoryboards().subscribe(res => {
-      this.storyboards = res.content;
+      this.storyboards = res.content.reverse();
       this.hideSpinner();
 
     });

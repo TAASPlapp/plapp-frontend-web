@@ -43,28 +43,35 @@ export class StroyboardCommentsComponent implements OnInit {
     writeComment() {
         this.enableWrite = !this.enableWrite;
         let c: Comment = new Comment();
-        this.userService.getInfo().subscribe(res => c.author = res.content.userId);
-        c.content = this.comment;
-        c.itemId = this.storyboardId
-        c.mediaContentType = MediaContentType.Storyboard
-        c.publishedAt = new Date()
-        c.id = 1;
-        this.socialManagerService.addComment(c).subscribe(res => {
-            console.log(res.success)
+        this.userService.getInfo().subscribe(res => {
+            c.author = res.content.userId
+            c.content = this.comment;
+            c.itemId = this.storyboardId
+            c.mediaContentType = MediaContentType.Storyboard
+            c.publishedAt = new Date()
+            c.id = 1;
+            this.socialManagerService.addComment(c).subscribe(res => {
+                this.ngOnInit();
+            });
         });
+
     }
 
 
     addLike() {
         console.log("LIKE")
         let l: Like = new Like()
-        this.userService.getInfo().subscribe(res => l.author = res.content.userId);
-        l.id = 1;
-        l.itemId = this.storyboardId;
-        l.mediaContentType = MediaContentType.Storyboard;
-        l.publishedAt = new Date();
-        this.socialManagerService.addLike(l).subscribe(res => {
-            console.log(res.success)
+        this.userService.getInfo().subscribe(res => {
+            l.author = res.content.userId
+            l.id = 1;
+            l.itemId = this.storyboardId;
+            l.mediaContentType = MediaContentType.Storyboard;
+            l.publishedAt = new Date();
+            this.socialManagerService.addLike(l).subscribe(res => {
+                this.ngOnInit();
+            });
+
         });
+
     }
 }

@@ -2,7 +2,7 @@
     <div [routerLink]="['/site/account', comment.author.userId]" (click)="closeModal()">
         <img class="avatar-image" src="{{comment.author.profilePicture}}" alt="">
     </div>
-    <div class="comment-body align-self-center">
+    <div class="comment-body text-left">
         <p>
             <a><strong>{{comment.author.username}}</strong></a>: {{comment.content}} <br>
             <span class="text-xs">
