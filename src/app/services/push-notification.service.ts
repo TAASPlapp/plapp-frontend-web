@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFireMessaging} from '@angular/fire/messaging';
-import {BehaviorSubject, Observable} from 'rxjs'
+import {BehaviorSubject, Observable, Subscription} from 'rxjs'
 
 
 @Injectable()
@@ -30,8 +30,8 @@ export class PushNotificationService {
     );
   }
 
-  receiveMessage() {
-    this.angularFireMessaging.messages.subscribe(
+  receiveMessage(){
+    return this.angularFireMessaging.messages.subscribe(
       (payload) => {
         console.log("new message received. ", payload);
         this.currentMessage.next(payload);

@@ -7039,6 +7039,10 @@ button.bg-dark:focus {
     }
 }
 
+.nextButton {
+    margin-left: 10px;
+}
+
 @media (min-width: 768px) {
     .d-md-none {
         display: none !important;

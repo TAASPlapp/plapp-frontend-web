@@ -77,21 +77,28 @@ export class ManagePlantComponent implements OnInit {
     }
 
     openBottomSheet(): void {
-        this.bottomSheet.open(AddScheduleComponent, {
+        let sheet = this.bottomSheet.open(AddScheduleComponent, {
             data: {plantId: this.plantId}
+        });
+        sheet.afterDismissed().subscribe(x =>{
+            this.service.getSchedules(this.plantId).subscribe(res => this.schedule = res.content)
         });
     }
 
 
     openBottomSheetStoryboard(): void {
-        this.bottomSheet.open(AddStoryboardItemComponent, {
+        let sheet = this.bottomSheet.open(AddStoryboardItemComponent, {
             data: {plantId: this.plantId, storyboardId: this.storyboard.id}
 
-        })
+        });
+        sheet.afterDismissed().subscribe(x =>{
+            this.service.getStoryboard(this.plantId).subscribe(
+                res => this.storyboardItems = res.content.storyboardItems)
+        });
     }
 
     removeSchedule(schedule: Schedule) {
-        this.service.removeSchedule(schedule);
+        this.service.removeSchedule(schedule).subscribe(res =>console.log(res.success));
     }
 
     hideSpinner(): void {

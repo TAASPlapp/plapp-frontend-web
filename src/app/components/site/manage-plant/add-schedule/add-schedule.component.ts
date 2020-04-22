@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from "@angular/material/bottom-sheet";
 import {GreenhouseManageService} from "../../../../services/greenhouse-manage.service";
 import {FormControl, Validators} from "@angular/forms";
@@ -46,10 +46,7 @@ export class AddScheduleComponent implements OnInit {
                     this.selectedDate, this.selectedAction,
                     this.periodicityControl.value))
                 .subscribe(res => {
-
-                    console.log(res.content);
-                    console.log(res.message);
-
+                    console.log(res.success)
                 });
             this._bottomSheetRef.dismiss();
         } else {

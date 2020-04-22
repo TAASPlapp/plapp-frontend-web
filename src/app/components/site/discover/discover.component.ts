@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Storyboard} from "../../../models/Storyboard";
 import {SocialManagerService} from "../../../services/social-manager.service";
 import {NgxSpinnerService} from "ngx-spinner";
+import {MediaContentType} from "../../../models/MediaContentType";
 
 @Component({
   selector: 'app-discover',
@@ -13,6 +14,7 @@ export class DiscoverComponent implements OnInit {
   private storyboards: Storyboard[];
   private currentDate: Date = new Date();
   isSpinner: Boolean = true;
+  private media = MediaContentType.Storyboard;
 
 
   constructor(

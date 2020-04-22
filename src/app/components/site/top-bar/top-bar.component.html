@@ -75,49 +75,6 @@
         </li>
 
         <!-- Nav Item - Messages -->
-        <li class="nav-item dropdown no-arrow mx-1">
-            <div ngbDropdown #msgDrop="ngbDropdown">
-                <button class="nav-link dropdown-toggle nav-button" id="dropdownManual" ngbDropdownAnchor
-                        (focus)="msgDrop.open()">
-                    <i class="fas fa-envelope fa-fw"></i>
-                    <!-- Counter - Messages -->
-                    <span class="badge badge-danger badge-counter">7</span>
-                </button>
-                <div class="dropdown-list dropdown-menu dropdown-menu-right animated--grow-in " ngbDropdownMenu
-                     aria-labelledby="dropdownManual">
-                    <h6 class="dropdown-header">
-                        Message Center
-                    </h6>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <div class="dropdown-list-image mr-3">
-                            <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-                            <div class="status-indicator bg-success"></div>
-                        </div>
-                        <div class="font-weight-bold">
-                            <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've
-                                been having.
-                            </div>
-                            <div class="small text-gray-500">Emily Fowler · 58m</div>
-                        </div>
-                    </a>
-
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <div class="dropdown-list-image mr-3">
-                            <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-                            <div class="status-indicator bg-success"></div>
-                        </div>
-                        <div>
-                            <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that
-                                people say this to all dogs, even if they aren't good...
-                            </div>
-                            <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                        </div>
-                    </a>
-
-                </div>
-            </div>
-        </li>
-
 
         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -136,7 +93,7 @@
                     <a class="dropdown-item" routerLink='/site/account'>
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
                     </a>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" routerLink='/site/settings'>
                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings
                     </a>
 

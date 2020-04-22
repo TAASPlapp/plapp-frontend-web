@@ -31,16 +31,14 @@
                                 </div>
                                 <h6 class="m-0 font-weight-bold text-secondary">{{s.summary}}</h6>
                             </div>
-                            <div class="card-body">
-                                <div class="row col-md-12">
-                                    <div class="col-md-6 col-md-offset-3 ">
-                                        <app-carusel-storyboard
-                                                [storyboardItems]="s.storyboardItems"></app-carusel-storyboard>
-                                    </div>
+                            <div class="card-body text-center">
+                                <div class="col-md-12">
+                                    <app-carusel-storyboard
+                                            [storyboardItems]="s.storyboardItems"></app-carusel-storyboard>
                                 </div>
                                 <hr>
                                 <app-stroyboard-comments-component
-                                        [storyboardId]="s.id"></app-stroyboard-comments-component>
+                                        [storyboardId]="s.id" [media]="media"></app-stroyboard-comments-component>
                             </div>
                         </div>
 

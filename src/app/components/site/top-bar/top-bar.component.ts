@@ -6,6 +6,7 @@ import {AuthService} from "../../../services/auth.service";
 import {ApiResponse} from "../../../models/ApiResponse";
 import {TokenStorageService} from "../../../services/token-storage.service";
 import {Router} from "@angular/router";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-top-bar',
@@ -14,7 +15,8 @@ import {Router} from "@angular/router";
 })
 export class TopBarComponent implements OnInit {
   userInfo:UserDetails;
-  messages;
+  messages: string[];
+  currentMessage;
 
 
   constructor(
@@ -24,16 +26,15 @@ export class TopBarComponent implements OnInit {
     private authService: AuthService,
     private tokenService: TokenStorageService,
   ) {
-
+      this.userService.getInfo().subscribe(user => this.userInfo = user.content)
   }
 
   ngOnInit() {
     this.notification.requestPermission();
-    this.notification.receiveMessage();
-    this.messages = this.notification.currentMessage;
+    this.notification.receiveMessage().add();
+    this.currentMessage = this.notification.currentMessage;
     // this.messages.push(this.notification.currentMessage)
 
-    this.userService.getInfo().subscribe(user => this.userInfo = user.content)
   }
 
   logout() {
