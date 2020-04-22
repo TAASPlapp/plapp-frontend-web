@@ -17,10 +17,10 @@ export class ModalGalleryComponent implements OnInit {
     @Input() item: StoryboardItem;
 
 
-    private comments: Comment[];
-    private likes: UserDetails[] = [];
-    private enableWrite: Boolean = false;
-    private comment: string = "";
+    public comments: Comment[];
+    public likes: UserDetails[] = [];
+    public enableWrite: Boolean = false;
+    public comment: string = "";
 
 
     constructor(public activeModal: NgbActiveModal,

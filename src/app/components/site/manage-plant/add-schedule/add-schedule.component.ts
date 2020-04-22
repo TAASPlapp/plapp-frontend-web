@@ -11,18 +11,18 @@ import {UserService} from "../../../../services/user-manage.service";
     styleUrls: ['./add-schedule.component.css']
 })
 export class AddScheduleComponent implements OnInit {
-    private actions: string[];
-    private colorControl = new FormControl('accent');
-    private floatLabelControl = new FormControl('auto');
-    private periodicityControl = new FormControl(1, Validators.min(0));
-    private wateringTimeControl = new FormControl(9, Validators.max(24))
-    private wQuantityControl = new FormControl(200, Validators.min(10));
+    public actions: string[];
+    public colorControl = new FormControl('accent');
+    public floatLabelControl = new FormControl('auto');
+    public periodicityControl = new FormControl(1, Validators.min(0));
+    public wateringTimeControl = new FormControl(9, Validators.max(24))
+    public wQuantityControl = new FormControl(200, Validators.min(10));
 
 
-    private plantId: number;
-    private userId: number;
-    private selectedDate: Date;
-    private selectedAction: string;
+    public plantId: number;
+    public userId: number;
+    public selectedDate: Date;
+    public selectedAction: string;
 
 
     constructor(private _bottomSheetRef: MatBottomSheetRef<AddScheduleComponent>,

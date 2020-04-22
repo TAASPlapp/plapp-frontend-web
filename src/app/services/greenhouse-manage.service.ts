@@ -21,10 +21,10 @@ const httpOptions = {
     providedIn: 'root'
 })
 export class GreenhouseManageService {
-    private apiBaseUrl: string = urls.apiServerUrl + 'greenhouse/';
-    private plantsInfoApiUrl: string = urls.plantsInfoApiUrl;
-    private apiScheduleUrl: string = urls.apiServerUrl + "schedule/";
-    private storyboardItemUrl: string = urls.apiServerUrl + "greenhouse/storyboard/";
+    public apiBaseUrl: string = urls.apiServerUrl + 'greenhouse/';
+    public plantsInfoApiUrl: string = urls.plantsInfoApiUrl;
+    public apiScheduleUrl: string = urls.apiServerUrl + "schedule/";
+    public storyboardItemUrl: string = urls.apiServerUrl + "greenhouse/storyboard/";
 
 
     constructor(private http: HttpClient) {

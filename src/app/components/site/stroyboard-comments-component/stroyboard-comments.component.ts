@@ -18,10 +18,10 @@ export class StroyboardCommentsComponent implements OnInit {
 
     @Input() storyboardId: number;
     @Input() media: MediaContentType;
-    private comments: Comment[];
-    private likes: UserDetails[] = [];
-    private enableWrite: Boolean = false;
-    private comment: string = "";
+    public comments: Comment[];
+    public likes: UserDetails[] = [];
+    public enableWrite: Boolean = false;
+    public comment: string = "";
 
 
     constructor(private socialManagerService: SocialManagerService,

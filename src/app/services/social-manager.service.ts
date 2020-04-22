@@ -20,7 +20,7 @@ const httpOptions = {
     providedIn: 'root'
 })
 export class SocialManagerService {
-    private baseUrl: string = urls.apiServerUrl + 'social/';
+    public baseUrl: string = urls.apiServerUrl + 'social/';
 
 
     constructor(private http: HttpClient) {

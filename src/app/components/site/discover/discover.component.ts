@@ -11,10 +11,10 @@ import {MediaContentType} from "../../../models/MediaContentType";
 })
 export class DiscoverComponent implements OnInit {
 
-  private storyboards: Storyboard[];
-  private currentDate: Date = new Date();
-  isSpinner: Boolean = true;
-  private media = MediaContentType.Storyboard;
+  public storyboards: Storyboard[];
+  public currentDate: Date = new Date();
+  public isSpinner: Boolean = true;
+  public media = MediaContentType.Storyboard;
 
 
   constructor(
