@@ -21,6 +21,7 @@ export class AccountComponent implements OnInit {
     edit: boolean = false;
     formGroup: any = {};
     uploadedLink: string = "";
+    isEtitable = false;
 
 
     constructor(
@@ -38,15 +39,14 @@ export class AccountComponent implements OnInit {
     ngOnInit() {
         if (this.userId) {
             this.service.getUserInfo(this.userId).subscribe(user => this.userInfo = user.content);
-
+            this.service.getStoryboards(this.userId).subscribe((s: ApiResponse) => {
+                this.storyboards = s.content;
+            });
         } else {
             this.service.getInfo().subscribe(user => {
                 this.userInfo = user.content;
-                console.log(this.userInfo)
-                this.service.getStoryboards(this.userInfo.userId).subscribe((s: ApiResponse) => {
-                    this.storyboards = s.content;
-                });
             });
+            this.isEtitable = true;
         }
     }
 

@@ -20,10 +20,9 @@
 
 
                 </div>
-                <div class="row row-padding-top">
-                    <div *ngIf="storyboards.length != 0 ">
-                        <div class="col-md-12" *ngFor="let s of storyboards">
-
+                <div *ngIf="storyboards.length != 0 ">
+                    <div class="row row-padding-top col-md-12">
+                        <div class="col-md-6" *ngFor="let s of storyboards">
                             <div class="card md-6">
                                 <div class="card-header">
                                     <h6 class="m-0 font-weight-bold text-primary">{{s.plant.name}}</h6>
@@ -44,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row row-padding">
+                <div class="row row-padding" *ngIf="isEtitable">
                     <button class="btn btn-primary text-center  offset-5 col-2" *ngIf="!edit" (click)="edit = true">Edit
                         profile
                     </button>
